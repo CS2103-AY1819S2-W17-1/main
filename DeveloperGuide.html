@@ -30,9 +30,10 @@
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
 <li><a href="#undo-redo-feature">3.1. Undo/Redo feature</a></li>
-<li><a href="#proposed-data-encryption">3.2. [Proposed] Data Encryption</a></li>
-<li><a href="#logging">3.3. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.4. Configuration</a></li>
+<li><a href="#restaurant-categorisation">3.2. Restaurant Categorisation</a></li>
+<li><a href="#proposed-data-encryption">3.3. [Proposed] Data Encryption</a></li>
+<li><a href="#logging">3.4. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.5. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -762,20 +763,111 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.2. [Proposed] Data Encryption</a></h3>
+<h3 id="restaurant-categorisation"><a class="link" href="#restaurant-categorisation">3.2. Restaurant Categorisation</a></h3>
+<div class="paragraph">
+<p>Restaurants can be classified using categories. Each restaurant can have each of the optional categories defined.
+Currently, 2 different types of categories are implemented in v1.2: <code>Cuisine</code> and <code>Occasion</code>.</p>
+</div>
+<div class="sect3">
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.2.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>Restaurant Categorisation is mainly implemented using the following commands:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>setCategory</code>&#8201;&#8212;&#8201;sets the different categories of the restaurant using its respective prefixes.</p>
+</li>
+<li>
+<p><code>filter</code>&#8201;&#8212;&#8201;filters out restaurants using keywords matching that of its categories.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>All supported categories are defined in the <code>seedu.address.model.restaurant.categories</code> package, along with the <code>Category</code>
+class that encapsulates all categories into a <code>Category</code> object to be used in the <code>Restaurant</code> class.</p>
+</div>
+<div class="paragraph">
+<p>The restaurants are categorised by a <code>Category</code> field in the <code>Restaurant</code> class.
+The <code>Category</code> class encapsulates all the different categories a restaurant can have such as <code>Cuisine</code> and <code>Occasion</code>.
+Additionally, it implements the <code>merge</code> operation. The <code>merge</code> operation is essential in ensuring that when one category
+is being set, it does not override the other categories. For example, if an existing restaurant has the following preexisting
+categories: <code>cuisine</code> and <code>occasion</code>, doing a <code>setCategory</code> for <code>cuisine</code> will override its <code>occasion</code> category if the
+merge operation is not implemented.</p>
+</div>
+<div class="paragraph">
+<p>The <code>merge</code> operation is implemented by taking in two <code>Category</code> arguments, <code>previous</code> and <code>updated</code>. All categories in
+<code>updated</code> will replace any existing categories in <code>previous</code>. The merged <code>Category</code> will retain those categories in
+<code>previous</code> for any category not present in <code>updated</code>.</p>
+</div>
+<div class="paragraph">
+<p>THe <code>merge</code> operation is used by <code>SetCategoryCommand#execute()</code> to update a restaurant&#8217;s categories by merging it with
+its existing categories.</p>
+</div>
+<div class="paragraph">
+<p>The <code>setCategory</code> command is implemented as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>CategoryCommandParser</code> parses the user input arguments, creating a <code>SetCategoryCommand</code> object with the target <code>Index</code>
+and new <code>Category</code> object containing all the categories in the user input.</p>
+</li>
+<li>
+<p>Inside <code>SetCategoryCommand#execute()</code>, the restaurant identified by the index is retrieved from <code>Model</code>.</p>
+</li>
+<li>
+<p>Existing categories are retrieved from the target restaurant.</p>
+</li>
+<li>
+<p>New <code>Category</code> object is created by merging existing categories and categories inputted by the user.</p>
+</li>
+<li>
+<p>The new <code>Category</code> object is used to create a new <code>Restaurant</code> with the updated <code>Category</code> object.</p>
+</li>
+<li>
+<p><code>Model#setRestaurant()</code> is called to update the target restaurant.</p>
+</li>
+<li>
+<p><code>Model#updateFilteredRestaurantList()</code> is called to update the list of restaurants displayed/</p>
+</li>
+<li>
+<p><code>Model#commitFoodDiary()</code> is called to commit the changes to the food diary.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The <code>filter</code> command is implemented as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>FilterCommandParser</code> parses the user input arguments, creating a <code>FilterCommand</code> object containing the predicate that
+tests if a restaurant matches any of the keywords.</p>
+</li>
+<li>
+<p>Inside <code>FilterCommand#execute()</code>, <code>Model#updateFilteredRestaurantList()</code> is called with the predicate to update the
+list of restaurants that matches the keywords.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.3. [Proposed] Data Encryption</a></h3>
 <div class="paragraph">
 <p><em>{Explain here how the data encryption feature will be implemented}</em></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.3. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.4. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.4, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.5, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -806,7 +898,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.4. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.5. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -2239,4 +2331,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-03-18 14:55:48 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-03-18 16:33:22 UTC</div></div></div></body></html>
