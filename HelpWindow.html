@@ -14,22 +14,23 @@
 <li><a href="#Features">3. Features</a>
 <ul class="sectlevel2">
 <li><a href="#viewing-help-code-help-code">3.1. Viewing help : <code>help</code></a></li>
-<li><a href="#adding-a-review-code-add-code">3.2. Adding a review: <code>add</code></a></li>
-<li><a href="#editing-a-specified-review-code-edit-code">3.3. Editing a specified review : <code>edit</code></a></li>
-<li><a href="#deleting-a-review-code-delete-code">3.4. Deleting a review : <code>delete</code></a></li>
+<li><a href="#adding-a-review-code-addreview-code">3.2. Adding a review: <code>addReview</code></a></li>
+<li><a href="#editing-a-specified-review-code-editreview-code">3.3. Editing a specified review : <code>editReview</code></a></li>
+<li><a href="#deleting-a-review-code-deletereview-code">3.4. Deleting a review : <code>deleteReview</code></a></li>
 <li><a href="#add-a-picture-of-the-food-to-a-review-code-addimage-code">3.5. Add a picture of the food to a review : <code>addImage</code></a></li>
 <li><a href="#listing-all-reviews-code-listreviews-code">3.6. Listing all reviews : <code>listReviews</code></a></li>
 <li><a href="#adding-a-restaurant-code-add-code">3.7. Adding a restaurant: <code>add</code></a></li>
-<li><a href="#listing-all-restaurants-code-listrestaurants-code">3.8. Listing all restaurants : <code>listRestaurants</code></a></li>
-<li><a href="#listing-all-restaurants-not-tried-before-code-listunvisited-code">3.9. Listing all restaurants not tried before : <code>listUnvisited</code></a></li>
-<li><a href="#editing-details-of-a-restaurant-code-editrestaurant-code">3.10. Editing details of a restaurant  : <code>editRestaurant</code></a></li>
-<li><a href="#setting-the-category-of-a-restaurant-code-setcategory-code">3.11. Setting the category of a restaurant : <code>setCategory</code></a></li>
-<li><a href="#filter-restaurants-based-on-category-code-filter-code">3.12. Filter restaurants based on category : <code>filter</code></a></li>
-<li><a href="#personalising-your-food-diary-with-your-name-code-name-code">3.13. Personalising your food diary with your name: <code>name</code></a></li>
-<li><a href="#view-your-profile-and-usage-statistics-code-view-code">3.14. View your profile and usage statistics : <code>view</code></a></li>
-<li><a href="#display-website-of-selected-restaurant-code-visitweb-code">3.15. Display website of selected restaurant : <code>visitWeb</code></a></li>
-<li><a href="#exiting-the-program-code-exit-code">3.16. Exiting the program : <code>exit</code></a></li>
-<li><a href="#saving-the-data">3.17. Saving the data</a></li>
+<li><a href="#deleting-a-restaurant-code-delete-code">3.8. Deleting a restaurant: <code>delete</code></a></li>
+<li><a href="#listing-all-restaurants-code-list-code">3.9. Listing all restaurants : <code>list</code></a></li>
+<li><a href="#listing-all-restaurants-not-tried-before-code-listunvisited-code">3.10. Listing all restaurants not tried before : <code>listUnvisited</code></a></li>
+<li><a href="#editing-details-of-a-restaurant-code-edit-code">3.11. Editing details of a restaurant  : <code>edit</code></a></li>
+<li><a href="#setting-the-category-of-a-restaurant-code-setcategory-code">3.12. Setting the category of a restaurant : <code>setCategory</code></a></li>
+<li><a href="#filter-restaurants-based-on-category-code-filter-code">3.13. Filter restaurants based on category : <code>filter</code></a></li>
+<li><a href="#personalising-your-food-diary-with-your-name-code-name-code">3.14. Personalising your food diary with your name: <code>name</code></a></li>
+<li><a href="#view-your-profile-and-usage-statistics-code-view-code">3.15. View your profile and usage statistics : <code>view</code></a></li>
+<li><a href="#display-website-of-selected-restaurant-code-visitweb-code">3.16. Display website of selected restaurant : <code>visitWeb</code></a></li>
+<li><a href="#exiting-the-program-code-exit-code">3.17. Exiting the program : <code>exit</code></a></li>
+<li><a href="#saving-the-data">3.18. Saving the data</a></li>
 </ul>
 </li>
 <li><a href="#faq">4. FAQ</a></li>
@@ -149,10 +150,10 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 </div>
 </div>
 <div class="sect2">
-<h3 id="adding-a-review-code-add-code"><a class="link" href="#adding-a-review-code-add-code">3.2. Adding a review: <code>add</code></a></h3>
+<h3 id="adding-a-review-code-addreview-code"><a class="link" href="#adding-a-review-code-addreview-code">3.2. Adding a review: <code>addReview</code></a></h3>
 <div class="paragraph">
 <p>Adds a review to the Food Diary<br>
-Format: <code>addReview n/RESTAURANT_NAME r/STAR_RATING m/COMMENT</code></p>
+Format: <code>addReview INDEX re/ENTRY rr/RATING</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -160,16 +161,16 @@ Format: <code>addReview n/RESTAURANT_NAME r/STAR_RATING m/COMMENT</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>`addReview n/McDonalds r/4 m/Peach Pie was amazing'</p>
+<p><code>addReview 2 re/Peach Pie was amazing rr/4</code></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="editing-a-specified-review-code-edit-code"><a class="link" href="#editing-a-specified-review-code-edit-code">3.3. Editing a specified review : <code>edit</code></a></h3>
+<h3 id="editing-a-specified-review-code-editreview-code"><a class="link" href="#editing-a-specified-review-code-editreview-code">3.3. Editing a specified review : <code>editReview</code></a></h3>
 <div class="paragraph">
 <p>Edit selected fields in a specified entry.<br>
-Format: <code>edit INDEX [r/STAR_RATING] [m/COMMENT]</code></p>
+Format: <code>editReview INDEX [re/ENTRY] [rr/RATING]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -194,21 +195,21 @@ Format: <code>edit INDEX [r/STAR_RATING] [m/COMMENT]</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>edit 1 r/3</code><br>
+<p><code>edit 1 rr/3</code><br>
 Edits the rating of the 1st review to be 3.</p>
 </li>
 <li>
-<p><code>edit 2 m/Food isn&#8217;t the best</code><br>
+<p><code>edit 2 re/Food isn&#8217;t the best</code><br>
 Edits the comment of the second review to "Food isn&#8217;t the best"</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-review-code-delete-code"><a class="link" href="#deleting-a-review-code-delete-code">3.4. Deleting a review : <code>delete</code></a></h3>
+<h3 id="deleting-a-review-code-deletereview-code"><a class="link" href="#deleting-a-review-code-deletereview-code">3.4. Deleting a review : <code>deleteReview</code></a></h3>
 <div class="paragraph">
 <p>Deletes the review from the Food Diary.<br>
-Format: <code>delete INDEX</code></p>
+Format: <code>deleteReview INDEX</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -243,7 +244,7 @@ Deletes the 2nd review in the Food Diary.</p>
 <h3 id="add-a-picture-of-the-food-to-a-review-code-addimage-code"><a class="link" href="#add-a-picture-of-the-food-to-a-review-code-addimage-code">3.5. Add a picture of the food to a review : <code>addImage</code></a></h3>
 <div class="paragraph">
 <p>Adds a picture of the food to the review in the specified entry<br>
-Format: <code>addPicture INDEX [f/FOOD_NAME] i/IMAGE_FILEPATH</code></p>
+Format: <code>addImage INDEX [f/FOOD_NAME] i/IMAGE_FILEPATH</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -251,7 +252,7 @@ Format: <code>addPicture INDEX [f/FOOD_NAME] i/IMAGE_FILEPATH</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>'addPicture 2 f/apple pie i/apple.jpg'<br>
+<p><code>addImage 2 f/apple pie i/apple.jpg</code><br>
 Adds a picture to the second review of an apple pie</p>
 </li>
 </ul>
@@ -265,8 +266,12 @@ Format: <code>listReviews [n/RESTAURANT_NAME]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
-<div class="paragraph">
-<p>*If the restaurant name is left blank, all reviews will be shown</p>
+<div class="ulist">
+<ul>
+<li>
+<p>If the restaurant name is left blank, all reviews will be shown</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -276,11 +281,11 @@ Format: <code>listReviews [n/RESTAURANT_NAME]</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>'listReviews'<br>
+<p><code>listReviews</code><br>
 Return all the reviews</p>
 </li>
 <li>
-<p>'listReviews n/MACDONALDS'<br>
+<p><code>listReviews n/MACDONALDS</code><br>
 Return all the reviews for Macdonalds.</p>
 </li>
 </ul>
@@ -305,10 +310,27 @@ adds the restaurant Nana Thai food with address 561 Clementi Road and cuisine Th
 </div>
 </div>
 <div class="sect2">
-<h3 id="listing-all-restaurants-code-listrestaurants-code"><a class="link" href="#listing-all-restaurants-code-listrestaurants-code">3.8. Listing all restaurants : <code>listRestaurants</code></a></h3>
+<h3 id="deleting-a-restaurant-code-delete-code"><a class="link" href="#deleting-a-restaurant-code-delete-code">3.8. Deleting a restaurant: <code>delete</code></a></h3>
 <div class="paragraph">
-<p>Shows a list of all restaurants in the Food Diary with an option to filter for certain property.<br>
-Format: <code>listRestaurants [n/RESTAURANT_NAME] [a/ADDRESS] [c/CUISINE]</code></p>
+<p>Delete a restaurant that is in the current list of restaurants.<br>
+Format: <code>delete INDEX</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Deletes the restaurant at the specified <code>INDEX</code>.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the displayed restaurants list.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -316,18 +338,32 @@ Format: <code>listRestaurants [n/RESTAURANT_NAME] [a/ADDRESS] [c/CUISINE]</code>
 <div class="ulist">
 <ul>
 <li>
-<p>'listRestaurants'<br>
-Return all the restaurants</p>
-</li>
-<li>
-<p>'listReviews n/Mc'<br>
-Return all the restaurants with name matching Mc.</p>
+<p><code>delete 1</code><br>
+Deletes the 1st restaurant in the Food Diary.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="listing-all-restaurants-not-tried-before-code-listunvisited-code"><a class="link" href="#listing-all-restaurants-not-tried-before-code-listunvisited-code">3.9. Listing all restaurants not tried before : <code>listUnvisited</code></a></h3>
+<h3 id="listing-all-restaurants-code-list-code"><a class="link" href="#listing-all-restaurants-code-list-code">3.9. Listing all restaurants : <code>list</code></a></h3>
+<div class="paragraph">
+<p>Shows a list of all restaurants in the Food Diary with an option to filter for certain property.<br>
+Format: <code>list [n/RESTAURANT_NAME] [a/ADDRESS] [c/CUISINE]</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>list</code><br>
+Return all the restaurants</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="listing-all-restaurants-not-tried-before-code-listunvisited-code"><a class="link" href="#listing-all-restaurants-not-tried-before-code-listunvisited-code">3.10. Listing all restaurants not tried before : <code>listUnvisited</code></a></h3>
 <div class="paragraph">
 <p>List the restaurants in the database that have no reviews.<br>
 Format: <code>listUnvisited</code></p>
@@ -338,17 +374,17 @@ Format: <code>listUnvisited</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>'listUnvisited'<br>
+<p><code>listUnvisited</code><br>
 Return all the restaurants that you have not visited</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="editing-details-of-a-restaurant-code-editrestaurant-code"><a class="link" href="#editing-details-of-a-restaurant-code-editrestaurant-code">3.10. Editing details of a restaurant  : <code>editRestaurant</code></a></h3>
+<h3 id="editing-details-of-a-restaurant-code-edit-code"><a class="link" href="#editing-details-of-a-restaurant-code-edit-code">3.11. Editing details of a restaurant  : <code>edit</code></a></h3>
 <div class="paragraph">
 <p>Edit the details of a restaurant identified by the index number used in the listRestaurants.<br>
-Format: <code>editRestaurant INDEX [n/RESTAURANT_NAME] [a/ADDRESS] [c/CUISINE]</code></p>
+Format: <code>edit INDEX [n/RESTAURANT_NAME] [a/ADDRESS] [c/CUISINE]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -378,7 +414,7 @@ Change the name of the second restaurant in the list to MACS.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="setting-the-category-of-a-restaurant-code-setcategory-code"><a class="link" href="#setting-the-category-of-a-restaurant-code-setcategory-code">3.11. Setting the category of a restaurant : <code>setCategory</code></a></h3>
+<h3 id="setting-the-category-of-a-restaurant-code-setcategory-code"><a class="link" href="#setting-the-category-of-a-restaurant-code-setcategory-code">3.12. Setting the category of a restaurant : <code>setCategory</code></a></h3>
 <div class="paragraph">
 <p>Set the cuisine of a restaurant identified by the index number used in the listRestaurants.<br>
 Format: <code>setCategory INDEX [c/CUISINE] [o/OCCASION] [p/PRICE_RANGE]</code></p>
@@ -432,7 +468,7 @@ Set the categories of the second restaurant in the list to <code>Find Dining</co
 </div>
 </div>
 <div class="sect2">
-<h3 id="filter-restaurants-based-on-category-code-filter-code"><a class="link" href="#filter-restaurants-based-on-category-code-filter-code">3.12. Filter restaurants based on category : <code>filter</code></a></h3>
+<h3 id="filter-restaurants-based-on-category-code-filter-code"><a class="link" href="#filter-restaurants-based-on-category-code-filter-code">3.13. Filter restaurants based on category : <code>filter</code></a></h3>
 <div class="paragraph">
 <p>Filters and lists the restaurants with categories matching the keywords entered.<br>
 Format: <code>filter KEYWORD [MORE_KEYWORDS]</code></p>
@@ -487,7 +523,7 @@ Returns restaurants with cuisine matching fast food and occasion matching gather
 </div>
 </div>
 <div class="sect2">
-<h3 id="personalising-your-food-diary-with-your-name-code-name-code"><a class="link" href="#personalising-your-food-diary-with-your-name-code-name-code">3.13. Personalising your food diary with your name: <code>name</code></a></h3>
+<h3 id="personalising-your-food-diary-with-your-name-code-name-code"><a class="link" href="#personalising-your-food-diary-with-your-name-code-name-code">3.14. Personalising your food diary with your name: <code>name</code></a></h3>
 <div class="paragraph">
 <p>Personalise your foodDiary with your name<br>
 Format: <code>name n/YourName</code></p>
@@ -498,27 +534,27 @@ Format: <code>name n/YourName</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>`name n/JackTheSheep'</p>
+<p><code>name n/JackTheSheep</code></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="view-your-profile-and-usage-statistics-code-view-code"><a class="link" href="#view-your-profile-and-usage-statistics-code-view-code">3.14. View your profile and usage statistics : <code>view</code></a></h3>
+<h3 id="view-your-profile-and-usage-statistics-code-view-code"><a class="link" href="#view-your-profile-and-usage-statistics-code-view-code">3.15. View your profile and usage statistics : <code>view</code></a></h3>
 <div class="paragraph">
 <p>Set the cuisine of a restaurant identified by the index number used in the listRestaurants.<br>
-Format: `view'</p>
+Format: <code>view</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
 </div>
 <div class="paragraph">
 <p><code>view</code><br>
-'View personalised statistics for IAMAwesome. You have a total of 0 reviews and a total of 1 restaurants.'</p>
+<code>View personalised statistics for IAMAwesome. You have a total of 0 reviews and a total of 1 restaurants.</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="display-website-of-selected-restaurant-code-visitweb-code"><a class="link" href="#display-website-of-selected-restaurant-code-visitweb-code">3.15. Display website of selected restaurant : <code>visitWeb</code></a></h3>
+<h3 id="display-website-of-selected-restaurant-code-visitweb-code"><a class="link" href="#display-website-of-selected-restaurant-code-visitweb-code">3.16. Display website of selected restaurant : <code>visitWeb</code></a></h3>
 <div class="paragraph">
 <p>Display the website of a restaurant identified by the index number used in the listRestaurants based on its weblink.<br>
 Format: <code>visitWeb INDEX</code></p>
@@ -543,22 +579,22 @@ Format: <code>visitWeb INDEX</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>listRestaurants</code><br>
+<p><code>list</code><br>
 <code>visitWeb 1</code><br>
-Displays webpage of Restaurant at index 1 of listRestaurants.</p>
+Displays webpage of Restaurant at index 1 of list.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.16. Exiting the program : <code>exit</code></a></h3>
+<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.17. Exiting the program : <code>exit</code></a></h3>
 <div class="paragraph">
 <p>Exits the program.<br>
 Format: <code>exit</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.17. Saving the data</a></h3>
+<h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.18. Saving the data</a></h3>
 <div class="paragraph">
 <p>Food diary data are saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.</p>
@@ -578,27 +614,94 @@ There is no need to save manually.</p>
 <div class="sect1">
 <h2 id="command-summary"><a class="link" href="#command-summary">5. Command Summary</a></h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p><code>Restaurant</code> Class</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>AddReview</strong> <code>addReview n/RESTAURANT_NAME r/STAR_RATING m/COMMENT</code><br>
-e.g. <code>addReview n/McDonalds r/4 m/Peach Pie was amazing</code></p>
+<p><strong>add</strong> : <code>add n/RESTAURANT_NAME a/ADDRESS c/CUISINE</code><br>
+e.g. <code>add n/Nana Thai food a/561 Clementi Road c/Thai</code></p>
 </li>
 <li>
-<p><strong>Delete</strong> : <code>delete INDEX</code><br>
-e.g. <code>delete 3</code></p>
+<p><strong>edit</strong> : <code>edit INDEX [n/RESTAURANT_NAME] [a/ADDRESS] [c/CUISINE]</code><br>
+e.g. <code>listRestaurants</code><br>
+     <code>editRestaurant 2 n/MACS</code></p>
 </li>
 <li>
-<p><strong>EditReview</strong> : <code>edit INDEX [r/STAR_RATING] [m/COMMENT</code><br>
-e.g. <code>editReview 2 r/3 m/this is good</code></p>
+<p><strong>delete</strong> : <code>delete INDEX</code><br>
+e.g. <code>delete 1</code></p>
 </li>
 <li>
-<p><strong>ListRestaurants</strong> : <code>listRestaurants</code></p>
+<p><strong>list</strong> : <code>list [n/RESTAURANT_NAME] [a/ADDRESS] [c/CUISINE]</code><br>
+e.g. <code>list n/MacDonalds</code></p>
 </li>
 <li>
-<p><strong>Help</strong> : <code>help</code></p>
+<p><strong>listUnvisited</strong> : <code>listUnvisited</code><br>
+e.g. <code>listUnvisited</code></p>
+</li>
+<li>
+<p><strong>setCategory</strong> : <code>setCategory INDEX [c/CUISINE] [o/OCCASION] [p/PRICE_RANGE]</code><br>
+e.g. <code>listRestaurants</code><br>
+     <code>setCategory 2 c/Fine Dining o/Wedding p/expensive</code></p>
+</li>
+<li>
+<p><strong>filter</strong> : <code>filter KEYWORD [MORE_KEYWORDS]</code><br>
+e.g. <code>filter fast food gathering</code></p>
+</li>
+<li>
+<p><strong>visitWeb</strong> : <code>visitWeb INDEX</code><br>
+e.g. <code>list</code><br>
+     <code>visitWeb 1</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><code>Review</code> Class</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>addReview</strong> : <code>addReview INDEX re/ENTRY rr/RATING</code><br>
+e.g. <code>addReview 2 re/Peach Pie was amazing rr/4</code></p>
+</li>
+<li>
+<p><strong>editReview</strong> : <code>edit INDEX [r/STAR_RATING] [m/COMMENT]</code><br>
+e.g. <code>edit 2 rr/Food isn’t the best</code></p>
+</li>
+<li>
+<p><strong>deleteReview</strong> : <code>deleteReview INDEX_RESTAURANT INDEX_REVIEW</code><br>
+e.g. <code>delete 3 1</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><code>FoodDiary</code> Class</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>name</strong> : <code>name n/YourName</code><br>
+e.g. <code>name n/JackTheSheep</code></p>
+</li>
+<li>
+<p><strong>view</strong> : <code>view</code><br>
+e.g. <code>view</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Miscellaneous</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>help</strong> : <code>help</code></p>
+</li>
+<li>
+<p><strong>exit</strong> : <code>exit</code></p>
 </li>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-03-19 15:48:12 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-03-21 14:19:36 UTC</div></div></div></body></html>
