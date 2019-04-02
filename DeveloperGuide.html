@@ -1226,7 +1226,10 @@ Given the stable implementation of the current system of parsing commands, any n
 <p>Website can be displayed on the <code>BrowserPanel</code> with <code>visitWeb</code> command.</p>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.4.1. Current implementation</a></h4>
+<h4 id="visitweb-code-index-code"><a class="link" href="#visitweb-code-index-code">3.4.1. visitWeb <code>INDEX</code></a></h4>
+<div class="paragraph">
+<p>Visits website of <code>Restaurant</code> selected by user.</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
@@ -1249,12 +1252,62 @@ Restaurant on the <code>BrowserPanel</code>.</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>The following sequence diagram shows how the visitWeb operation works:</p>
+<p>The following sequence diagram shows how the visitWeb <code>index</code> works:</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/VisitWebSequenceDiagram.png" alt="VisitWebSequenceDiagram" width="800">
 </div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="visitweb-code-weblink-code"><a class="link" href="#visitweb-code-weblink-code">3.4.2. visitWeb <code>weblink</code></a></h4>
+<div class="paragraph">
+<p>Visits website entered by user.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A <code>weblink</code> is a valid Url of websites of restaurants.</p>
+</li>
+<li>
+<p>Users can visit website of any restaurant through visitWeb command by entering the <code>weblink</code> as a parameter.</p>
+</li>
+<li>
+<p>Upon <code>visitWeb</code> command, <code>Parser</code> in the <code>Logic</code> component will call <code>VisitWebCommandParser</code> to parse <code>weblink</code> into
+<code>VisitWebCommand</code>.</p>
+</li>
+<li>
+<p>This <code>weblink</code> will be passed to CommandResult which is passed to <code>MainWindow</code> in <code>UI</code> component.</p>
+</li>
+<li>
+<p><code>MainWindow</code> will then load the <code>weblink</code> through <code>BrowserPanel</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the visitWeb <code>weblink</code> works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/VisitWebUrlSequenceDiagram.png" alt="VisitWebUrlSequenceDiagram" width="800">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="enhancements"><a class="link" href="#enhancements">3.4.3. Enhancements</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Before loading the website, the <code>weblink</code> will be validated by checking it&#8217;s HTTP response code.</p>
+</li>
+<li>
+<p>If response code is above 400, it suggests that the <code>weblink</code> is not found and that there is an error requesting the website if response code is above 500</p>
+</li>
+<li>
+<p>If there is no internet connection, throws an <code>NoInternetException</code> that prints an error message to inform user that there is no internet connection.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -1868,18 +1921,6 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <p>FoodLover enters command to add restaurant</p>
 </li>
 <li>
-<p>FoodDiary asks user to enter name and location</p>
-</li>
-<li>
-<p>FoodLover enters name and location of restaurant</p>
-</li>
-<li>
-<p>FoodDiary asks user for confirmation</p>
-</li>
-<li>
-<p>FoodLover confirms</p>
-</li>
-<li>
 <p>FoodDiary adds restaurant</p>
 <div class="paragraph">
 <p>Use case ends.</p>
@@ -1897,13 +1938,7 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2a1. FoodDiary tells FoodLover that the restaurant already exists</p>
-</li>
-<li>
-<p>2a2. FoodDiary asks user to enter another name and location</p>
-<div class="paragraph">
-<p>Use case resumes at step 3 if name and location are valid else repeat step 2a1.</p>
-</div>
+<p>2a1. FoodDiary tells FoodLover that the restaurant already exists and asks user to enter another name and location</p>
 </li>
 </ul>
 </div>
@@ -1918,18 +1953,6 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <ol class="arabic">
 <li>
 <p>FoodLover enters command to add restaurant by Google Search</p>
-</li>
-<li>
-<p>FoodDiary asks user to enter name of restaurant</p>
-</li>
-<li>
-<p>FoodLover enters name</p>
-</li>
-<li>
-<p>FoodDiary retrieves data from Google, displays retrieved data to User. FoodDiary asks User to verify displayed information as correct.</p>
-</li>
-<li>
-<p>FoodLover confirms</p>
 </li>
 <li>
 <p>FoodDiary adds restaurant</p>
@@ -1953,41 +1976,21 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 </li>
 <li>
 <p>2a2. FoodDiary asks user to enter another name and location</p>
-<div class="paragraph">
-<p>Use case resumes at step 3 if name and location are valid else repeat step 2a1.</p>
-</div>
 </li>
 </ul>
 </div>
 </li>
-</ul>
-</div>
+<li>
+<p>2b. FoodDiary is unable to retrieve anything from Google.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>4a. FoodDiary is unable to retrieve anything from Google.</p>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>4a1. FoodDiary tells user that retrieval of information has failed.</p>
-</li>
-<li>
-<p>4a2. FoodDiary asks user to enter another name and location, or enter command to exit.</p>
-<div class="paragraph">
-<p>Use case resumes at step 3 if user enters another name, use case ends if command to exit is entered.</p>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>5a. FoodLover does not confirm</p>
+<p>2b1. FoodDiary tells user that retrieval of information has failed.</p>
 <div class="paragraph">
 <p>Use case ends</p>
+</div>
+</li>
+</ul>
 </div>
 </li>
 </ul>
@@ -2000,12 +2003,6 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <ol class="arabic">
 <li>
 <p>FoodLover enters command and index to delete restaurant</p>
-</li>
-<li>
-<p>FoodDiary asks user for confirmation</p>
-</li>
-<li>
-<p>FoodLover confirms</p>
 </li>
 <li>
 <p>FoodDiary deletes restaurant</p>
@@ -2025,22 +2022,12 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a1. FoodLover asks user to enter index again</p>
-<div class="paragraph">
-<p>Use case resumes at step 2 if index is valid, else repeat step 1a1.</p>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>3a. FoodLover does not confirm</p>
+<p>1a1. FoodDiary tells user that he has entered an invalid index and deletion of restaurant has failed.</p>
 <div class="paragraph">
 <p>Use case ends</p>
+</div>
+</li>
+</ul>
 </div>
 </li>
 </ul>
@@ -2072,24 +2059,24 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a1. FoodLover asks user to enter index again</p>
+<p>1a1. FoodDiary tells user that he has entered an invalid index and selection of restaurant has failed.</p>
 </li>
 </ul>
 </div>
 </li>
 </ul>
 </div>
-<h3 id="use-case-setting-categories-of-a-restaurant" class="discrete">Use case: Setting categories of a Restaurant</h3>
+<h3 id="use-case-filter-restaurants-in-fooddiary-cuisine-occasion-price" class="discrete">Use case: Filter Restaurants in FoodDiary (cuisine, occasion, price)</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>FoodLover enters command, index and categories to set to the restaurant</p>
+<p>FoodLover enters command, category to filter by (i.e. cuisine, occasion, price range) and keyword / price range (e.g.japanese, lunch, 5 10)</p>
 </li>
 <li>
-<p>FoodDiary updates the categories entered, leaving unentered categories unedited</p>
+<p>FoodDiary displays restaurant’s that fit the filter.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2102,11 +2089,11 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a. FoodLover enters an invalid index</p>
+<p>1a. FoodLover enters an invalid category</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a1. FoodDiary shows invalid command format</p>
+<p>1a1. FoodLover tells user that no such category exists.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2119,11 +2106,14 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2a. FoodLover enters invalid category prefix</p>
+<p>1b. FoodLover enters an invalid price range (i.e. 1 number / 3 numbers input)</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2a1. FoodDiary shows invalid command format</p>
+<p>1b1. FoodLover tells user that an invalid price range is entered</p>
+</li>
+<li>
+<p>1b2. FoodLover displays the correct format to input command</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2133,22 +2123,25 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 </li>
 </ul>
 </div>
-<h3 id="use-case-filtering-restaurants-in-fooddiary-cuisine-occasion-price" class="discrete">Use case: Filtering Restaurants in FoodDiary (cuisine, occasion, price)</h3>
-<div class="paragraph">
-<p><strong>MSS</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
+<div class="ulist none">
+<ul class="none">
 <li>
-<p>FoodLover enters command and keywords to filter by.</p>
+<p>1c. FoodLover enters an invalid price range (i.e. 1 number / 3 numbers input)</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1c1. FoodLover tells user that an invalid price range is entered</p>
 </li>
 <li>
-<p>FoodDiary displays restaurant’s that match the keywords.</p>
+<p>1c2. FoodLover displays the correct format to input command</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
 </li>
-</ol>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 <h3 id="use-case-sort-restaurants-in-fooddiary-rating-price" class="discrete">Use case: Sort Restaurants in FoodDiary (rating, price)</h3>
 <div class="paragraph">
@@ -2157,10 +2150,10 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>FoodLover enters command, categories to sort by (i.e. rating, price)</p>
+<p>FoodLover enters command, category to sort by (i.e. rating, price)</p>
 </li>
 <li>
-<p>FoodDiary displays restaurants according to categories</p>
+<p>FoodDiary displays restaurants according to category</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2173,11 +2166,11 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a. FoodLover enters an invalid categories</p>
+<p>1a. FoodLover enters an invalid category</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a1. FoodLover tells user that no such categories exists.</p>
+<p>1a1. FoodLover tells user that no such category exists.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2203,16 +2196,7 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <p>FoodLover enters command to add review and the index of the restaurant it should be added to</p>
 </li>
 <li>
-<p>FoodDiary asks FoodLover for rating and comment</p>
-</li>
-<li>
-<p>FoodLover enters rating and comment</p>
-</li>
-<li>
-<p>FoodDiary asks user for confirmation</p>
-</li>
-<li>
-<p>FoodLover confirms</p>
+<p>FoodLover enters rating and comment in the command</p>
 </li>
 <li>
 <p>FoodDiary adds review to restaurant selected</p>
@@ -2278,12 +2262,6 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <p>FoodLover enters command to delete review and the index of the review to be deleted</p>
 </li>
 <li>
-<p>FoodDiary asks user for confirmation</p>
-</li>
-<li>
-<p>FoodLover confirms</p>
-</li>
-<li>
 <p>FoodDiary deletes selected review</p>
 <div class="paragraph">
 <p>Use case ends.</p>
@@ -2333,16 +2311,7 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <p>FoodLover enters command to edit review and the index of the review to be edited</p>
 </li>
 <li>
-<p>FoodDiary prompts FoodLover to edit at least one field (rating/comment)</p>
-</li>
-<li>
 <p>FoodLover enters rating and comment</p>
-</li>
-<li>
-<p>FoodDiary asks user for confirmation</p>
-</li>
-<li>
-<p>FoodLover confirms</p>
 </li>
 <li>
 <p>FoodDiary updates selected review</p>
@@ -2573,11 +2542,28 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2a. There is no website added for this restaurant</p>
+<p>1a. FoodLover enters command and website of any restaurant</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2a1. FoodDiary tells FoodLover that there is no website for this restaurant</p>
+<p>2a. Website is valid and FoodDiary displays website</p>
+</li>
+<li>
+<p>2b. Website is invalid and FoodDiary tells FoodLover that the website he entered is invalid</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2c. There is no website added for this restaurant</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2c1. FoodDiary tells FoodLover that there is no website for this restaurant</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2821,4 +2807,4 @@ Expected: No categories are set. Error details shown in status message.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-02 15:56:14 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-02 16:01:39 UTC</div></div></div></body></html>
