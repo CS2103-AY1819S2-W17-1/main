@@ -3,9 +3,30 @@
 <link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="index.html">The Food Diary</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link active" href="UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/cs2103-ay1819s2-w17-1/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>The Food Diary - User Guide</h1></div><div id="content"><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>By: <code>W17-1</code>      Since: <code>Feb 2019</code>      Licence: <code>MIT</code>
-== Welcome to the Food Diary
-If you would like to get use the Food Diary straightaway, jump to the <a href="#quick-start">Section 1, &#8220;Quick Start&#8221;</a> to get started</p>
+<p>By: <code>W17-1</code>      Since: <code>Feb 2019</code>      Licence: <code>MIT</code></p>
+</div>
+</div>
+<div id="toc" class="toc">
+<div id="toctitle"></div>
+<ul class="sectlevel1">
+<li><a href="#welcome-to-the-food-diary">1. Welcome to the Food Diary</a></li>
+<li><a href="#quick-start">2. Quick Start</a></li>
+<li><a href="#Features">3. Features</a>
+<ul class="sectlevel2">
+<li><a href="#restaurant-commands">3.1. Restaurant Commands</a></li>
+<li><a href="#review-features">3.2. Review Features</a></li>
+<li><a href="#general-features">3.3. General Features</a></li>
+</ul>
+</li>
+<li><a href="#faq">4. FAQ</a></li>
+</ul>
+</div>
+</div>
+<div class="sect1">
+<h2 id="welcome-to-the-food-diary"><a class="link" href="#welcome-to-the-food-diary">1. Welcome to the Food Diary</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you would like to get use the Food Diary straightaway, jump to the <a href="#quick-start">Section 2, &#8220;Quick Start&#8221;</a> to get started</p>
 </div>
 <div class="paragraph">
 <p><strong>What is the Food Diary? </strong></p>
@@ -79,23 +100,9 @@ This is a <strong>warning</strong>. A warning indicates critical information tha
 </table>
 </div>
 </div>
-<div id="toc" class="toc">
-<div id="toctitle"></div>
-<ul class="sectlevel1">
-<li><a href="#quick-start">1. Quick Start</a></li>
-<li><a href="#Features">2. Features</a>
-<ul class="sectlevel2">
-<li><a href="#restaurant-commands">2.1. Restaurant Commands</a></li>
-<li><a href="#review-features">2.2. Review Features</a></li>
-<li><a href="#general-features">2.3. General Features</a></li>
-</ul>
-</li>
-<li><a href="#faq">3. FAQ</a></li>
-</ul>
-</div>
 </div>
 <div class="sect1">
-<h2 id="quick-start"><a class="link" href="#quick-start">1. Quick Start</a></h2>
+<h2 id="quick-start"><a class="link" href="#quick-start">2. Quick Start</a></h2>
 <div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
@@ -140,14 +147,14 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 </div>
 </li>
 <li>
-<p>Refer to <a href="#Features">Section 2, &#8220;Features&#8221;</a> for details of each command.</p>
+<p>Refer to <a href="#Features">Section 3, &#8220;Features&#8221;</a> for details of each command.</p>
 </li>
 </ol>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="Features"><a class="link" href="#Features">2. Features</a></h2>
+<h2 id="Features"><a class="link" href="#Features">3. Features</a></h2>
 <div class="sectionbody">
 <div class="exampleblock">
 <div class="content">
@@ -173,16 +180,16 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 </div>
 </div>
 <div class="sect2">
-<h3 id="restaurant-commands"><a class="link" href="#restaurant-commands">2.1. Restaurant Commands</a></h3>
+<h3 id="restaurant-commands"><a class="link" href="#restaurant-commands">3.1. Restaurant Commands</a></h3>
 <div class="sect3">
-<h4 id="adding-a-restaurant-code-add-code"><a class="link" href="#adding-a-restaurant-code-add-code">2.1.1. Adding a restaurant: <code>add</code></a></h4>
+<h4 id="adding-a-restaurant-code-add-code"><a class="link" href="#adding-a-restaurant-code-add-code">3.1.1. Adding a restaurant: <code>add</code></a></h4>
 <div class="paragraph">
 <p>Add a restaurant that is not found in the current list of restaurants.<br>
 Format: <code>add n/RESTAURANT_NAME a/ADDRESS c/CUISINE</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="editing-details-of-a-restaurant-code-edit-code"><a class="link" href="#editing-details-of-a-restaurant-code-edit-code">2.1.2. Editing details of a restaurant  : <code>edit</code></a></h4>
+<h4 id="editing-details-of-a-restaurant-code-edit-code"><a class="link" href="#editing-details-of-a-restaurant-code-edit-code">3.1.2. Editing details of a restaurant  : <code>edit</code></a></h4>
 <div class="paragraph">
 <p>Edit the details of a restaurant identified by the index number used in the listRestaurants.<br>
 Format: <code>edit INDEX [n/RESTAURANT_NAME] [a/ADDRESS] [c/CUISINE]</code></p>
@@ -215,7 +222,7 @@ Change the name of the second restaurant in the list to MACS.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="deleting-a-restaurant-code-delete-code"><a class="link" href="#deleting-a-restaurant-code-delete-code">2.1.3. Deleting a restaurant: <code>delete</code></a></h4>
+<h4 id="deleting-a-restaurant-code-delete-code"><a class="link" href="#deleting-a-restaurant-code-delete-code">3.1.3. Deleting a restaurant: <code>delete</code></a></h4>
 <div class="paragraph">
 <p>Delete a restaurant that is in the current list of restaurants.<br>
 Format: <code>delete INDEX</code></p>
@@ -250,7 +257,7 @@ Deletes the 1st restaurant in the Food Diary.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="listing-all-restaurants-code-list-code"><a class="link" href="#listing-all-restaurants-code-list-code">2.1.4. Listing all restaurants : <code>list</code></a></h4>
+<h4 id="listing-all-restaurants-code-list-code"><a class="link" href="#listing-all-restaurants-code-list-code">3.1.4. Listing all restaurants : <code>list</code></a></h4>
 <div class="paragraph">
 <p>Shows a list of all restaurants in the Food Diary with an option to filter for certain property.<br>
 Format: <code>list [n/RESTAURANT_NAME] [a/ADDRESS] [c/CUISINE]</code></p>
@@ -279,7 +286,7 @@ Return all the restaurants</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="listing-all-restaurants-that-you-haven-t-visited-code-listunvisited-code"><a class="link" href="#listing-all-restaurants-that-you-haven-t-visited-code-listunvisited-code">2.1.5. Listing all restaurants that you haven&#8217;t visited : <code>listUnvisited</code></a></h4>
+<h4 id="listing-all-restaurants-that-you-haven-t-visited-code-listunvisited-code"><a class="link" href="#listing-all-restaurants-that-you-haven-t-visited-code-listunvisited-code">3.1.5. Listing all restaurants that you haven&#8217;t visited : <code>listUnvisited</code></a></h4>
 <div class="paragraph">
 <p>Shows a list of all restaurants that hasn&#8217;t been reveiwed by you, ranked based on the proximity to a given postal code.<br>
 Format: <code>listUnvisited po/POSTAL_CODE</code></p>
@@ -321,7 +328,7 @@ If you simply want to view unreviewed restaurants, enter <code>listUnvisited po/
 </div>
 </div>
 <div class="sect3">
-<h4 id="searching-restaurants-by-name-code-find-code"><a class="link" href="#searching-restaurants-by-name-code-find-code">2.1.6. Searching Restaurants by name: <code>find</code></a></h4>
+<h4 id="searching-restaurants-by-name-code-find-code"><a class="link" href="#searching-restaurants-by-name-code-find-code">3.1.6. Searching Restaurants by name: <code>find</code></a></h4>
 <div class="paragraph">
 <p>Find restaurants with names containing any of the given keywords.<br>
 Format: <code>find KEYWORD [MORE_KEYWORD]</code></p>
@@ -351,7 +358,7 @@ Returns any restaurant with name containing <code>KFC</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="setting-the-categories-of-a-restaurant-code-setcategories-code"><a class="link" href="#setting-the-categories-of-a-restaurant-code-setcategories-code">2.1.7. Setting the categories of a restaurant : <code>setCategories</code></a></h4>
+<h4 id="setting-the-categories-of-a-restaurant-code-setcategories-code"><a class="link" href="#setting-the-categories-of-a-restaurant-code-setcategories-code">3.1.7. Setting the categories of a restaurant : <code>setCategories</code></a></h4>
 <div class="paragraph">
 <p>Set the cuisine of a restaurant identified by the index number used in the listRestaurants.<br>
 Format: <code>setCategories INDEX [c/CUISINE] [o/OCCASION] [p/PRICE_RANGE]</code></p>
@@ -410,7 +417,7 @@ Set the categories of the second restaurant in the list to <code>Find Dining</co
 </div>
 </div>
 <div class="sect3">
-<h4 id="filter-restaurants-based-on-category-code-filter-code"><a class="link" href="#filter-restaurants-based-on-category-code-filter-code">2.1.8. Filter restaurants based on category : <code>filter</code></a></h4>
+<h4 id="filter-restaurants-based-on-category-code-filter-code"><a class="link" href="#filter-restaurants-based-on-category-code-filter-code">3.1.8. Filter restaurants based on category : <code>filter</code></a></h4>
 <div class="paragraph">
 <p>Filters and lists the restaurants with categories matching the keywords entered.<br>
 Format: <code>filter KEYWORD [MORE_KEYWORDS]</code></p>
@@ -470,7 +477,7 @@ Return restaurants with  <code>Cuisine</code>, <code>Occasion</code> or <code>Pr
 </div>
 </div>
 <div class="sect3">
-<h4 id="display-website-of-selected-restaurant-visitweb"><a class="link" href="#display-website-of-selected-restaurant-visitweb">2.1.9. Display website of selected restaurant : visitWeb</a></h4>
+<h4 id="display-website-of-selected-restaurant-visitweb"><a class="link" href="#display-website-of-selected-restaurant-visitweb">3.1.9. Display website of selected restaurant : visitWeb</a></h4>
 <div class="paragraph">
 <p>Display the website of a restaurant identified by the index number used in the listRestaurants based on its weblink.<br>
 Format: visitWeb INDEX</p>
@@ -548,9 +555,9 @@ Displays webpage of Jollibee</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="review-features"><a class="link" href="#review-features">2.2. Review Features</a></h3>
+<h3 id="review-features"><a class="link" href="#review-features">3.2. Review Features</a></h3>
 <div class="sect3">
-<h4 id="adding-a-review-code-addreview-code"><a class="link" href="#adding-a-review-code-addreview-code">2.2.1. Adding a review: <code>addReview</code></a></h4>
+<h4 id="adding-a-review-code-addreview-code"><a class="link" href="#adding-a-review-code-addreview-code">3.2.1. Adding a review: <code>addReview</code></a></h4>
 <div class="paragraph">
 <p>Adds a review to the Food Diary<br>
 Format: <code>addReview INDEX re/ENTRY rr/RATING</code></p>
@@ -587,7 +594,7 @@ Format: <code>addReview INDEX re/ENTRY rr/RATING</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="editing-a-specified-review-code-editreview-code"><a class="link" href="#editing-a-specified-review-code-editreview-code">2.2.2. Editing a specified review : <code>editReview</code></a></h4>
+<h4 id="editing-a-specified-review-code-editreview-code"><a class="link" href="#editing-a-specified-review-code-editreview-code">3.2.2. Editing a specified review : <code>editReview</code></a></h4>
 <div class="paragraph">
 <p>Edit selected fields in a specified entry.<br>
 Format: <code>editReview INDEX [re/ENTRY] [rr/RATING]</code></p>
@@ -680,7 +687,7 @@ Edits the comment of the second review to "Food isn&#8217;t the best" and the ra
 </div>
 </div>
 <div class="sect3">
-<h4 id="deleting-a-review-code-deletereview-code"><a class="link" href="#deleting-a-review-code-deletereview-code">2.2.3. Deleting a review : <code>deleteReview</code></a></h4>
+<h4 id="deleting-a-review-code-deletereview-code"><a class="link" href="#deleting-a-review-code-deletereview-code">3.2.3. Deleting a review : <code>deleteReview</code></a></h4>
 <div class="paragraph">
 <p>Deletes the review from the Food Diary.<br>
 Format: <code>deleteReview INDEX</code></p>
@@ -716,9 +723,9 @@ Deletes the 2nd review of the selected Restaurant in the Food Diary.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="general-features"><a class="link" href="#general-features">2.3. General Features</a></h3>
+<h3 id="general-features"><a class="link" href="#general-features">3.3. General Features</a></h3>
 <div class="sect3">
-<h4 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">2.3.1. Viewing help : <code>help</code></a></h4>
+<h4 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">3.3.1. Viewing help : <code>help</code></a></h4>
 <div class="paragraph">
 <p>Format: <code>help</code>
 ==== Personalising your food diary with your name: <code>name</code></p>
@@ -739,7 +746,7 @@ Format: <code>name n/YourName</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="view-your-profile-and-usage-statistics-code-view-code"><a class="link" href="#view-your-profile-and-usage-statistics-code-view-code">2.3.2. View your profile and usage statistics : <code>view</code></a></h4>
+<h4 id="view-your-profile-and-usage-statistics-code-view-code"><a class="link" href="#view-your-profile-and-usage-statistics-code-view-code">3.3.2. View your profile and usage statistics : <code>view</code></a></h4>
 <div class="paragraph">
 <p>Set the cuisine of a restaurant identified by the index number used in the listRestaurants.<br>
 Format: <code>view</code></p>
@@ -763,7 +770,7 @@ Format: <code>view</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">2.3.3. Exiting the program : <code>exit</code></a></h4>
+<h4 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.3.3. Exiting the program : <code>exit</code></a></h4>
 <div class="paragraph">
 <p>Exits the program.<br>
 Format: <code>exit</code></p>
@@ -780,7 +787,7 @@ There is no need to save manually.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="faq"><a class="link" href="#faq">3. FAQ</a></h2>
+<h2 id="faq"><a class="link" href="#faq">4. FAQ</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><strong>Q</strong>: How do I transfer my data to another Computer?<br>
@@ -881,4 +888,4 @@ e.g. <code>view</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-02 15:52:11 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-02 15:56:14 UTC</div></div></div></body></html>
