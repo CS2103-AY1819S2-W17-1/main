@@ -75,7 +75,8 @@
 <ul class="sectlevel2">
 <li><a href="#launch-and-shutdown">F.1. Launch and Shutdown</a></li>
 <li><a href="#deleting-a-restaurant">F.2. Deleting a restaurant</a></li>
-<li><a href="#saving-data">F.3. Saving data</a></li>
+<li><a href="#setting-the-categories-of-a-restaurant">F.3. Setting the categories of a restaurant</a></li>
+<li><a href="#saving-data">F.4. Saving data</a></li>
 </ul>
 </li>
 </ul>
@@ -807,7 +808,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <h3 id="restaurant-categorisation"><a class="link" href="#restaurant-categorisation">3.3. Restaurant Categorisation</a></h3>
 <div class="paragraph">
 <p>Restaurants can be classified using categories. Each restaurant can have each of the optional categories defined.
-Currently, 2 different types of categories are implemented in v1.2: <code>Cuisine</code> and <code>Occasion</code>.</p>
+Currently, 3 different types of categories are implemented in v1.3: <code>Cuisine</code>, <code>Occasion</code> and <code>Price Range</code>.</p>
 </div>
 <div class="sect3">
 <h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.3.1. Current Implementation</a></h4>
@@ -817,7 +818,7 @@ Currently, 2 different types of categories are implemented in v1.2: <code>Cuisin
 <div class="ulist">
 <ul>
 <li>
-<p><code>setCategory</code>&#8201;&#8212;&#8201;sets the different categories of the restaurant using its respective prefixes.</p>
+<p><code>setCategories</code>&#8201;&#8212;&#8201;sets the different categories of the restaurant using its respective prefixes.</p>
 </li>
 <li>
 <p><code>filter</code>&#8201;&#8212;&#8201;filters out restaurants using keywords matching that of its categories.</p>
@@ -825,72 +826,242 @@ Currently, 2 different types of categories are implemented in v1.2: <code>Cuisin
 </ul>
 </div>
 <div class="paragraph">
-<p>All supported categories are defined in the <code>seedu.address.model.restaurant.categories</code> package, along with the <code>Category</code>
-class that encapsulates all categories into a <code>Category</code> object to be used in the <code>Restaurant</code> class.</p>
+<p>All supported categories are defined in the <code>seedu.address.model.restaurant.categories</code> package, along with the <code>Categories</code>
+class that encapsulates all categories into a <code>Categories</code> object to be used in the <code>Restaurant</code> class.</p>
+</div>
+<div class="sect4">
+<h5 id="setcategories-command"><a class="link" href="#setcategories-command">SetCategories Command</a></h5>
+<div class="paragraph">
+<p>The following activity diagram shows the chain of events when setting categories of a restaurant with the setCategories command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SetCategoriesActivityDiagram.png" alt="SetCategoriesActivityDiagram" width="650">
+</div>
 </div>
 <div class="paragraph">
-<p>The restaurants are categorised by a <code>Category</code> field in the <code>Restaurant</code> class.
-The <code>Category</code> class encapsulates all the different categories a restaurant can have such as <code>Cuisine</code> and <code>Occasion</code>.
-Additionally, it implements the <code>merge</code> operation. The <code>merge</code> operation is essential in ensuring that when one category
-is being set, it does not override the other categories. For example, if an existing restaurant has the following preexisting
-categories: <code>cuisine</code> and <code>occasion</code>, doing a <code>setCategory</code> for <code>cuisine</code> will override its <code>occasion</code> category if the
-merge operation is not implemented.</p>
+<p>The feature is evolved as follows:</p>
 </div>
-<div class="paragraph">
-<p>The <code>merge</code> operation is implemented by taking in two <code>Category</code> arguments, <code>previous</code> and <code>updated</code>. All categories in
-<code>updated</code> will replace any existing categories in <code>previous</code>. The merged <code>Category</code> will retain those categories in
-<code>previous</code> for any category not present in <code>updated</code>.</p>
-</div>
-<div class="paragraph">
-<p>The <code>merge</code> operation is used by <code>SetCategoryCommand#execute()</code> to update a restaurant&#8217;s categories by merging it with
-its existing categories.</p>
-</div>
-<div class="paragraph">
-<p>The <code>setCategory</code> command is implemented as follows:</p>
-</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Categorisation only by Cuisine</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>CategoryCommandParser</code> parses the user input arguments, creating a <code>SetCategoryCommand</code> object with the target <code>Index</code>
-and new <code>Category</code> object containing all the categories in the user input.</p>
+<p>Add Cuisine class</p>
 </li>
 <li>
-<p>Inside <code>SetCategoryCommand#execute()</code>, the restaurant identified by the index is retrieved from <code>Model</code>.</p>
+<p>Implement SetCuisine command that extends Command</p>
 </li>
 <li>
-<p>Existing categories are retrieved from the target restaurant.</p>
+<p>Implement parser for SetCuisine command</p>
 </li>
 <li>
-<p>New <code>Category</code> object is created by merging existing categories and categories inputted by the user.</p>
-</li>
-<li>
-<p>The new <code>Category</code> object is used to create a new <code>Restaurant</code> with the updated <code>Category</code> object.</p>
-</li>
-<li>
-<p><code>Model#setRestaurant()</code> is called to update the target restaurant.</p>
-</li>
-<li>
-<p><code>Model#updateFilteredRestaurantList()</code> is called to update the list of restaurants displayed/</p>
-</li>
-<li>
-<p><code>Model#commitFoodDiary()</code> is called to commit the changes to the food diary.</p>
+<p>Support filtering restaurants by cuisine</p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>The <code>filter</code> command is implemented as follows:</p>
-</div>
+</li>
+<li>
+<p>Categorisation by Occasion</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>FilterCommandParser</code> parses the user input arguments, creating a <code>FilterCommand</code> object containing the predicate that
-tests if a restaurant matches any of the keywords.</p>
+<p>Add new Categories class to encapsulate different category types</p>
 </li>
 <li>
-<p>Inside <code>FilterCommand#execute()</code>, <code>Model#updateFilteredRestaurantList()</code> is called with the predicate to update the
-list of restaurants that matches the keywords.</p>
+<p>Add Occasion class. Model <code>Occasion</code> and <code>Cuisine</code> by composition inside <code>Categories</code>.</p>
+</li>
+<li>
+<p>Change SetCuisine command to SetCategories command that extends Command</p>
+</li>
+<li>
+<p>Add support for Occasion in filter command</p>
+</li>
+<li>
+<p>Add new merge method to ensure setting one category only does not override the other</p>
 </li>
 </ul>
+</div>
+</li>
+<li>
+<p>Categorisation by Price Range</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Add new PriceRange class, composed inside <code>Categories</code></p>
+</li>
+<li>
+<p>Add new match method to abstract out matching responsibilities of each Category type to <code>Categories</code> class</p>
+</li>
+<li>
+<p>Add new setLabels method to allow UI to set Label of each category without being aware of its existence</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>You can refer to the following sequence diagram to get a better understanding of how a typical valid setCategories command
+executes internally.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SetCategoriesSequenceDiagram.png" alt="SetCategoriesSequenceDiagram" width="650">
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.3.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="price-range-categorisation"><a class="link" href="#price-range-categorisation">Price Range Categorisation</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Alternative 1: Use dollar signs to represent price (Current implementation)</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pros</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">It is easier for the user to type and also visually clearer to the viewer</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cons</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Restricts the range of price between one and five</p></td>
+</tr>
+</tbody>
+</table>
+<div class="ulist">
+<ul>
+<li>
+<p>Alternative 2: Use words such as <code>cheap</code>, <code>expensive</code> to represent price</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pros</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">User has complete freedom as to how they want to key in the price range</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cons</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lacks proper structure, not very intuitive to the viewer if the user keys in something that does not make sense</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="how-categories-are-added-and-edited"><a class="link" href="#how-categories-are-added-and-edited">How categories are added and edited</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Alternative 1: Use one single command to add and edit, only overriding the present categories keyed in (Current implementation)</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pros</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">User does not need to remember multiple commands to set categories.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cons</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Users are restricted to the preset types of categories they can set.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="ulist">
+<ul>
+<li>
+<p>Alternative 2: Use separate commands for add and edit</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pros</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">User can add their own types of categories.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cons</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">User needs to remember which restaurants do not have categories added yet, else add or edit commands might fail.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="filtering-restaurants-by-categories"><a class="link" href="#filtering-restaurants-by-categories">Filtering restaurants by categories</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Alternative 1: Key in as many key words as possible, without specifying which keyword is for which category (Current implementation)</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pros</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">More user friendly since users do not have to be concerned with which keywords should match which category</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cons</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cross category filtering generalises the search results instead of making it more specific</p></td>
+</tr>
+</tbody>
+</table>
+<div class="ulist">
+<ul>
+<li>
+<p>Alternative 2: For each keyword entered, specify which category it is for</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pros</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Users can find specific restaurants matching each category type</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cons</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Troublesome for user to type the commands since they now need to indicate which category should match which keyword</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -931,7 +1102,7 @@ The parser will return an <code>AddReviewCommand</code> object, which stores the
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.4.2. Design considerations</a></h4>
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.4.2. Design considerations</a></h4>
 <div class="paragraph">
 <p>The primary consideration was the compatibility of this new command with the existing architecture.
 Given the stable implementation of the current system of parsing commands, any new command created should fit into the existing architecture with minimal changes to other components.</p>
@@ -1537,6 +1708,12 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Easily add a new restaurant</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Food lover</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Autocomplete categories I have keyed in before when setting categories</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can set categories faster</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Food lover that travels</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">View restaurants and reviews separately by country</p></td>
@@ -1791,17 +1968,17 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 </li>
 </ul>
 </div>
-<h3 id="use-case-filter-restaurants-in-fooddiary-cuisine-occasion-price" class="discrete">Use case: Filter Restaurants in FoodDiary (cuisine, occasion, price)</h3>
+<h3 id="use-case-setting-categories-of-a-restaurant" class="discrete">Use case: Setting categories of a Restaurant</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>FoodLover enters command, category to filter by (i.e. cuisine, occasion, price range) and keyword / price range (e.g.japanese, lunch, 5 10)</p>
+<p>FoodLover enters command, index and categories to set to the restaurant</p>
 </li>
 <li>
-<p>FoodDiary displays restaurant’s that fit the filter.</p>
+<p>FoodDiary updates the categories entered, leaving unentered categories unedited</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -1814,11 +1991,11 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a. FoodLover enters an invalid category</p>
+<p>1a. FoodLover enters an invalid index</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a1. FoodLover tells user that no such category exists.</p>
+<p>1a1. FoodDiary shows invalid command format</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -1831,14 +2008,11 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1b. FoodLover enters an invalid price range (i.e. 1 number / 3 numbers input)</p>
+<p>2a. FoodLover enters invalid category prefix</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1b1. FoodLover tells user that an invalid price range is entered</p>
-</li>
-<li>
-<p>1b2. FoodLover displays the correct format to input command</p>
+<p>2a1. FoodDiary shows invalid command format</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -1848,25 +2022,22 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 </li>
 </ul>
 </div>
-<div class="ulist none">
-<ul class="none">
+<h3 id="use-case-filtering-restaurants-in-fooddiary-cuisine-occasion-price" class="discrete">Use case: Filtering Restaurants in FoodDiary (cuisine, occasion, price)</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p>1c. FoodLover enters an invalid price range (i.e. 1 number / 3 numbers input)</p>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>1c1. FoodLover tells user that an invalid price range is entered</p>
+<p>FoodLover enters command and keywords to filter by.</p>
 </li>
 <li>
-<p>1c2. FoodLover displays the correct format to input command</p>
+<p>FoodDiary displays restaurant’s that match the keywords.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
 </li>
-</ul>
-</div>
-</li>
-</ul>
+</ol>
 </div>
 <h3 id="use-case-sort-restaurants-in-fooddiary-rating-price" class="discrete">Use case: Sort Restaurants in FoodDiary (rating, price)</h3>
 <div class="paragraph">
@@ -1875,10 +2046,10 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>FoodLover enters command, category to sort by (i.e. rating, price)</p>
+<p>FoodLover enters command, categories to sort by (i.e. rating, price)</p>
 </li>
 <li>
-<p>FoodDiary displays restaurants according to category</p>
+<p>FoodDiary displays restaurants according to categories</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -1891,11 +2062,11 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a. FoodLover enters an invalid category</p>
+<p>1a. FoodLover enters an invalid categories</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a1. FoodLover tells user that no such category exists.</p>
+<p>1a1. FoodLover tells user that no such categories exists.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2445,7 +2616,44 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-data"><a class="link" href="#saving-data">F.3. Saving data</a></h3>
+<h3 id="setting-the-categories-of-a-restaurant"><a class="link" href="#setting-the-categories-of-a-restaurant">F.3. Setting the categories of a restaurant</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Setting categories to a listed restaurant that does not have categories set yet with <code>setCategories</code></p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>setCategories c/fast food oc/casual pr/$</code><br>
+Expected: <code>Cuisine</code> set as <code>Fast Food</code>, <code>Occasion</code> set as <code>Casual</code> and <code>Price Range</code> set as <code>$</code>.</p>
+</li>
+<li>
+<p>Test case: <code>setCategories c/$ oc/casual pr/expensive</code><br>
+Expected: No categories are set. Error details shown in the status message, indicating command invalid.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Setting categories to a listed restaurant that already has categories set with <code>setCategories</code></p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>setCategories c/fast food</code><br>
+Expected: Only the <code>Cuisine</code> is set to <code>Fast Food</code>. All other categories remain unchanged.</p>
+</li>
+<li>
+<p>Test case: <code>setCategories c/ oc/ pr/</code><br>
+Expected: No categories are set. Error details shown in status message.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="saving-data"><a class="link" href="#saving-data">F.4. Saving data</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2465,4 +2673,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-02 14:18:23 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-02 14:44:38 UTC</div></div></div></body></html>
