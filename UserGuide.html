@@ -14,11 +14,13 @@
 <li><a href="#Features">3. Features</a>
 <ul class="sectlevel2">
 <li><a href="#restaurant-commands">3.1. Restaurant Commands</a></li>
-<li><a href="#review-features">3.2. Review Features</a></li>
-<li><a href="#general-features">3.3. General Features</a></li>
+<li><a href="#select-a-restaurant-code-select-code">3.2. Select a restaurant : <code>select</code></a></li>
+<li><a href="#review-features">3.3. Review Features</a></li>
+<li><a href="#general-features">3.4. General Features</a></li>
 </ul>
 </li>
 <li><a href="#faq">4. FAQ</a></li>
+<li><a href="#command-summary">5. Command Summary</a></li>
 </ul>
 </div>
 </div>
@@ -357,8 +359,69 @@ Returns any restaurant with name containing <code>KFC</code></p>
 </ul>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="select-a-restaurant-code-select-code"><a class="link" href="#select-a-restaurant-code-select-code">3.2. Select a restaurant : <code>select</code></a></h3>
+<div class="paragraph">
+<p>Select a restaurant based on its index on the list and display information about it.<br>
+Format: <code>select INDEX</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The index refers to the index number show in the displayed restaurants list.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> <code>1, 2, 3, &#8230;&#8203;</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>select 3</code><br>
+Selects the restaurant in the displayed restaurants list with index 3 and displays its summary, reviews and website.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/selectbefore.png" alt="selectbefore" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Figure 1. Before selecting any restaurant</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/selectafter.png" alt="selectafter" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Figure 2. After selecting restaurant with index 3, Chilis' summary, reviews and website are displayed in the second, third and fourth panels (from left to right) respectively.</p>
+</div>
+<div class="paragraph">
+<p>Note:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Placeholder for Restaurant Summary panel after changes to the Food Diary has been made will be coming in v1.4</p>
+</li>
+<li>
+<p>Details of the restaurant in the Restaurant Summary beyond a certain length will be cut off. This will be dealt with in v1.4.</p>
+</li>
+</ul>
+</div>
 <div class="sect3">
-<h4 id="setting-the-categories-of-a-restaurant-code-setcategories-code"><a class="link" href="#setting-the-categories-of-a-restaurant-code-setcategories-code">3.1.7. Setting the categories of a restaurant : <code>setCategories</code></a></h4>
+<h4 id="setting-the-categories-of-a-restaurant-code-setcategories-code"><a class="link" href="#setting-the-categories-of-a-restaurant-code-setcategories-code">3.2.1. Setting the categories of a restaurant : <code>setCategories</code></a></h4>
 <div class="paragraph">
 <p>Set the cuisine of a restaurant identified by the index number used in the listRestaurants.<br>
 Format: <code>setCategories INDEX [c/CUISINE] [o/OCCASION] [p/PRICE_RANGE]</code></p>
@@ -417,7 +480,7 @@ Set the categories of the second restaurant in the list to <code>Find Dining</co
 </div>
 </div>
 <div class="sect3">
-<h4 id="filter-restaurants-based-on-category-code-filter-code"><a class="link" href="#filter-restaurants-based-on-category-code-filter-code">3.1.8. Filter restaurants based on category : <code>filter</code></a></h4>
+<h4 id="filter-restaurants-based-on-category-code-filter-code"><a class="link" href="#filter-restaurants-based-on-category-code-filter-code">3.2.2. Filter restaurants based on category : <code>filter</code></a></h4>
 <div class="paragraph">
 <p>Filters and lists the restaurants with categories matching the keywords entered.<br>
 Format: <code>filter KEYWORD [MORE_KEYWORDS]</code></p>
@@ -477,11 +540,11 @@ Return restaurants with  <code>Cuisine</code>, <code>Occasion</code> or <code>Pr
 </div>
 </div>
 <div class="sect3">
-<h4 id="display-website-of-selected-restaurant-visitweb"><a class="link" href="#display-website-of-selected-restaurant-visitweb">3.1.9. Display website of selected restaurant : visitWeb</a></h4>
+<h4 id="display-website-of-selected-restaurant-visitweb"><a class="link" href="#display-website-of-selected-restaurant-visitweb">3.2.3. Display website of selected restaurant : visitWeb</a></h4>
 
 </div>
 <div class="sect3">
-<h4 id="display-the-website-of-a-restaurant-identified-by-the-index-number-used-in-the-listrestaurants-based-on-its-weblink-br"><a class="link" href="#display-the-website-of-a-restaurant-identified-by-the-index-number-used-in-the-listrestaurants-based-on-its-weblink-br">3.1.10. Display the website of a restaurant identified by the index number used in the listRestaurants based on its weblink.<br></a></h4>
+<h4 id="display-the-website-of-a-restaurant-identified-by-the-index-number-used-in-the-listrestaurants-based-on-its-weblink-br"><a class="link" href="#display-the-website-of-a-restaurant-identified-by-the-index-number-used-in-the-listrestaurants-based-on-its-weblink-br">3.2.4. Display the website of a restaurant identified by the index number used in the listRestaurants based on its weblink.<br></a></h4>
 <div class="paragraph">
 <p>Format: <code>visitWeb INDEX</code></p>
 </div>
@@ -501,7 +564,7 @@ Return restaurants with  <code>Cuisine</code>, <code>Occasion</code> or <code>Pr
 </div>
 </div>
 <div class="sect3">
-<h4 id="display-the-website-of-any-restaurant-by-entering-its-url-br"><a class="link" href="#display-the-website-of-any-restaurant-by-entering-its-url-br">3.1.11. Display the website of any restaurant by entering its url.<br></a></h4>
+<h4 id="display-the-website-of-any-restaurant-by-entering-its-url-br"><a class="link" href="#display-the-website-of-any-restaurant-by-entering-its-url-br">3.2.5. Display the website of any restaurant by entering its url.<br></a></h4>
 <div class="paragraph">
 <p>Format: <code>visitWeb URL</code><br>
 This allows users to visit website of any restaurant before they are entered into the list of restaurants in the <code>FoodDiary</code>.
@@ -562,9 +625,9 @@ Displays webpage of Jollibee</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="review-features"><a class="link" href="#review-features">3.2. Review Features</a></h3>
+<h3 id="review-features"><a class="link" href="#review-features">3.3. Review Features</a></h3>
 <div class="sect3">
-<h4 id="adding-a-review-code-addreview-code"><a class="link" href="#adding-a-review-code-addreview-code">3.2.1. Adding a review: <code>addReview</code></a></h4>
+<h4 id="adding-a-review-code-addreview-code"><a class="link" href="#adding-a-review-code-addreview-code">3.3.1. Adding a review: <code>addReview</code></a></h4>
 <div class="paragraph">
 <p>Adds a review to the Food Diary<br>
 Format: <code>addReview INDEX re/ENTRY rr/RATING</code></p>
@@ -601,7 +664,7 @@ Format: <code>addReview INDEX re/ENTRY rr/RATING</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="editing-a-specified-review-code-editreview-code"><a class="link" href="#editing-a-specified-review-code-editreview-code">3.2.2. Editing a specified review : <code>editReview</code></a></h4>
+<h4 id="editing-a-specified-review-code-editreview-code"><a class="link" href="#editing-a-specified-review-code-editreview-code">3.3.2. Editing a specified review : <code>editReview</code></a></h4>
 <div class="paragraph">
 <p>Edit selected fields in a specified entry.<br>
 Format: <code>editReview INDEX [re/ENTRY] [rr/RATING]</code></p>
@@ -694,7 +757,7 @@ Edits the comment of the second review to "Food isn&#8217;t the best" and the ra
 </div>
 </div>
 <div class="sect3">
-<h4 id="deleting-a-review-code-deletereview-code"><a class="link" href="#deleting-a-review-code-deletereview-code">3.2.3. Deleting a review : <code>deleteReview</code></a></h4>
+<h4 id="deleting-a-review-code-deletereview-code"><a class="link" href="#deleting-a-review-code-deletereview-code">3.3.3. Deleting a review : <code>deleteReview</code></a></h4>
 <div class="paragraph">
 <p>Deletes the review from the Food Diary.<br>
 Format: <code>deleteReview INDEX</code></p>
@@ -730,9 +793,9 @@ Deletes the 2nd review of the selected Restaurant in the Food Diary.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="general-features"><a class="link" href="#general-features">3.3. General Features</a></h3>
+<h3 id="general-features"><a class="link" href="#general-features">3.4. General Features</a></h3>
 <div class="sect3">
-<h4 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">3.3.1. Viewing help : <code>help</code></a></h4>
+<h4 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">3.4.1. Viewing help : <code>help</code></a></h4>
 <div class="paragraph">
 <p>Format: <code>help</code>
 ==== Personalising your food diary with your name: <code>name</code></p>
@@ -753,7 +816,7 @@ Format: <code>name n/YourName</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="view-your-profile-and-usage-statistics-code-view-code"><a class="link" href="#view-your-profile-and-usage-statistics-code-view-code">3.3.2. View your profile and usage statistics : <code>view</code></a></h4>
+<h4 id="view-your-profile-and-usage-statistics-code-view-code"><a class="link" href="#view-your-profile-and-usage-statistics-code-view-code">3.4.2. View your profile and usage statistics : <code>view</code></a></h4>
 <div class="paragraph">
 <p>Set the cuisine of a restaurant identified by the index number used in the listRestaurants.<br>
 Format: <code>view</code></p>
@@ -777,7 +840,7 @@ Format: <code>view</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.3.3. Exiting the program : <code>exit</code></a></h4>
+<h4 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.4.3. Exiting the program : <code>exit</code></a></h4>
 <div class="paragraph">
 <p>Exits the program.<br>
 Format: <code>exit</code></p>
@@ -802,9 +865,13 @@ There is no need to save manually.</p>
 </div>
 <div class="paragraph">
 <p><strong>Q</strong>: How do I return to default screen?<br>
-<strong>A</strong>: Enter the command <code>list</code> to show all the restaurants.
-== Command Summary</p>
+<strong>A</strong>: Enter the command <code>list</code> to show all the restaurants.</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="command-summary"><a class="link" href="#command-summary">5. Command Summary</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p><code>Restaurant</code> Class</p>
 </div>
@@ -895,4 +962,4 @@ e.g. <code>view</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-02 16:01:39 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-02 16:06:00 UTC</div></div></div></body></html>

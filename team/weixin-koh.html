@@ -1,0 +1,329 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Koh Wei Xin - Project Portfolio</title><link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">The Food Diary</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link active" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/cs2103-ay1819s2-w17-1/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Koh Wei Xin - Project Portfolio</h1></div><div id="content"><div class="sect1">
+<h2 id="project-fooddiary"><a class="link" href="#project-fooddiary">PROJECT: FoodDiary</a></h2>
+<div class="sectionbody">
+<hr>
+</div>
+</div>
+<div class="sect1">
+<h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This project portfolio page documents my contributions to <strong><em>The Food Diary</em></strong>, a software engineering project undertaken as part of the Software Engineering module, CS2103T, during my undergraduate studies in the National University of Singapore (NUS).
+This application is written in Java and has about 10,000 lines of code. It utilizes Command Line Interface (CLI) and has a Graphical User Interface (GUI) created using JavaFX.</p>
+</div>
+<div class="paragraph">
+<p><strong><em>The Food Diary</em></strong> is a desktop application morphed from a basic CLI AddressBook.
+Through our <strong>Software Engineering</strong> module, CS2103T, my team and I chose to morph the AddressBook into a The Food Diary for food lovers of all ages to document their very own food adventure.</p>
+</div>
+<div class="paragraph">
+<p>The main features of <strong><em>The Food Diary</em></strong> include:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Adding, editing and deleting restaurants</p>
+</li>
+<li>
+<p>Adding, editing and deleting reviews</p>
+</li>
+<li>
+<p>Getting aggregate ratings for restaurants based on personal reviews</p>
+</li>
+<li>
+<p>Get recommendations to new restaurants nearby</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong><em>The Food Diary</em></strong> supports both Windows and Mac operating systems.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of Contributions</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following are the contributions I made to this project, in the form of enhancements, code contributions, project management, documentation and community.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Major Enhancement</strong>: I added the ability to <strong>generate and display aggregate restaurant data</strong>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>What it does</strong>: Generates aggregate rating from all the reviews of a restaurant and display it in the restaurant card as well as in a summary panel for the restaurant.</p>
+</li>
+<li>
+<p><strong>Justification</strong>: This feature improves the product significantly because a user can now immediately see his/her personal ratings across all the visits they made for a restaurant.</p>
+</li>
+<li>
+<p><strong>Highlights</strong>: This enhancement required in-depth analysis of other alternatives. Additionally, it relied heavily on XML-based user interface markup language, FXML. Thus, I had to learn pick up this language from scratch to display this new <code>UiPart</code>.
+The implementation was also challenging as it involved multiple components, namely <code>Model</code>, <code>Logic</code> and <code>Ui</code>, for it to work.</p>
+</li>
+<li>
+<p><strong>Code Contributed</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Functional Code:
+<a href="https://github.com/CS2103-AY1819S2-W17-1/main/pull/103">#103</a></p>
+</li>
+<li>
+<p>Test Code:</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Minor Enhancement</strong>: I set up the <code>Review</code> class and added the ability to display all of the reviews belonging to a restaurant.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Code Contributed</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Functional Code:
+<a href="https://github.com/CS2103-AY1819S2-W17-1/main/pull/25">#25</a>,
+<a href="https://github.com/CS2103-AY1819S2-W17-1/main/pull/36">#36</a>,
+<a href="https://github.com/CS2103-AY1819S2-W17-1/main/pull/74">#74</a>,
+<a href="https://github.com/CS2103-AY1819S2-W17-1/main/pull/89">#89</a></p>
+</li>
+<li>
+<p>Test Code:
+<a href="https://github.com/CS2103-AY1819S2-W17-1/main/pull/36">#36</a>,
+<a href="https://github.com/CS2103-AY1819S2-W17-1/main/pull/94">#94</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Other Contributions</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Project Management</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Recorded all of the user stories as issues. (<a href="https://github.com/CS2103-AY1819S2-W17-1/main/issues?q=is%3Aissue+author%3Aweixin-koh+label%3Atype.Story">Issues</a>)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Enhancements to Existing Features</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Enabled <code>Select</code> command to display not only browser for restaurant, but also the list of reviews and summary for the restaurant. (<a href="https://github.com/CS2103-AY1819S2-W17-1/main/pull/74">#74</a>)</p>
+</li>
+<li>
+<p>Changed logo and title of the application to <strong><em>The Food Diary</em></strong>. (<a href="https://github.com/CS2103-AY1819S2-W17-1/main/pull/74">#74</a>)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Documentation</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Did cosmetic tweaks to existing contents of the User Guide and Developer Guide (<a href="https://github.com/CS2103-AY1819S2-W17-1/main/pull/83">#83</a>, <a href="https://github.com/CS2103-AY1819S2-W17-1/main/pull/77">#77</a>)</p>
+</li>
+<li>
+<p>Updated pictures of the UI (<a href="https://github.com/CS2103-AY1819S2-W17-1/main/pull/6">#6</a>, <a href="https://github.com/CS2103-AY1819S2-W17-1/main/pull/77">#77</a>)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Community</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>PRs reviewed (with non-trivial review comments) (<a href="https://github.com/CS2103-AY1819S2-W17-1/main/pull/2">#2</a>, <a href="https://github.com/CS2103-AY1819S2-W17-1/main/pull/95">#95</a>)</p>
+</li>
+<li>
+<p>Reported bugs and suggestions for other teams in the class (<strong>TBC</strong>)</p>
+</li>
+<li>
+<p>Always ensured that at least one teammate has reviewed and approved my PR before merging.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Tools</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Setup Reposense (<a href="https://github.com/CS2103-AY1819S2-W17-1/main/pull/83">#83</a>)</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="select-a-restaurant-code-select-code"><a class="link" href="#select-a-restaurant-code-select-code">Select a restaurant : <code>select</code></a></h3>
+<div class="paragraph">
+<p>Select a restaurant based on its index on the list and display information about it.<br>
+Format: <code>select INDEX</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The index refers to the index number show in the displayed restaurants list.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> <code>1, 2, 3, &#8230;&#8203;</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>select 3</code><br>
+Selects the restaurant in the displayed restaurants list with index 3 and displays its summary, reviews and website.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/selectbefore.png" alt="selectbefore" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Figure 1. Before selecting any restaurant</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/selectafter.png" alt="selectafter" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Figure 2. After selecting restaurant with index 3, Chilis' summary, reviews and website are displayed in the second, third and fourth panels (from left to right) respectively.</p>
+</div>
+<div class="paragraph">
+<p>Note:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Placeholder for Restaurant Summary panel after changes to the Food Diary has been made will be coming in v1.4</p>
+</li>
+<li>
+<p>Details of the restaurant in the Restaurant Summary beyond a certain length will be cut off. This will be dealt with in v1.4.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="proposed-share-reviews-to-facebook"><a class="link" href="#proposed-share-reviews-to-facebook">[Proposed] Share Reviews to Facebook</a></h3>
+<div class="paragraph">
+<p><em>{Explain here how the share reviews feature will be implemented}</em></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="selecting-a-restaurant"><a class="link" href="#selecting-a-restaurant">Selecting a restaurant</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Selecting a restaurant while all restaurants are listed</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: List all restaurants using the <code>list</code> command. Multiple restaurants in the list.</p>
+</li>
+<li>
+<p>Test case: <code>select 1</code><br>
+Expected: First restaurant in the list is selected. Details of the selected restaurant is shown in the 3 panels next to the restaurant list panel.</p>
+</li>
+<li>
+<p>Test case: <code>select 0</code><br>
+Expected: No restaurant is selected. Error details shown in the status message. Status bar remains the same.</p>
+</li>
+<li>
+<p>Other incorrect select commands to try: <code>select</code>, <code>select x</code> (where x is larger than the list size)
+Expected: Similar to previous.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Selecting a restaurant when <code>Filter</code> command is called</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: There is at least one restaurant in the list.</p>
+</li>
+<li>
+<p>Test case: <code>select 1</code><br>
+Expected: First restaurant in the list is selected. Details of the selected restaurant is shown in the 3 panels next to the restaurant list panel.</p>
+</li>
+<li>
+<p>Test case: <code>select 0</code><br>
+Expected: No restaurant is selected. Error details shown in the status message. Status bar remains the same.</p>
+</li>
+<li>
+<p>Other incorrect select commands to try: <code>select</code>, <code>select x</code> (where x is larger than the list size)
+Expected: Similar to previous.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-02 16:06:00 UTC</div></div></div></body></html>
