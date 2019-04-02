@@ -301,6 +301,157 @@ Format: <code>view</code></p>
 </tr>
 </tbody>
 </table>
+<div class="sect2">
+<h3 id="listunvisited-feature-which-sorts-by-distance-nearest-to-you"><a class="link" href="#listunvisited-feature-which-sorts-by-distance-nearest-to-you">listUnvisited feature which sorts by distance nearest to you</a></h3>
+<div class="sect3">
+<h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
+<div class="paragraph">
+<p>The 'listUnvisited' feature accepts the user&#8217;s current postal code and displays restaurants without reviews nearest to the user&#8217;s postal code.</p>
+</div>
+<div class="paragraph">
+<p>This mechanism is facilitated by <code>PostalDataSet</code> which
+contains a <code>HashMap&lt;Integer,PostalData&gt;</code> of every postal code represented by an <code>Integer</code> mapped to a <code>PostalData</code> containing the x and y-coordinate of the given postal code.</p>
+</div>
+<div class="paragraph">
+<p><code>PostalDataSet</code> is constructed by <code>JsonPostalDataStorage</code> which processes the <code>data.json</code> file into <code>PostalDataSet</code>.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+If <code>data.json</code> is in the incorrect format, <code>PostalDataSet</code> will be empty.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><code>PostalData</code> is exposed through the <code>Model</code> interface as <code>Model#checkPostalData(int postal)</code> which returns the <code>Optional&lt;PostalData&gt;</code> of a given postal code.</p>
+</div>
+<div class="paragraph">
+<p><code>listUnvisitedCommand</code> contains a inner <code>SortDistance</code> class which implements the <code>Comparator</code> class. <code>SortDistance</code> contains the <code>PostalData</code> of the postal code provided by the user and
+a <code>HashMap&lt;Integer, Double&gt;</code> which maps the <code>Restaurant</code> postal code represented by the <code>Integer</code> to the distance from the user provided postal code represented as a <code>Double</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If a <code>Restaurant</code> postal code is invalid or not in <code>PostalDataSet</code>, the distance will be set to <code>Double.MAX_VALUE</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><code>SortDistance</code> implements the function <code>compare(Restaurant firstRestaurant ,Restaurant secondRestaurant)</code>.</p>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the <code>listUnvisited</code> and 'PostalDataSet' behaves at each step.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user launches the application for the first time. The <code>PostalDataSet</code> will be initialised with data from <code>data.json</code> through the <code>Storage</code> interface.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. The user calls <code>listUnvisited po/267951</code>. A new <code>SortBy</code> will be created containing the <code>PostalData</code> of '267951'. This command will then call the method <code>Model#filterAndSort(Predicate PREDICATE_SHOW_UNVISITED_RESTAURANTS, Comparator sortBy).</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the postal code provided by the user is invalid, there will be no change in ordering of the <code>Restaurant</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Step 3. The <code>Model#filterAndSortByLocation()</code> will first filter the <code>filterList</code> to show all <code>Restaurants</code> with zero reviews.</p>
+</div>
+<div class="paragraph">
+<p>Step 4. The <code>sortedList</code> which encapsulates the <code>filteredList</code> will then be sorted based on the <code>sortBy</code> <code>Comparator</code> provided to show the nearest <code>Restaurants</code> with zero review.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram summarizes what happens when the user executes a listUnvisited Command.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ListUnvisitedSequenceDiagram.png" alt="ListUnvisitedSequenceDiagram" width="800">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-how-is-location-data-accessed-for-each-postal-code"><a class="link" href="#aspect-how-is-location-data-accessed-for-each-postal-code">Aspect: How is location data accessed for each postal code?</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Preload the data from a json file</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Internet Service is not required.</p>
+</li>
+<li>
+<p>Cons: May have performance issues in terms of memory usage.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Making a API call to an external library e.g.Google API</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Will use less memory and will always be updated and accurate.</p>
+</li>
+<li>
+<p>Cons: Internet Service is required for the usage of the feature.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-construction-of-comparator-to-compare-restaurants"><a class="link" href="#aspect-construction-of-comparator-to-compare-restaurants">Aspect: Construction of comparator to compare Restaurants</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Comparator constructor is done in the <code>listUnvisitedCommand</code>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to implement.</p>
+</li>
+<li>
+<p>Cons: Increased coupling between <code>Command</code> and <code>Model</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Passing the user entered postal code into the <code>ModelManager</code>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Coupling is reduced between <code>Command</code> and <code>Model</code>.</p>
+</li>
+<li>
+<p>Cons: Violates Single Responsibility Principle and Separation of Concerns as <code>ModelManager</code> needs to handle the logic component of the command.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
 <h3 id="use-case-getting-unvisited-restaurant-recommendations" class="discrete">Use case: Getting unvisited restaurant recommendations</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
@@ -340,6 +491,9 @@ Format: <code>view</code></p>
 </div>
 </div>
 </div>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="project-powerpointlabs"><a class="link" href="#project-powerpointlabs">PROJECT: PowerPointLabs</a></h2>
 <div class="sectionbody">
@@ -348,4 +502,4 @@ Format: <code>view</code></p>
 <p><em>{Optionally, you may include other projects in your portfolio.}</em></p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-02 16:06:00 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-02 16:39:22 UTC</div></div></div></body></html>
