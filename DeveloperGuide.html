@@ -30,13 +30,12 @@
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
 <li><a href="#listunvisited-feature-which-sorts-by-distance-nearest-to-you">3.1. listUnvisited feature which sorts by distance nearest to you</a></li>
-<li><a href="#undo-redo-feature">3.2. Undo/Redo feature</a></li>
-<li><a href="#restaurant-categorisation">3.3. Restaurant Categorisation</a></li>
-<li><a href="#adding-a-review-to-a-selected-restaurant">3.4. Adding a Review to a selected Restaurant</a></li>
-<li><a href="#visit-webpage-feature">3.5. Visit Webpage Feature</a></li>
-<li><a href="#proposed-data-encryption">3.6. [Proposed] Data Encryption</a></li>
-<li><a href="#logging">3.7. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.8. Configuration</a></li>
+<li><a href="#restaurant-categorisation">3.2. Restaurant Categorisation</a></li>
+<li><a href="#adding-a-review-to-a-selected-restaurant">3.3. Adding a Review to a selected Restaurant</a></li>
+<li><a href="#visit-webpage-feature">3.4. Visit Webpage Feature</a></li>
+<li><a href="#proposed-data-encryption">3.5. [Proposed] Data Encryption</a></li>
+<li><a href="#logging">3.6. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.7. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -567,15 +566,50 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Food Diary</c
 <div class="sect2">
 <h3 id="listunvisited-feature-which-sorts-by-distance-nearest-to-you"><a class="link" href="#listunvisited-feature-which-sorts-by-distance-nearest-to-you">3.1. listUnvisited feature which sorts by distance nearest to you</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-v1-3"><a class="link" href="#current-implementation-v1-3">3.1.1. Current Implementation(v1.3)</a></h4>
+<h4 id="current-implementation"><a class="link" href="#current-implementation">3.1.1. Current Implementation</a></h4>
 <div class="paragraph">
-<p>The 'listUnvisited' feature accepts the user&#8217;s current postal code and displays unreviewed restaurants nearest to the user&#8217;s postal code.
-This mechanism is facilitated by <code>PostalDataSet</code>.
-It contains a <code>HashMap&lt;Integer,PostalData&gt; of `PostalData</code> which contains the x and y-coordinate of every postal code in Singapore.</p>
+<p>The 'listUnvisited' feature accepts the user&#8217;s current postal code and displays restaurants without reviews nearest to the user&#8217;s postal code.</p>
 </div>
 <div class="paragraph">
-<p><code>PostalDataSet</code> is constructed by <code>JsonPostalDataStorage</code> which processes the <code>data.json</code> file from <code>JsonSerializablePostalData</code> into <code>PostalDataSet</code>.
-This is exposed in the <code>Storage</code> interface as <code>Storage#loadPostalData()</code></p>
+<p>This mechanism is facilitated by <code>PostalDataSet</code> which
+contains a <code>HashMap&lt;Integer,PostalData&gt;</code> of every postal code represented by an <code>Integer</code> mapped to a <code>PostalData</code> containing the x and y-coordinate of the given postal code.</p>
+</div>
+<div class="paragraph">
+<p><code>PostalDataSet</code> is constructed by <code>JsonPostalDataStorage</code> which processes the <code>data.json</code> file into <code>PostalDataSet</code>.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+If <code>data.json</code> is in the incorrect format, <code>PostalDataSet</code> will be empty.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><code>PostalData</code> is exposed through the <code>Model</code> interface as <code>Model#checkPostalData(int postal)</code> which returns the <code>Optional&lt;PostalData&gt;</code> of a given postal code.</p>
+</div>
+<div class="paragraph">
+<p><code>listUnvisitedCommand</code> contains a inner <code>SortDistance</code> class which implements the <code>Comparator</code> class. <code>SortDistance</code> contains the <code>PostalData</code> of the postal code provided by the user and
+a <code>HashMap&lt;Integer, Double&gt;</code> which maps the <code>Restaurant</code> postal code represented by the <code>Integer</code> to the distance from the user provided postal code represented as a <code>Double</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If a <code>Restaurant</code> postal code is invalid or not in <code>PostalDataSet</code>, the distance will be set to <code>Double.MAX_VALUE</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><code>SortDistance</code> implements the function <code>compare(Restaurant firstRestaurant ,Restaurant secondRestaurant)</code>.</p>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the <code>listUnvisited</code> and 'PostalDataSet' behaves at each step.</p>
@@ -584,13 +618,25 @@ This is exposed in the <code>Storage</code> interface as <code>Storage#loadPosta
 <p>Step 1. The user launches the application for the first time. The <code>PostalDataSet</code> will be initialised with data from <code>data.json</code> through the <code>Storage</code> interface.</p>
 </div>
 <div class="paragraph">
-<p>Step 2. The user calls <code>listUnvisited postal/267951</code>. This command will call the method <code>Model#filterAndSortByLocation(PREDICATE_SHOW_UNVISITED_RESTAURANTS, postal)</code></p>
+<p>Step 2. The user calls <code>listUnvisited po/267951</code>. A new <code>SortBy</code> will be created containing the <code>PostalData</code> of '267951'. This command will then call the method <code>Model#filterAndSort(Predicate PREDICATE_SHOW_UNVISITED_RESTAURANTS, Comparator sortBy).</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the postal code provided by the user is invalid, there will be no change in ordering of the <code>Restaurant</code>.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p>Step 3. The <code>Model#filterAndSortByLocation()</code> will first filter the <code>RestaurantList</code> to show all <code>Restaurants</code> with zero reviews. It will then call <code>PostalDataSet#checkPostal(int postal)</code> for each of the restaurants then sort it based on the distance from the given postal code.</p>
+<p>Step 3. The <code>Model#filterAndSortByLocation()</code> will first filter the <code>filterList</code> to show all <code>Restaurants</code> with zero reviews.</p>
 </div>
 <div class="paragraph">
-<p>Step 4. The <code>filteredList</code> will then be updated to show the nearest <code>Restaurants</code> with zero review.</p>
+<p>Step 4. The <code>sortedList</code> which encapsulates the <code>filteredList</code> will then be sorted based on the <code>sortBy</code> <code>Comparator</code> provided to show the nearest <code>Restaurants</code> with zero review.</p>
 </div>
 <div class="paragraph">
 <p>The following sequence diagram summarizes what happens when the user executes a listUnvisited Command.</p>
@@ -601,11 +647,75 @@ This is exposed in the <code>Storage</code> interface as <code>Storage#loadPosta
 </div>
 </div>
 </div>
-</div>
-<div class="sect2">
-<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">3.2. Undo/Redo feature</a></h3>
 <div class="sect3">
-<h4 id="current-implementation"><a class="link" href="#current-implementation">3.2.1. Current Implementation</a></h4>
+<h4 id="design-considerations"><a class="link" href="#design-considerations">3.1.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-how-is-location-data-accessed-for-each-postal-code"><a class="link" href="#aspect-how-is-location-data-accessed-for-each-postal-code">Aspect: How is location data accessed for each postal code?</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Preload the data from a json file</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Internet Service is not required.</p>
+</li>
+<li>
+<p>Cons: May have performance issues in terms of memory usage.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Making a API call to an external library e.g.Google API</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Will use less memory and will always be updated and accurate.</p>
+</li>
+<li>
+<p>Cons: Internet Service is required for the usage of the feature.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-construction-of-comparator-to-compare-restaurants"><a class="link" href="#aspect-construction-of-comparator-to-compare-restaurants">Aspect: Construction of comparator to compare Restaurants</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Comparator constructor is done in the <code>listUnvisitedCommand</code>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to implement.</p>
+</li>
+<li>
+<p>Cons: Increased coupling between <code>Command</code> and <code>Model</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Passing the user entered postal code into the <code>ModelManager</code>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Coupling is reduced between <code>Command</code> and <code>Model</code>.</p>
+</li>
+<li>
+<p>Cons: Violates Single Responsibility Principle and Separation of Concerns as <code>ModelManager</code> needs to handle the logic component of the command.
+=== Undo/Redo feature
+==== Current Implementation</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
 <div class="paragraph">
 <p>The undo/redo mechanism is facilitated by <code>VersionedAddressBook</code>.
 It extends <code>AddressBook</code> with an undo/redo history, stored internally as an <code>addressBookStateList</code> and <code>currentStatePointer</code>.
@@ -734,8 +844,9 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 </div>
+</div>
 <div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">3.2.2. Design Considerations</a></h4>
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.1.3. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-undo-redo-executes"><a class="link" href="#aspect-how-undo-redo-executes">Aspect: How undo &amp; redo executes</a></h5>
 <div class="ulist">
@@ -805,13 +916,13 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="restaurant-categorisation"><a class="link" href="#restaurant-categorisation">3.3. Restaurant Categorisation</a></h3>
+<h3 id="restaurant-categorisation"><a class="link" href="#restaurant-categorisation">3.2. Restaurant Categorisation</a></h3>
 <div class="paragraph">
 <p>Restaurants can be classified using categories. Each restaurant can have each of the optional categories defined.
 Currently, 3 different types of categories are implemented in v1.3: <code>Cuisine</code>, <code>Occasion</code> and <code>Price Range</code>.</p>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.3.1. Current Implementation</a></h4>
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.2.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>Restaurant Categorisation is mainly implemented using the following commands:</p>
 </div>
@@ -915,7 +1026,7 @@ executes internally.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.3.2. Design Considerations</a></h4>
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.2.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="price-range-categorisation"><a class="link" href="#price-range-categorisation">Price Range Categorisation</a></h5>
 <div class="ulist">
@@ -1066,9 +1177,9 @@ executes internally.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="adding-a-review-to-a-selected-restaurant"><a class="link" href="#adding-a-review-to-a-selected-restaurant">3.4. Adding a Review to a selected Restaurant</a></h3>
+<h3 id="adding-a-review-to-a-selected-restaurant"><a class="link" href="#adding-a-review-to-a-selected-restaurant">3.3. Adding a Review to a selected Restaurant</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.4.1. Current Implementation</a></h4>
+<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.3.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The Restaurant class contains a list of reviews. Adding a Review to a restaurant would entail adding a review to this list.</p>
 </div>
@@ -1102,7 +1213,7 @@ The parser will return an <code>AddReviewCommand</code> object, which stores the
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.4.2. Design considerations</a></h4>
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.3.2. Design considerations</a></h4>
 <div class="paragraph">
 <p>The primary consideration was the compatibility of this new command with the existing architecture.
 Given the stable implementation of the current system of parsing commands, any new command created should fit into the existing architecture with minimal changes to other components.</p>
@@ -1110,12 +1221,12 @@ Given the stable implementation of the current system of parsing commands, any n
 </div>
 </div>
 <div class="sect2">
-<h3 id="visit-webpage-feature"><a class="link" href="#visit-webpage-feature">3.5. Visit Webpage Feature</a></h3>
+<h3 id="visit-webpage-feature"><a class="link" href="#visit-webpage-feature">3.4. Visit Webpage Feature</a></h3>
 <div class="paragraph">
 <p>Website can be displayed on the <code>BrowserPanel</code> with <code>visitWeb</code> command.</p>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.5.1. current implementation</a></h4>
+<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.4.1. Current implementation</a></h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1148,20 +1259,20 @@ Restaurant on the <code>BrowserPanel</code>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.6. [Proposed] Data Encryption</a></h3>
+<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.5. [Proposed] Data Encryption</a></h3>
 <div class="paragraph">
 <p><em>{Explain here how the data encryption feature will be implemented}</em></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.7. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.6. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.8, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.7, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1192,7 +1303,7 @@ Restaurant on the <code>BrowserPanel</code>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.8. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.7. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -2476,6 +2587,43 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 </li>
 </ul>
 </div>
+<h3 id="use-case-getting-unvisited-restaurant-recommendations" class="discrete">Use case: Getting unvisited restaurant recommendations</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>FoodLover enters command and his current postal code</p>
+</li>
+<li>
+<p>FoodDiary displays a list of restaurants ranked based on his proximity to the provided postal code.</p>
+<div class="paragraph">
+<p>Use case ends</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. Postal code entered is not valid.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a1. FoodDiary displays all the unreviewed restaurants.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -2673,4 +2821,4 @@ Expected: No categories are set. Error details shown in status message.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-02 14:44:38 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-02 15:31:50 UTC</div></div></div></body></html>
