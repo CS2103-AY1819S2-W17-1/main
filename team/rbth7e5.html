@@ -155,15 +155,15 @@
 <div class="sect3">
 <h4 id="setting-the-categories-of-a-restaurant-code-setcategories-code"><a class="link" href="#setting-the-categories-of-a-restaurant-code-setcategories-code">Setting the categories of a restaurant : <code>setCategories</code></a></h4>
 <div class="paragraph">
-<p>Set the cuisine of a restaurant identified by the index number used in the listRestaurants.<br>
-Format: <code>setCategories INDEX [c/CUISINE] [o/OCCASION] [p/PRICE_RANGE]</code></p>
+<p>Set the cuisine of a restaurant identified by the index number used in the list.<br>
+Format: <code>setCategories INDEX [c/CUISINE] [oc/OCCASION] [pr/PRICE_RANGE]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>The index refers to the index number show in the displayed restaurants list.</p>
+<p>The index refers to the index number shown in the displayed restaurants list.</p>
 </li>
 <li>
 <p>You need to ensure that the index entered <strong>must be a positive integer</strong> <code>1, 2, 3, &#8230;&#8203;</code></p>
@@ -173,10 +173,10 @@ Format: <code>setCategories INDEX [c/CUISINE] [o/OCCASION] [p/PRICE_RANGE]</code
 is okay but <code>$$</code>, <code>cheap</code> or <code>$expensive</code> will be rejected.</p>
 </li>
 <li>
-<p>You need to ensure that Cuisine and Occasion <strong>must</strong> only contain alphanumeric characters and spaces.</p>
+<p>You need to ensure that <code>Cuisine</code> and <code>Occasion</code> <strong>must</strong> only contain alphanumeric characters and spaces.</p>
 </li>
 <li>
-<p>You do not need to worry about capitalization. Cuisine and Occasion will be autocapitalized.
+<p>You do not need to worry about capitalization. <code>Cuisine</code> and <code>Occasion</code> will be autocapitalized.
 e.g. <code>fast food</code> and <code>premium casual</code> will be capitalized to
 <code>Fast Food</code> and <code>Premium Casual</code>. <code>fAST fOOD</code> will be converted into <code>Fast Food</code>.</p>
 </li>
@@ -190,25 +190,33 @@ e.g. <code>fast food</code> and <code>premium casual</code> will be capitalized 
 <div class="ulist">
 <ul>
 <li>
-<p><code>listRestaurants</code><br>
-<code>setCategory 2 c/Fine Dining o/Wedding p/$</code><br>
-Set the categories of the second restaurant in the list to <code>Fine Dining</code> for cuisine, <code>Wedding</code> for occasion and
+<p><code>list</code><br>
+<code>setCategories 2 c/Fine Dining oc/Wedding pr/$</code><br>
+Sets the categories of the second restaurant in the list to <code>Fine Dining</code> for cuisine, <code>Wedding</code> for occasion and
 <code>$</code> for price range.</p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>Note:</p>
-</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>setCategory for <code>Cuisine</code>, <code>Occasion</code> and <code>Price Range</code> supported as of v1.3</p>
+<p>setCategories for <code>Cuisine</code>, <code>Occasion</code> and <code>Price Range</code> supported as of v1.3</p>
 </li>
 <li>
 <p>Autocomplete feature planned for v1.4</p>
 </li>
 </ul>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect3">
@@ -266,7 +274,7 @@ Returns restaurants with <code>Price Range</code> matching <code>$</code></p>
 </li>
 <li>
 <p><code>filter $ casual western</code>
-Return restaurants with  <code>Cuisine</code>, <code>Occasion</code> or <code>Price Range</code> matching <code>$</code>, <code>casual</code> or <code>western</code></p>
+Returns restaurants with  <code>Cuisine</code>, <code>Occasion</code> or <code>Price Range</code> matching <code>$</code>, <code>casual</code> or <code>western</code></p>
 </li>
 </ul>
 </div>
@@ -707,4 +715,4 @@ Expected: No categories are set. Error details shown in status message.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-05 02:44:04 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-05 02:48:36 UTC</div></div></div></body></html>

@@ -130,13 +130,13 @@ Format: <code>addReview INDEX re/ENTRY rr/RATING</code></p>
 <p>Adds the review to the restaurant specified by the <code>INDEX</code>. The index refers to the index number of the restaurant of the currently displayed list of restaurants.. The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
 </li>
 <li>
-<p>ENTRY is a text field that include both alphabets and numbers.</p>
+<p><code>ENTRY</code> is a text field that include both alphabets and numbers.</p>
 </li>
 <li>
-<p>RATING is a number that has to be a value from 0-5 inclusive. It represents a score out of 5 that is assigned to the restaurant with the added review.</p>
+<p><code>RATING</code> is a number that has to be a value from 0-5 inclusive. It represents a score out of 5 that is assigned to the restaurant with the added review.</p>
 </li>
 <li>
-<p>Both fields (ENTRY and RATING) are compulsory and must be provided. There are no default values that either will take should the field be unspecified.</p>
+<p>Both fields (<code>ENTRY</code> and <code>RATING</code>) are compulsory and must be provided. There are no default values that either will take should the field be unspecified.</p>
 </li>
 </ul>
 </div>
@@ -170,7 +170,7 @@ Format: <code>editReview INDEX [re/ENTRY] [rr/RATING]</code></p>
 <p>A restaurant must be selected with a mouse click on the desired restaurant card (see screenshots below for an illustration)</p>
 </li>
 <li>
-<p>At least one of the optional fields (either ENTRY or RATING) must be provided.</p>
+<p>At least one of the optional fields (either <code>ENTRY</code> or <code>RATING</code>) must be provided.</p>
 </li>
 <li>
 <p>Existing values will be updated to the input values.</p>
@@ -180,12 +180,12 @@ Format: <code>editReview INDEX [re/ENTRY] [rr/RATING]</code></p>
 </div>
 </div>
 <div class="paragraph">
-<p>Steps to execute editReview command:</p>
+<p>Steps to execute <code>editReview</code> command:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>From the main screen of the application, first select a restaurant by clicking on it with the mouse.</p>
+<p>From the main screen of the application, first select a restaurant by clicking on it with the mouse or using the <code>select INDEX</code> command.</p>
 </li>
 </ul>
 </div>
@@ -195,12 +195,15 @@ Format: <code>editReview INDEX [re/ENTRY] [rr/RATING]</code></p>
 </div>
 </div>
 <div class="paragraph">
-<p>The above screenshot shows the case when no restaurant is selected. Upon selecting a restaurant, the reviews of the restaurant will show on the review panel, and the rightmost browser panel will show the webpage of the restaurant (if available) :</p>
+<p><em>Figure 3. The above screenshot shows the case when no restaurant is selected</em></p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="../images/UG_editReview_selected_restaurant.png" alt="UG editReview selected restaurant" width="790">
 </div>
+</div>
+<div class="paragraph">
+<p><em>Figure 4. Upon selecting a restaurant, the reviews of the restaurant will show on the review panel, and the rightmost browser panel will show the webpage of the restaurant (if available)</em></p>
 </div>
 <div class="ulist">
 <ul>
@@ -213,6 +216,9 @@ Format: <code>editReview INDEX [re/ENTRY] [rr/RATING]</code></p>
 <div class="content">
 <img src="../images/UG_editReview_selected_restaurant_entered_command.png" alt="UG editReview selected restaurant entered command" width="790">
 </div>
+</div>
+<div class="paragraph">
+<p><em>Figure 5. Enter the command in the command box as shown near the top of the application</em></p>
 </div>
 <div class="ulist">
 <ul>
@@ -227,21 +233,24 @@ Format: <code>editReview INDEX [re/ENTRY] [rr/RATING]</code></p>
 </div>
 </div>
 <div class="paragraph">
+<p><em>Figure 6. The above screenshot shows the end-product of the successful execution of <code>editReview</code> command</em></p>
+</div>
+<div class="paragraph">
 <p>Examples:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
 <p><code>edit 1 rr/3</code><br>
-Edits the rating of the 1st review to be 3.</p>
+Edits the rating of the 1st review to be <code>3</code>.</p>
 </li>
 <li>
 <p><code>edit 2 re/Food isn&#8217;t the best</code><br>
-Edits the comment of the second review to "Food isn&#8217;t the best"</p>
+Edits the comment of the second review to <code>Food isn&#8217;t the best</code></p>
 </li>
 <li>
 <p><code>edit 2 re/Food isn&#8217;t the best</code> rr/4<br>
-Edits the comment of the second review to "Food isn&#8217;t the best" and the rating to be 4.</p>
+Edits the comment of the second review to <code>Food isn&#8217;t the best</code> and the rating to be <code>4</code>.</p>
 </li>
 </ul>
 </div>
@@ -276,7 +285,7 @@ Format: <code>deleteReview INDEX</code></p>
 <ul>
 <li>
 <p><code>deleteReview 2</code><br>
-Deletes the 2nd review of the selected Restaurant in the Food Diary.</p>
+Deletes the 2nd review of the selected restaurant in the Food Diary.</p>
 </li>
 </ul>
 </div>
@@ -350,4 +359,4 @@ Given the stable implementation of the current system of parsing commands, any n
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-05 02:44:04 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-05 02:48:36 UTC</div></div></div></body></html>
