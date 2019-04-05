@@ -192,7 +192,7 @@ e.g. <code>fast food</code> and <code>premium casual</code> will be capitalized 
 <li>
 <p><code>listRestaurants</code><br>
 <code>setCategory 2 c/Fine Dining o/Wedding p/$</code><br>
-Set the categories of the second restaurant in the list to <code>Find Dining</code> for cuisine, <code>Wedding</code> for occasion and
+Set the categories of the second restaurant in the list to <code>Fine Dining</code> for cuisine, <code>Wedding</code> for occasion and
 <code>$</code> for price range.</p>
 </li>
 </ul>
@@ -412,6 +412,264 @@ Return restaurants with  <code>Cuisine</code>, <code>Occasion</code> or <code>Pr
 </tbody>
 </table>
 <div class="sect2">
+<h3 id="restaurant-categorisation"><a class="link" href="#restaurant-categorisation">Restaurant Categorisation</a></h3>
+<div class="paragraph">
+<p>Restaurants can be classified using categories. Each restaurant can have each of the optional categories defined.
+Currently, 3 different types of categories are implemented in v1.3: <code>Cuisine</code>, <code>Occasion</code> and <code>Price Range</code>.</p>
+</div>
+<div class="sect3">
+<h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
+<div class="paragraph">
+<p>Restaurant Categorisation is mainly implemented using the following commands:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>setCategories</code>&#8201;&#8212;&#8201;sets the different categories of the restaurant using its respective prefixes.</p>
+</li>
+<li>
+<p><code>filter</code>&#8201;&#8212;&#8201;filters out restaurants using keywords matching that of its categories.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>All supported categories are defined in the <code>seedu.address.model.restaurant.categories</code> package, along with the <code>Categories</code>
+class that encapsulates all categories into a <code>Categories</code> object to be used in the <code>Restaurant</code> class.</p>
+</div>
+<div class="paragraph">
+<p>The following activity diagram shows the chain of events when setting categories of a restaurant with the setCategories command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SetCategoriesActivityDiagram.png" alt="SetCategoriesActivityDiagram" width="650">
+</div>
+</div>
+<div class="paragraph">
+<p>The feature is evolved as follows:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Categorisation only by Cuisine</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Add Cuisine class</p>
+</li>
+<li>
+<p>Implement SetCuisine command that extends Command</p>
+</li>
+<li>
+<p>Implement parser for SetCuisine command</p>
+</li>
+<li>
+<p>Support filtering restaurants by cuisine</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Categorisation by Occasion</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Add new Categories class to encapsulate different category types</p>
+</li>
+<li>
+<p>Add Occasion class. Model <code>Occasion</code> and <code>Cuisine</code> by composition inside <code>Categories</code>.</p>
+</li>
+<li>
+<p>Change SetCuisine command to SetCategories command that extends Command</p>
+</li>
+<li>
+<p>Add support for Occasion in filter command</p>
+</li>
+<li>
+<p>Add new merge method to ensure setting one category only does not override the other</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Categorisation by Price Range</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Add new PriceRange class, composed inside <code>Categories</code></p>
+</li>
+<li>
+<p>Add new match method to abstract out matching responsibilities of each Category type to <code>Categories</code> class</p>
+</li>
+<li>
+<p>Add new setLabels method to allow UI to set Label of each category without being aware of its existence</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>You can refer to the following sequence diagram to get a better understanding of how a typical valid setCategories command
+executes internally.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SetCategoriesSequenceDiagram.png" alt="SetCategoriesSequenceDiagram" width="650">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="price-range-categorisation"><a class="link" href="#price-range-categorisation">Price Range Categorisation</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Alternative 1: Use dollar signs to represent price (Current implementation)</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pros</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">It is easier for the user to type and also visually clearer to the viewer</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cons</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Restricts the range of price between one and five</p></td>
+</tr>
+</tbody>
+</table>
+<div class="ulist">
+<ul>
+<li>
+<p>Alternative 2: Use words such as <code>cheap</code>, <code>expensive</code> to represent price</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pros</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">User has complete freedom as to how they want to key in the price range</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cons</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lacks proper structure, not very intuitive to the viewer if the user keys in something that does not make sense</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="how-categories-are-added-and-edited"><a class="link" href="#how-categories-are-added-and-edited">How categories are added and edited</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Alternative 1: Use one single command to add and edit, only overriding the present categories keyed in (Current implementation)</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pros</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">User does not need to remember multiple commands to set categories.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cons</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Users are restricted to the preset types of categories they can set.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="ulist">
+<ul>
+<li>
+<p>Alternative 2: Use separate commands for add and edit</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pros</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">User can add their own types of categories.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cons</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">User needs to remember which restaurants do not have categories added yet, else add or edit commands might fail.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="filtering-restaurants-by-categories"><a class="link" href="#filtering-restaurants-by-categories">Filtering restaurants by categories</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Alternative 1: Key in as many key words as possible, without specifying which keyword is for which category (Current implementation)</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pros</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">More user friendly since users do not have to be concerned with which keywords should match which category</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cons</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cross category filtering generalises the search results instead of making it more specific</p></td>
+</tr>
+</tbody>
+</table>
+<div class="ulist">
+<ul>
+<li>
+<p>Alternative 2: For each keyword entered, specify which category it is for</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pros</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Users can find specific restaurants matching each category type</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cons</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Troublesome for user to type the commands since they now need to indicate which category should match which keyword</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="setting-the-categories-of-a-restaurant"><a class="link" href="#setting-the-categories-of-a-restaurant">Setting the categories of a restaurant</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
@@ -449,4 +707,4 @@ Expected: No categories are set. Error details shown in status message.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-04 18:45:01 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-05 02:31:34 UTC</div></div></div></body></html>
