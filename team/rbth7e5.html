@@ -10,33 +10,60 @@
 <h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This portfolio showcases my contributions for a software engineering team project for our software engineering module. In a period of 6 weeks, we were tasked to implement a command line interface (CLI) based application targeted at a specific group of users.</p>
+<p>This portfolio showcases my contributions for a software engineering team project for our software engineering module.
+In a period of 6 weeks, we were tasked to implement a command line interface (CLI) based application targeted at a
+specific group of users.</p>
 </div>
 <div class="paragraph">
-<p>Our project, The Food Diary, is a fast and reliable food journal meant for nostalgic food lovers looking to document their food adventures. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLo.</p>
+<p>Our project, The Food Diary, is a fast and reliable food journal meant for nostalgic food lovers looking to document
+their food adventures. The Food Diary is especially useful to food lovers who can type fast and hence prefers using CLI
+over a Graphical User Interface (GUI). Our project is written in Java and uses the JavaFX UI framework to display
+content onto the screen.</p>
 </div>
 <div class="paragraph">
-<p>My role was to implement the categorisation of restaurants as well as manage the git workflow of members. The following sections illustrate these enhancements in more detail, as well as the relevant sections I have added to the user and developer guides in relation to these enhancements.</p>
+<p>The main features of The Food Diary are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Getting personalised recommendations based on restaurants you have visited</p>
+</li>
+<li>
+<p>Documenting your food adventures and reviews in one single location so that you can easily refer back to it later</p>
+</li>
+<li>
+<p>Organising the restaurants you have visited with categories so that you can easily filter them later</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>My role was to implement the categorisation of restaurants as well as manage the git workflow of members.
+The following sections illustrate these enhancements in more detail, as well as the relevant sections I have added
+to the user and developer guides in relation to these enhancements.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of contributions</a></h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>The following describes the contributions I made to the project. More specifically, it documents both the code enhancements
+and how I helped manage the project.</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Major enhancement</strong>: added <strong>Restaurant Categorisation</strong></p>
+<p><strong>Major enhancement</strong>: I implemented <strong>Restaurant Categorisation</strong> for the Food Diary</p>
 <div class="ulist">
 <ul>
 <li>
-<p>What it does: This enhancement allows the users to set specific categories such as Cuisine, Occasion and Price Range to restaurants.</p>
+<p>Description of the feature: This enhancement allows the users to set specific categories such as Cuisine, Occasion and Price Range to restaurants.</p>
 </li>
 <li>
-<p>Justification: This enhancement allows The Food Diary to achieve one of its highlights: to allow food lovers to categorise restaurants so that they can better organise their food diary.</p>
+<p>Why is the feature important: This enhancement allows The Food Diary to achieve one of its highlights: to allow food lovers to categorise restaurants so that they can better organise their food diary.</p>
 </li>
 <li>
-<p>Highlights:</p>
+<p>Highlights of the feature:</p>
 <div class="ulist">
 <ul>
 <li>
@@ -55,20 +82,20 @@
 </div>
 </li>
 <li>
-<p><strong>Minor enhancement</strong>: filter command to display specific restaurants</p>
+<p><strong>Minor enhancement</strong>: I added a filter command to display specific restaurants based on its categories</p>
 <div class="ulist">
 <ul>
 <li>
-<p>What it does: This enhancement allows food lovers to filter out restaurants based on categories.</p>
+<p>Description of the feature: This enhancement allows food lovers to filter out restaurants based on categories.</p>
 </li>
 <li>
-<p>Justification: This enhancement helps food lovers locate and refer back to specific restaurants with specific categories set.</p>
+<p>Why the feature is important: This enhancement helps food lovers locate and refer back to specific restaurants with specific categories set.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Code contributed</strong>: [<a href="https://nus-cs2103-ay1819s2.github.io/cs2103-dashboard/#=undefined&amp;search=rbth7e5" class="bare">https://nus-cs2103-ay1819s2.github.io/cs2103-dashboard/#=undefined&amp;search=rbth7e5</a>]</p>
+<p><strong>Code contributed</strong>: The code I contributed can be viewed at the link here: <a href="https://nus-cs2103-ay1819s2.github.io/cs2103-dashboard/#=undefined&amp;search=rbth7e5">Code Contributed</a></p>
 </li>
 <li>
 <p><strong>Other contributions</strong>:</p>
@@ -148,54 +175,78 @@
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>The following describes the contributions I made to the User Guide. The following is an excerpt from the User Guide. More specifically, it shows my ability to document the Restaurant Categorization feature for end users.</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>The following describes the contributions I made to the User Guide. The following is an excerpt from the User Guide.
+More specifically, it shows my ability to document the Restaurant Categorization feature for end users.</em></p></td>
 </tr>
 </tbody>
 </table>
 <div class="sect3">
 <h4 id="setting-the-categories-of-a-restaurant-code-setcategories-code"><a class="link" href="#setting-the-categories-of-a-restaurant-code-setcategories-code">Setting the categories of a restaurant : <code>setCategories</code></a></h4>
 <div class="paragraph">
-<p>Set the cuisine of a restaurant identified by the index number used in the list.<br>
+<p>Sets the cuisine of a restaurant identified by the index number used in the list.<br>
 Format: <code>setCategories INDEX [c/CUISINE] [oc/OCCASION] [pr/PRICE_RANGE]</code></p>
 </div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>The index refers to the index number shown in the displayed restaurants list.</p>
-</li>
-<li>
-<p>You need to ensure that the index entered <strong>must be a positive integer</strong> <code>1, 2, 3, &#8230;&#8203;</code></p>
-</li>
-<li>
-<p>You need to ensure that the <code>Price Range</code> entered <strong>must</strong> only consist of 1-5 <code>$</code> characters. e.g. <code>$</code>, <code>$$$</code>, <code>$</code>
-is okay but <code>$$</code>, <code>cheap</code> or <code>$expensive</code> will be rejected.</p>
-</li>
-<li>
-<p>You need to ensure that <code>Cuisine</code> and <code>Occasion</code> <strong>must</strong> only contain alphanumeric characters and spaces.</p>
-</li>
-<li>
-<p>You do not need to worry about capitalization. <code>Cuisine</code> and <code>Occasion</code> will be autocapitalized.
-e.g. <code>fast food</code> and <code>premium casual</code> will be capitalized to
-<code>Fast Food</code> and <code>Premium Casual</code>. <code>fAST fOOD</code> will be converted into <code>Fast Food</code>.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p><strong>Step by step guide on how to set categories:</strong></p>
 </div>
+<div class="paragraph">
+<p>Step 1: List all the restaurants by typing <code>list</code>, then pressing enter, as shown <em>below</em>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/setcategories-stepone.png" alt="setcategories stepone">
 </div>
 </div>
 <div class="paragraph">
-<p>Examples:</p>
+<p><em>Figure 1: After typing `list`</em></p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>list</code><br>
-<code>setCategories 2 c/Fine Dining oc/Wedding pr/$</code><br>
-Sets the categories of the second restaurant in the list to <code>Fine Dining</code> for cuisine, <code>Wedding</code> for occasion and
-<code>$</code> for price range.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>Step 2: Choose a restaurant you want to set categories to. Let us choose Astons for this example. Take note that Astons
+is identified by <strong>INDEX 1</strong>. Start typing <code>setCategories 1 c/</code> as <em>follows</em>:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/setcategories-steptwo.png" alt="setcategories steptwo">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 2: Notice suggestions for cuisines will pop up. Use arrow keys to select the desired suggestion and press enter,
+or you can also choose to continue typing something not in the suggestions.</em></p>
+</div>
+<div class="paragraph">
+<p>Step 3: Continue keying in the occasion prefix after you finished keying in the cuisine. The occasion prefix is oc/.
+Follow Figure 3 shown <em>below</em>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/setcategories-stepthree.png" alt="setcategories stepthree">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 3: Once again, you can pick the occasion you see in the suggestions or continue typing.</em></p>
+</div>
+<div class="paragraph">
+<p>Step 4: Key in the price range next, as demonstrated by <em>Figure 4 below</em>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/setcategories-stepfour.png" alt="setcategories stepfour">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 4: Pick a price range from the list or just type, whichever is faster for you.</em></p>
+</div>
+<div class="paragraph">
+<p>Step 5: Press enter and the categories will be set! Else, you might have made a typo somewhere. You should see the
+following status message shown in the <em>Figure below</em>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/setcategories-stepfive.png" alt="setcategories stepfive">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 5: Success!</em></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -207,10 +258,68 @@ Sets the categories of the second restaurant in the list to <code>Fine Dining</c
 <div class="ulist">
 <ul>
 <li>
-<p>setCategories for <code>Cuisine</code>, <code>Occasion</code> and <code>Price Range</code> supported as of v1.3</p>
+<p>The index refers to the index number shown in the displayed restaurants list.</p>
 </li>
 <li>
-<p>Autocomplete feature planned for v1.4</p>
+<p>You need to ensure that the index entered <strong>must be a positive integer</strong> <code>1, 2, 3, &#8230;&#8203;</code></p>
+</li>
+<li>
+<p>You need to ensure that the <code>Price Range</code> entered <strong>must</strong> only consist of 1-5 $ characters. e.g. $, $$$, $$$$$
+is okay but $$$$$$, cheap or $expensive will be rejected.</p>
+</li>
+<li>
+<p>You need to ensure that <code>Cuisine</code> and <code>Occasion</code> <strong>must</strong> only contain alphanumeric characters and spaces.</p>
+</li>
+<li>
+<p>You do not need to worry about capitalization. <code>Cuisine</code> and <code>Occasion</code> will be autocapitalized.
+e.g. <code>fast food</code> and <code>premium casual</code> will be capitalized to
+<code>Fast Food</code> and <code>Premium Casual</code>. <code>fAST fOOD</code> will be converted into <code>Fast Food</code>.</p>
+</li>
+<li>
+<p>You do not need to be concerned about the order of categories keyed in. e.g. Entering <code>Price Range</code> before <code>Cuisine</code> will
+work as well.</p>
+</li>
+<li>
+<p>You do not need to set categories one by one or set all three at once. You have complete freedom to set categories
+whether it is one at a time, two at a time or three at a time.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Other examples you can try:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>setCategories 2 oc/Premium Casual pr/$</code><br>
+Sets the categories of the second restaurant in the list to <code>Premium Casual</code> for occasion and
+<code>$</code> for price range.</p>
+</li>
+<li>
+<p><code>setCategories 3 c/Western</code><br>
+Only sets the cuisine of the third restaurant to <code>Western</code>.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>You can make use of the autocomplete suggestions to type faster!</p>
+</li>
+<li>
+<p>When a category&#8217;s prefix (<code>c/</code>, <code>oc/</code> or <code>pr/</code>) is keyed in, suggestions will appear. Use arrow keys to select the desired
+suggestion and press enter. The suggestion will be filled automatically for you!</p>
 </li>
 </ul>
 </div>
@@ -220,21 +329,42 @@ Sets the categories of the second restaurant in the list to <code>Fine Dining</c
 </div>
 </div>
 <div class="sect3">
-<h4 id="filter-restaurants-based-on-category-code-filter-code"><a class="link" href="#filter-restaurants-based-on-category-code-filter-code">Filter restaurants based on category : <code>filter</code></a></h4>
+<h4 id="filtering-restaurants-based-on-category-code-filter-code"><a class="link" href="#filtering-restaurants-based-on-category-code-filter-code">Filtering restaurants based on category : <code>filter</code></a></h4>
 <div class="paragraph">
 <p>Filters and lists the restaurants with categories matching the keywords entered.<br>
 Format: <code>filter KEYWORD [MORE_KEYWORDS]</code></p>
 </div>
-<div class="sidebarblock">
-<div class="content">
+<div class="paragraph">
+<p><strong>Step by step guide on how to filter:</strong></p>
+</div>
+<div class="paragraph">
+<p>Step 1: Suppose you want to filter out all the <code>Western</code> restaurants. Type <code>filter western</code>.</p>
+</div>
+<div class="paragraph">
+<p>Step 2: Press enter and you should see all the western restaurants.</p>
+</div>
+<div class="paragraph">
+<p>Step 3: Suppose now you want to filter out all <code>Western</code>, <code>Japanese</code>, as well as <code>Chinese</code> restaurants. Type <code>filter
+western japanese chinese</code> into the command box.</p>
+</div>
+<div class="paragraph">
+<p>Step 4: Press enter again and now all <code>Western</code>, <code>Japanese</code> and <code>Chinese</code> restaurants will be shown.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>You do not need to worry about case. Filtering is case insensitive. e.g. <code>fast food</code> will match <code>Fast Food</code></p>
+<p>You do not need to worry about case. Filtering is case insensitive. e.g. <code>western</code> will match <code>Western</code></p>
 </li>
 <li>
 <p>You do not need to be concerned about which categories you want to filter. Filtering works across categories.
-e.g. <code>japanese </code> will match all restaurants with <code>Cuisine</code> set as <code>Japanese</code> or <code>Price Range</code> set as <code></code>.
+e.g. <code>japanese $</code> will match all restaurants with <code>Cuisine</code> set as <code>Japanese</code> or <code>Price Range</code> set as <code>$</code>.
 Note this also means that the more keywords you add, the more general the filter becomes.</p>
 </li>
 <li>
@@ -246,35 +376,29 @@ Note this also means that the more keywords you add, the more general the filter
 restaurants. All <code>Japanese</code> and <code>Western</code> restaurants will be displayed.</p>
 </li>
 <li>
-<p>You must enter words in full. e.g. <code>fas foo</code> will not match <code>fast food</code></p>
+<p>You must enter words in full. e.g. <code>west</code> will not match <code>western</code></p>
 </li>
 <li>
 <p>Restaurants matching at least one keyword will be displayed. e.g. <code>fast food</code> will match <code>hawker food</code></p>
 </li>
 </ul>
 </div>
-</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p>Examples:</p>
+<p>Some examples you can try:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>filter fast food</code><br>
-Returns restaurants with <code>Cuisine</code> or <code>Occasion</code> matching <code>fast</code> or <code>food</code></p>
-</li>
-<li>
-<p><code>filter fast food casual</code>
-Returns restaurants with <code>Cuisine</code> or <code>Occasion</code> matching <code>fast</code>, <code>food</code> or <code>casual</code></p>
-</li>
-<li>
-<p><code>filter $</code>
-Returns restaurants with <code>Price Range</code> matching <code>$</code></p>
+<p><code>filter fine dining casual</code>
+Returns restaurants with any category matching <code>fine</code>, <code>dining</code> or <code>casual</code>.</p>
 </li>
 <li>
 <p><code>filter $ casual western</code>
-Returns restaurants with  <code>Cuisine</code>, <code>Occasion</code> or <code>Price Range</code> matching <code>$</code>, <code>casual</code> or <code>western</code></p>
+Returns restaurants with any category matching <code>$</code>, <code>casual</code> or <code>western</code>.</p>
 </li>
 </ul>
 </div>
@@ -290,132 +414,8 @@ Returns restaurants with  <code>Cuisine</code>, <code>Occasion</code> or <code>P
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Two main sections I contributed to the Developer Guide are User Stories and Categorization as shown below. It reflects my ability to articulate how I implemented my features</em></p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="sect1">
-<h2 id="user-stories"><a class="link" href="#user-stories">User Stories</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Priorities: High (must have) - <code>* * *</code>, Medium (nice to have) - <code>* *</code>, Low (unlikely to have) - <code>*</code></p>
-</div>
-<div class="paragraph">
-<p>"Food lover" refers to the intended users of our application.</p>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 1.4492%;">
-<col style="width: 18.8405%;">
-<col style="width: 36.2318%;">
-<col style="width: 43.4785%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Priority</th>
-<th class="tableblock halign-left valign-top">As a &#8230;&#8203;</th>
-<th class="tableblock halign-left valign-top">I want to &#8230;&#8203;</th>
-<th class="tableblock halign-left valign-top">So that I can&#8230;&#8203;</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Food lover</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Update or delete restaurant data conveniently</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ensure all data are up to date</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Food lover</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Filter restaurants by cuisine</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Easily refer back to specific cuisines I want to try</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Food lover</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Filter restaurants by suitable occasion</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Easily refer back for suitable dining options during special occasions</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Price savvy food lover</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Add a price range to the restaurants I visited</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Look for restaurants within budget</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Food lover</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Switch between restaurant view and review view</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Switch easily between looking for cuisine/occasion and looking for ratings/comments</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Food lover that is clumsy</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Undo/redo any command</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Quickly recover from a typo or wrong command</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Food lover</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Update and delete reviews for a restaurant</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ensure all reviews for a restaurant are up to date</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Food lovers with multiple devices</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Export all my data and import into another device</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Resume my food reviews on another device wherever I go</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Food lover</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">View a summary my food adventure data</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Show off to my friends the number of food places I went</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Food lover</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">View restaurants ranked by ratings</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Refer to my friends the restaurants I feel that are good</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Food lover</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Add restaurant based on Google search</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Easily add a new restaurant</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Food lover</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Autocomplete categories I have keyed in before when setting categories</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">I can set categories faster</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Food lover that travels</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">View restaurants and reviews separately by country</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Easily see relevant restaurants and reviews when I can in a certain country</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Food lover &amp; influencer</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Share my reviews on Facebook</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Recommend my friends to food I’ve eaten</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Curious Food lover</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Go to the restaurant’s website</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Visit the restaurant’s website easily</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Food Lover</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">List unreviewed restaurants</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Visit restaurants that I have added but yet to review</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>For the Developer Guide, I documented how Categorization is implemented as shown below.
+It reflects my ability to articulate how I implemented my features</em></p></td>
 </tr>
 </tbody>
 </table>
@@ -423,7 +423,7 @@ Returns restaurants with  <code>Cuisine</code>, <code>Occasion</code> or <code>P
 <h3 id="restaurant-categorisation"><a class="link" href="#restaurant-categorisation">Restaurant Categorisation</a></h3>
 <div class="paragraph">
 <p>Restaurants can be classified using categories. Each restaurant can have each of the optional categories defined.
-Currently, 3 different types of categories are implemented in v1.3: <code>Cuisine</code>, <code>Occasion</code> and <code>Price Range</code>.</p>
+Currently, 3 different types of categories are implemented in v1.4: <code>Cuisine</code>, <code>Occasion</code> and <code>Price Range</code>.</p>
 </div>
 <div class="sect3">
 <h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
@@ -445,91 +445,59 @@ Currently, 3 different types of categories are implemented in v1.3: <code>Cuisin
 class that encapsulates all categories into a <code>Categories</code> object to be used in the <code>Restaurant</code> class.</p>
 </div>
 <div class="paragraph">
-<p>The following activity diagram shows the chain of events when setting categories of a restaurant with the setCategories command:</p>
+<p><em>Figure 1</em> below shows the chain of events when setting categories of a restaurant with the setCategories command:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/SetCategoriesActivityDiagram.png" alt="SetCategoriesActivityDiagram" width="650">
+<img src="../images/SetCategoriesActivityDiagram.png" alt="SetCategoriesActivityDiagram" width="800">
 </div>
 </div>
 <div class="paragraph">
-<p>The feature is evolved as follows:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Categorisation only by Cuisine</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Add Cuisine class</p>
-</li>
-<li>
-<p>Implement SetCuisine command that extends Command</p>
-</li>
-<li>
-<p>Implement parser for SetCuisine command</p>
-</li>
-<li>
-<p>Support filtering restaurants by cuisine</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Categorisation by Occasion</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Add new Categories class to encapsulate different category types</p>
-</li>
-<li>
-<p>Add Occasion class. Model <code>Occasion</code> and <code>Cuisine</code> by composition inside <code>Categories</code>.</p>
-</li>
-<li>
-<p>Change SetCuisine command to SetCategories command that extends Command</p>
-</li>
-<li>
-<p>Add support for Occasion in filter command</p>
-</li>
-<li>
-<p>Add new merge method to ensure setting one category only does not override the other</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Categorisation by Price Range</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Add new PriceRange class, composed inside <code>Categories</code></p>
-</li>
-<li>
-<p>Add new match method to abstract out matching responsibilities of each Category type to <code>Categories</code> class</p>
-</li>
-<li>
-<p>Add new setLabels method to allow UI to set Label of each category without being aware of its existence</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<p><em>Figure 1: setCategories Activity Diagram</em></p>
 </div>
 <div class="paragraph">
-<p>You can refer to the following sequence diagram to get a better understanding of how a typical valid setCategories command
+<p>The following elaborates in detail on how the setCategories mechanism behaves at each step:</p>
+</div>
+<div class="paragraph">
+<p>Step 1: User starts keying in the command into the command box. Once prefixes for either <code>Cuisine</code>, <code>Occasion</code> or <code>Price Range</code>
+is detected, suggestions for that Category type is retrieved by <code>CategoriesAutoCompleteTextField</code> and populated in the appearing
+context menu.</p>
+</div>
+<div class="paragraph">
+<p>Step 2: User finishes typing and submits command for execution. The keyed in text is sent to the <code>Food Diary Parser</code> to be parsed
+into a <code>SetCategoriesCommand</code> object. The <code>SetCategoriesCommand</code> object contains the categories parsed from the text encapsulated
+in a <code>Categories</code> object as well as the target <code>Index</code>.</p>
+</div>
+<div class="paragraph">
+<p>Step 3: The <code>SetCategoriesCommand</code> is executed by calling <code>SetCategoriesCommand#execute()</code>. The target restaurant is retrieved
+from <code>Model</code> via <code>Model#getFilteredRestaurantList()</code>. A new restaurant is set up and the target restaurants fields are copied over.
+The categories of the target restaurant is merged by calling <code>Categories#merge()</code> and the result is passed to the new restaurant.
+The new restaurant is then updated into the Food Diary via <code>Model#commitFoodDiary()</code>.</p>
+</div>
+<div class="paragraph">
+<p>You can refer to <em>Figure 2</em> below to get a better understanding of how a typical valid setCategories command
 executes internally.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/SetCategoriesSequenceDiagram.png" alt="SetCategoriesSequenceDiagram" width="650">
+<img src="../images/SetCategoriesSequenceDiagram.png" alt="SetCategoriesSequenceDiagram" width="1000">
 </div>
+</div>
+<div class="paragraph">
+<p><em>Figure 2: setCategories Sequence Diagram</em></p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<div class="paragraph">
+<p>You can find out more about why certain areas of the feature is implemented a certain way here. Other possible
+alternatives are also considered and reasons as to why they were not chosen are also explained here.</p>
+</div>
 <div class="sect4">
 <h5 id="price-range-categorisation"><a class="link" href="#price-range-categorisation">Price Range Categorisation</a></h5>
+<div class="paragraph">
+<p>This section discusses the different ways price ranges could have been categorised.</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
@@ -576,9 +544,17 @@ executes internally.</p>
 </tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p>Alternative 1 was chosen because it offers a better user experience to just type in a few characters instead of having the
+user think of what to type every time the user wants to set a price range. It also ensures that all restaurants'
+price ranges are visually consistent.</p>
+</div>
 </div>
 <div class="sect4">
 <h5 id="how-categories-are-added-and-edited"><a class="link" href="#how-categories-are-added-and-edited">How categories are added and edited</a></h5>
+<div class="paragraph">
+<p>This section discusses how categories could have been handled.</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
@@ -625,9 +601,17 @@ executes internally.</p>
 </tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p>Alternative 1 was chosen because there are not much categories a restaurant can have. Furthermore, if there ever arise a need
+for the user to tag the restaurants, they can just use the existing tag system. By having one command to set any category,
+users only need to remember one command, hence it is more intuitive for the user.</p>
+</div>
 </div>
 <div class="sect4">
 <h5 id="filtering-restaurants-by-categories"><a class="link" href="#filtering-restaurants-by-categories">Filtering restaurants by categories</a></h5>
+<div class="paragraph">
+<p>This section discusses different ways filtering could have been implemented.</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
@@ -674,45 +658,13 @@ executes internally.</p>
 </tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p>Alternative 1 was chosen because it gives users complete freedom to key in whatever keywords they want without worrying about
+which keyword should match which category. The application automatically searches through all the categories to match the keywords
+for the user, which is more user friendly.</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="setting-the-categories-of-a-restaurant"><a class="link" href="#setting-the-categories-of-a-restaurant">Setting the categories of a restaurant</a></h3>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Setting categories to a listed restaurant that does not have categories set yet with <code>setCategories</code></p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Test case: <code>setCategories c/fast food oc/casual pr/$</code><br>
-Expected: <code>Cuisine</code> set as <code>Fast Food</code>, <code>Occasion</code> set as <code>Casual</code> and <code>Price Range</code> set as <code>$</code>.</p>
-</li>
-<li>
-<p>Test case: <code>setCategories c/$ oc/casual pr/expensive</code><br>
-Expected: No categories are set. Error details shown in the status message, indicating command invalid.</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>Setting categories to a listed restaurant that already has categories set with <code>setCategories</code></p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Test case: <code>setCategories c/fast food</code><br>
-Expected: Only the <code>Cuisine</code> is set to <code>Fast Food</code>. All other categories remain unchanged.</p>
-</li>
-<li>
-<p>Test case: <code>setCategories c/ oc/ pr/</code><br>
-Expected: No categories are set. Error details shown in status message.</p>
-</li>
-</ol>
-</div>
-</li>
-</ol>
 </div>
 </div>
-</div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-07 18:18:57 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-07 18:23:11 UTC</div></div></div></body></html>

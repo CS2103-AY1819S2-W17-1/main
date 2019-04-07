@@ -1109,7 +1109,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <h3 id="restaurant-categorisation"><a class="link" href="#restaurant-categorisation">3.4. Restaurant Categorisation</a></h3>
 <div class="paragraph">
 <p>Restaurants can be classified using categories. Each restaurant can have each of the optional categories defined.
-Currently, 3 different types of categories are implemented in v1.3: <code>Cuisine</code>, <code>Occasion</code> and <code>Price Range</code>.</p>
+Currently, 3 different types of categories are implemented in v1.4: <code>Cuisine</code>, <code>Occasion</code> and <code>Price Range</code>.</p>
 </div>
 <div class="sect3">
 <h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.4.1. Current Implementation</a></h4>
@@ -1131,91 +1131,59 @@ Currently, 3 different types of categories are implemented in v1.3: <code>Cuisin
 class that encapsulates all categories into a <code>Categories</code> object to be used in the <code>Restaurant</code> class.</p>
 </div>
 <div class="paragraph">
-<p>The following activity diagram shows the chain of events when setting categories of a restaurant with the setCategories command:</p>
+<p><em>Figure 1</em> below shows the chain of events when setting categories of a restaurant with the setCategories command:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/SetCategoriesActivityDiagram.png" alt="SetCategoriesActivityDiagram" width="650">
+<img src="images/SetCategoriesActivityDiagram.png" alt="SetCategoriesActivityDiagram" width="800">
 </div>
 </div>
 <div class="paragraph">
-<p>The feature is evolved as follows:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Categorisation only by Cuisine</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Add Cuisine class</p>
-</li>
-<li>
-<p>Implement SetCuisine command that extends Command</p>
-</li>
-<li>
-<p>Implement parser for SetCuisine command</p>
-</li>
-<li>
-<p>Support filtering restaurants by cuisine</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Categorisation by Occasion</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Add new Categories class to encapsulate different category types</p>
-</li>
-<li>
-<p>Add Occasion class. Model <code>Occasion</code> and <code>Cuisine</code> by composition inside <code>Categories</code>.</p>
-</li>
-<li>
-<p>Change SetCuisine command to SetCategories command that extends Command</p>
-</li>
-<li>
-<p>Add support for Occasion in filter command</p>
-</li>
-<li>
-<p>Add new merge method to ensure setting one category only does not override the other</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Categorisation by Price Range</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Add new PriceRange class, composed inside <code>Categories</code></p>
-</li>
-<li>
-<p>Add new match method to abstract out matching responsibilities of each Category type to <code>Categories</code> class</p>
-</li>
-<li>
-<p>Add new setLabels method to allow UI to set Label of each category without being aware of its existence</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<p><em>Figure 1: setCategories Activity Diagram</em></p>
 </div>
 <div class="paragraph">
-<p>You can refer to the following sequence diagram to get a better understanding of how a typical valid setCategories command
+<p>The following elaborates in detail on how the setCategories mechanism behaves at each step:</p>
+</div>
+<div class="paragraph">
+<p>Step 1: User starts keying in the command into the command box. Once prefixes for either <code>Cuisine</code>, <code>Occasion</code> or <code>Price Range</code>
+is detected, suggestions for that Category type is retrieved by <code>CategoriesAutoCompleteTextField</code> and populated in the appearing
+context menu.</p>
+</div>
+<div class="paragraph">
+<p>Step 2: User finishes typing and submits command for execution. The keyed in text is sent to the <code>Food Diary Parser</code> to be parsed
+into a <code>SetCategoriesCommand</code> object. The <code>SetCategoriesCommand</code> object contains the categories parsed from the text encapsulated
+in a <code>Categories</code> object as well as the target <code>Index</code>.</p>
+</div>
+<div class="paragraph">
+<p>Step 3: The <code>SetCategoriesCommand</code> is executed by calling <code>SetCategoriesCommand#execute()</code>. The target restaurant is retrieved
+from <code>Model</code> via <code>Model#getFilteredRestaurantList()</code>. A new restaurant is set up and the target restaurants fields are copied over.
+The categories of the target restaurant is merged by calling <code>Categories#merge()</code> and the result is passed to the new restaurant.
+The new restaurant is then updated into the Food Diary via <code>Model#commitFoodDiary()</code>.</p>
+</div>
+<div class="paragraph">
+<p>You can refer to <em>Figure 2</em> below to get a better understanding of how a typical valid setCategories command
 executes internally.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/SetCategoriesSequenceDiagram.png" alt="SetCategoriesSequenceDiagram" width="650">
+<img src="images/SetCategoriesSequenceDiagram.png" alt="SetCategoriesSequenceDiagram" width="1000">
 </div>
+</div>
+<div class="paragraph">
+<p><em>Figure 2: setCategories Sequence Diagram</em></p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.4.2. Design Considerations</a></h4>
+<div class="paragraph">
+<p>You can find out more about why certain areas of the feature is implemented a certain way here. Other possible
+alternatives are also considered and reasons as to why they were not chosen are also explained here.</p>
+</div>
 <div class="sect4">
 <h5 id="price-range-categorisation"><a class="link" href="#price-range-categorisation">Price Range Categorisation</a></h5>
+<div class="paragraph">
+<p>This section discusses the different ways price ranges could have been categorised.</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
@@ -1262,9 +1230,17 @@ executes internally.</p>
 </tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p>Alternative 1 was chosen because it offers a better user experience to just type in a few characters instead of having the
+user think of what to type every time the user wants to set a price range. It also ensures that all restaurants'
+price ranges are visually consistent.</p>
+</div>
 </div>
 <div class="sect4">
 <h5 id="how-categories-are-added-and-edited"><a class="link" href="#how-categories-are-added-and-edited">How categories are added and edited</a></h5>
+<div class="paragraph">
+<p>This section discusses how categories could have been handled.</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
@@ -1311,9 +1287,17 @@ executes internally.</p>
 </tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p>Alternative 1 was chosen because there are not much categories a restaurant can have. Furthermore, if there ever arise a need
+for the user to tag the restaurants, they can just use the existing tag system. By having one command to set any category,
+users only need to remember one command, hence it is more intuitive for the user.</p>
+</div>
 </div>
 <div class="sect4">
 <h5 id="filtering-restaurants-by-categories"><a class="link" href="#filtering-restaurants-by-categories">Filtering restaurants by categories</a></h5>
+<div class="paragraph">
+<p>This section discusses different ways filtering could have been implemented.</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
@@ -1360,6 +1344,11 @@ executes internally.</p>
 </tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p>Alternative 1 was chosen because it gives users complete freedom to key in whatever keywords they want without worrying about
+which keyword should match which category. The application automatically searches through all the categories to match the keywords
+for the user, which is more user friendly.</p>
+</div>
 </div>
 </div>
 </div>
@@ -3064,4 +3053,4 @@ Expected: No categories are set. Error details shown in status message.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-07 18:18:57 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-07 18:23:10 UTC</div></div></div></body></html>
