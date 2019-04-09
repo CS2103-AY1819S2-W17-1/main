@@ -167,7 +167,7 @@ Format: <code>editReview INDEX [re/ENTRY] [rr/RATING]</code></p>
 <p>Edits the review at the specified <code>INDEX</code>. The index refers to the index number of the review of the selected Restaurant. The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
 </li>
 <li>
-<p>A restaurant must be selected with a mouse click on the desired restaurant card (see screenshots below for an illustration)</p>
+<p>A restaurant must be selected via the select command or with a mouse click on the desired restaurant card (see screenshots below for an illustration)</p>
 </li>
 <li>
 <p>At least one of the optional fields (either <code>ENTRY</code> or <code>RATING</code>) must be provided.</p>
@@ -241,15 +241,15 @@ Format: <code>editReview INDEX [re/ENTRY] [rr/RATING]</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>edit 1 rr/3</code><br>
+<p><code>editReview 1 rr/3</code><br>
 Edits the rating of the 1st review to be <code>3</code>.</p>
 </li>
 <li>
-<p><code>edit 2 re/Food isn&#8217;t the best</code><br>
+<p><code>editReview 2 re/Food isn&#8217;t the best</code><br>
 Edits the comment of the second review to <code>Food isn&#8217;t the best</code></p>
 </li>
 <li>
-<p><code>edit 2 re/Food isn&#8217;t the best</code> rr/4<br>
+<p><code>editReview 2 re/Food isn&#8217;t the best rr/4</code><br>
 Edits the comment of the second review to <code>Food isn&#8217;t the best</code> and the rating to be <code>4</code>.</p>
 </li>
 </ul>
@@ -269,10 +269,10 @@ Format: <code>deleteReview INDEX</code></p>
 <p>Deletes the review at the specified <code>INDEX</code>. The index refers to the index number of the review of the selected Restaurant. The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
 </li>
 <li>
-<p>The index refers to the index number shown in the displayed reviews list.</p>
+<p>A restaurant must be selected via the select command or with a mouse click on the desired restaurant card (similar to the above screenshots).</p>
 </li>
 <li>
-<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+<p>The index refers to the index number shown in the displayed reviews list.</p>
 </li>
 </ul>
 </div>
@@ -286,6 +286,100 @@ Format: <code>deleteReview INDEX</code></p>
 <li>
 <p><code>deleteReview 2</code><br>
 Deletes the 2nd review of the selected restaurant in the Food Diary.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="adding-a-default-review-code-addr-code"><a class="link" href="#adding-a-default-review-code-addr-code">Adding a default review : <code>addR</code></a></h4>
+<div class="paragraph">
+<p>The Food Diary has built in default reviews. You can use this command to quickly add a review with minimal typing involved. The command and syntax to add default reviews is much shorter and simpler than the normal <code>addReview</code> command.</p>
+</div>
+<div class="paragraph">
+<p>These default reviews are representative of the rating scale from 1 - 5. There is a default review entry associated with each default review rating. They are as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Default review of rating 1: "Very poor, never ever go again."</p>
+</li>
+<li>
+<p>Default review of rating 2: "Below average, try not to go again."</p>
+</li>
+<li>
+<p>Default review of rating 3: "Average, normal."</p>
+</li>
+<li>
+<p>Default review of rating 4: "Good, would go again."</p>
+</li>
+<li>
+<p>Default review of rating 5: "Excellent, must go again."</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Format: <code>addR NUMBER</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Adds a default review to the selected restaurant according to the NUMBER specified, i.e. if NUMBER is 3, the default review of rating 3 and entry "Average, normal" would be added to the selected restaurant.</p>
+</li>
+<li>
+<p>A restaurant must be selected via the select command or with a mouse click on the desired restaurant card (similar to the above screenshots in the <code>editComamnd</code>).</p>
+</li>
+<li>
+<p>NUMBER must take a value of either 1, 2, 3, 4 or 5.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>addR 4</code> adds a review of rating 4 and entry "Good, would go again." to the selected restaurant.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="edit-default-review-entry-coming-in-v2-0"><a class="link" href="#edit-default-review-entry-coming-in-v2-0">Edit default review entry (Coming in v2.0)</a></h4>
+<div class="paragraph">
+<p>Edits the default review entry according to the specified index. This allows you to customize your default review entries.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>editR NUMBER re/NEW_ENTRY</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Edits the default reviews of the Food Diary according to the <code>NUMBER</code> specified, i.e. if <code>NUMBER</code> is 3, the default review corresponding to the rating of 3 would be edited.</p>
+</li>
+<li>
+<p><code>NUMBER</code> must take a value of either 1, 2, 3, 4 or 5.</p>
+</li>
+<li>
+<p><code>ENTRY</code> is a text field that include both alphabets and numbers.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>editR 4 re/Not too shabby at all</code> changes the default review corresponding to rating 4 to "Not too shabby at all".</p>
 </li>
 </ul>
 </div>
@@ -359,4 +453,4 @@ Given the stable implementation of the current system of parsing commands, any n
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-07 18:23:11 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-09 15:29:14 UTC</div></div></div></body></html>
