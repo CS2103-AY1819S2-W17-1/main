@@ -1443,6 +1443,9 @@ Restaurant on the <code>BrowserPanel</code>.</p>
 <img src="images/VisitWebSequenceDiagram.png" alt="VisitWebSequenceDiagram" width="800">
 </div>
 </div>
+<div class="paragraph">
+<p><em>Figure 1.1 Sequence diagram of visitWeb <code>INDEX</code> command</em></p>
+</div>
 </div>
 <div class="sect3">
 <h4 id="visitweb-code-weblink-code"><a class="link" href="#visitweb-code-weblink-code">3.6.2. visitWeb <code>weblink</code></a></h4>
@@ -1470,17 +1473,41 @@ Restaurant on the <code>BrowserPanel</code>.</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>The following activity diagram and sequence diagram shows how the visitWeb <code>weblink</code> works:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/VisitWebUrlActivityDiagram.png" alt="VisitWebUrlActivityDiagram" width="800">
-</div>
+<p>The following sequence diagram shows how the visitWeb <code>weblink</code> works:</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/VisitWebUrlSequenceDiagram.png" alt="VisitWebUrlSequenceDiagram" width="800">
 </div>
+</div>
+<div class="paragraph">
+<p><em>Figure 2.2 Sequence diagram of visitWeb <code>weblink</code> command</em></p>
+</div>
+<div class="paragraph">
+<p>To illustrate the level of checks done in visiting web further, the command is broken down into the following steps.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. FoodLover enters visitWeb <code>weblink</code> command.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. FoodDiary checks if internet connection is present. If not, throw <code>NoInternetException</code> and show error message.</p>
+</div>
+<div class="paragraph">
+<p>Step 3. FoodDiary validates the weblink entered. If weblink does not exist, or it is not in the correct Url format, throw <code>ParseException</code> and show error message.</p>
+</div>
+<div class="paragraph">
+<p>Step 4. Display website on browser window.</p>
+</div>
+<div class="paragraph">
+<p>The following activity diagram shows the steps of visitWeb command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/VisitWebUrlActivityDiagram.png" alt="VisitWebUrlActivityDiagram" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 2.1 Activity diagram of visitWeb <code>weblink</code> command</em></p>
 </div>
 </div>
 <div class="sect3">
@@ -1494,7 +1521,19 @@ Restaurant on the <code>BrowserPanel</code>.</p>
 <p>If response code is above 400, it suggests that the <code>weblink</code> is not found and that there is an error requesting the website if response code is above 500</p>
 </li>
 <li>
-<p>If there is no internet connection, throws an <code>NoInternetException</code> that prints an error message to inform user that there is no internet connection.</p>
+<p>Also, a <code>NoInternetException</code> is thrown if internet is absent. This is done by pinging to a Google as a reliable web server. If application fails to get a response,
+we can say that there is high chance that internet connection is poor and hence <code>NoInternetException</code> is thrown.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">3.6.4. Design considerations</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p>To reduce coupling of <code>Weblink</code> to <code>AddCommandParser</code>, <code>EditCommandParsers</code> in <code>Logic</code>, and also <code>BrowserPanel</code> in <code>UI</code> component, a <code>WebUtil</code> class is implemented under Util of Commons component.
+This <code>WebUtil</code> comprises of functions such as prepending https to weblinks without it and also validates the weblink.</p>
 </li>
 </ul>
 </div>
@@ -3053,4 +3092,4 @@ Expected: No categories are set. Error details shown in status message.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-09 15:29:14 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-09 15:42:33 UTC</div></div></div></body></html>
