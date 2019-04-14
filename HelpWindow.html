@@ -214,13 +214,16 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="sect3">
 <h4 id="adding-a-restaurant-code-add-code"><a class="link" href="#adding-a-restaurant-code-add-code">3.1.1. Adding a restaurant: <code>add</code></a></h4>
 <div class="paragraph">
-<p>Add a restaurant that is not found in the current list of restaurants.<br>
-Format: <code>add n/NAME p/PHONE e/EMAIL a/ADDRESS po/POSTAL CODE [t/TAG]&#8230;&#8203; [w/WEBLINK] [o/OPENING_HOURS]</code></p>
+<p>You can add a restaurant that is not found in the current list of restaurants.<br>
+Format: <code>add n/NAME a/ADDRESS po/POSTAL CODE [p/PHONE] [e/EMAIL] [t/TAG]&#8230;&#8203; [w/WEBLINK] [o/OPENING_HOURS]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
+<li>
+<p>To add a restaurant, the minimal information you need to have is their name, address and postal code.</p>
+</li>
 <li>
 <p>A restaurant can have any number of tags (including 0)</p>
 </li>
@@ -240,18 +243,45 @@ Format: <code>add n/NAME p/PHONE e/EMAIL a/ADDRESS po/POSTAL CODE [t/TAG]&#8230;
 <div class="ulist">
 <ul>
 <li>
-<p><code>add n/Astons p/66123024 e/astons@dummy.com a/Blk 30 Geylang Street 29, #06-40 po/267951 w/astons.com.sg</code></p>
+<p><code>add n/Astons a/Blk 30 Geylang Street 29, #06-40 po/267951 p/66123024 e/astons@dummy.com w/astons.com.sg o/1000 to 2300</code></p>
 </li>
 <li>
 <p><code>add n/Bangkok Jam p/65272758 e/bangkokjam@example.com a/Blk 30 Lorong 3 Serangoon Gardens, #07-18 po/018956 t/Spicy</code></p>
 </li>
+<li>
+<p><code>add n/KFC a/Bukit Panjang Plaza po/670111</code></p>
+</li>
 </ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>When you are adding in the Weblink, FoodDiary will check whether the Weblink is valid for you. You need to have internet connection else,
+the FoodDiary will proceed to add the restaurant without the Weblink.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>When adding a restaurant when there is no internet connection, the FoodDiary will add your restaurant without the Weblink.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/NoInternetAdd.PNG" alt="NoInternetAdd" width="640"></span></p>
+</div>
+<div class="paragraph">
+<p><em>Image 1.1 Result of adding a Restaurant with Weblink but there is no internet connection</em></p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="editing-details-of-a-restaurant-code-edit-code"><a class="link" href="#editing-details-of-a-restaurant-code-edit-code">3.1.2. Editing details of a restaurant  : <code>edit</code></a></h4>
 <div class="paragraph">
-<p>Edit the details of a restaurant identified by the index number used in the list.<br>
+<p>You can edit the details of a restaurant identified by the index number used in the list.<br>
 Format: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [po/POSTAL] [t/TAG]&#8230;&#8203; [w/WEBLINK] [o/OPENING HOURS]</code></p>
 </div>
 <div class="sidebarblock">
@@ -278,6 +308,27 @@ Format: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [po/POSTAL] [t
 Changes the name of the second restaurant in the list to <code>MACS</code>.</p>
 </li>
 </ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>When you are editing the Weblink of a restaurant, FoodDiary will check whether the Weblink is valid for you. You need to have internet connection else,
+the FoodDiary will not edit the Weblink for you.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>When you are changing a restaurant&#8217;s Weblink to an invalid Weblink, you will receive the following error message.</p>
+</div>
+<div class="paragraph">
+<p>When you are editing a restaurant&#8217;s Weblink with no internet connection, the FoodDiary will edit your restaurant without the Weblink.</p>
 </div>
 </div>
 <div class="sect3">
@@ -690,7 +741,10 @@ Returns restaurants with any category matching <code>$</code>, <code>casual</cod
 <div class="sect3">
 <h4 id="display-website-of-selected-restaurant-code-visitweb-code"><a class="link" href="#display-website-of-selected-restaurant-code-visitweb-code">3.1.10. Display website of selected restaurant : <code>visitWeb</code></a></h4>
 <div class="paragraph">
-<p>Display the website of a restaurant identified by the index number used in the list based on its weblink.<br>
+<p>The restaurants website can serve as your reference when you are adding it into your restaurant list or when writing a review for the restaurant.</p>
+</div>
+<div class="paragraph">
+<p>You can display the website of a restaurant identified by the index number used in the list based on its weblink.<br>
 Format: <code>visitWeb INDEX</code></p>
 </div>
 <div class="admonitionblock note">
@@ -715,12 +769,11 @@ Format: <code>visitWeb INDEX</code></p>
 </table>
 </div>
 <div class="paragraph">
-<p>Display the website of any restaurant by entering its url.<br>
+<p>You can also display the website of any restaurant by entering its url.<br>
 Format: <code>visitWeb URL</code><br></p>
 </div>
 <div class="paragraph">
-<p>This allows users to visit website of any restaurant before they are entered into the list of restaurants in the <code>FoodDiary</code>.
-The purpose of this feature is so that users can reference from restaurants website when adding details of the restaurant into <code>FoodDiary</code></p>
+<p>This allows you to visit website of any restaurant before they are entered into the list of restaurants in the <code>FoodDiary</code>.</p>
 </div>
 <div class="paragraph">
 <p>Website is displayed on a browser window which shows upon visitWeb command.</p>
@@ -771,14 +824,33 @@ The purpose of this feature is so that users can reference from restaurants webs
 <ul>
 <li>
 <p><code>list</code><br>
-<code>visitWeb 1</code><br>
-Displays webpage of the restaurant at index 1 of list.</p>
+<code>visitWeb 4</code><br></p>
 </li>
 <li>
 <p><code>visitWeb www.jollibee.com.ph</code><br>
-Displays webpage of Jollibee.</p>
+This command displays webpage of Jollibee as shown below.</p>
 </li>
 </ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/visitWebJolliB.PNG" alt="visitWebJolliB" width="640">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Image 1.1 Result of `visitWeb www.jollibee.com.ph`</em></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You need to have internet connection to visit the website of the restaurant.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -1232,4 +1304,4 @@ e.g. <code>view</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-12 03:10:02 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-14 14:23:01 UTC</div></div></div></body></html>
