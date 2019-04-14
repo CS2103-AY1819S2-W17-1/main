@@ -64,13 +64,29 @@ public class RestaurantCard extends UiPart<Region> {
         this.restaurant = restaurant;
         id.setText(displayedIndex + ". ");
         name.setText(restaurant.getName().fullName);
-        phone.setText(restaurant.getPhone().value);
         address.setText(restaurant.getAddress().value);
         postal.setText("S" + restaurant.getPostal().value);
-        email.setText(restaurant.getEmail().value);
         restaurant.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
         restaurant.getCategories().setLabels(cuisine, occasion, priceRange);
+
+
+        // if the following optional fields are default fields, they will not be shown on the UI
+        if (restaurant.getEmail().isDefault()) {
+            email.setVisible(false);
+            email.setManaged(false);
+        } else {
+            email.setText(restaurant.getEmail().value);
+        }
+
+        if (restaurant.getPhone().isDefault()) {
+            phone.setVisible(false);
+            phone.setManaged(false);
+        } else {
+            phone.setText(restaurant.getPhone().value);
+        }
+
+
         if (restaurant.getCategories().isEmpty()) {
             categoriesPane.setVisible(false);
             categoriesPane.setManaged(false);

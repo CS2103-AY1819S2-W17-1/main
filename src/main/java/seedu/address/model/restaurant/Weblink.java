@@ -31,6 +31,7 @@ public class Weblink {
     public static final String VALIDATION_REGEX = OPTIONAL_PROTOCOL_REGEX + LOCAL_PART_REGEX
             + AT_LEAST_ONE_DOMAIN_REGEX + DOMAIN_FIRST_CHARACTER_REGEX + DOMAIN_MIDDLE_REGEX
             + DOMAIN_LAST_CHARACTER_REGEX;
+    private static final String EMPTY_STRING = "";
 
     public final String value;
 
@@ -62,7 +63,11 @@ public class Weblink {
 
     @Override
     public String toString() {
-        return value;
+        if (isDefault()) {
+            return EMPTY_STRING;
+        } else {
+            return value;
+        }
     }
 
     @Override

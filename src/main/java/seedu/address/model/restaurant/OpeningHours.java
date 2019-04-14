@@ -14,6 +14,7 @@ public class OpeningHours {
     private static final String DEFAULT_OPENING_HOURS = "No opening hours added";
     private static final String HOURS = "(0[0-9]|1[0-9]|2[0-3])[0-5][0-9]";
     private static final String VALIDATION_REGEX = HOURS + " to " + HOURS;
+    private static final String EMPTY_STRING = "";
     public final String value;
 
 
@@ -46,7 +47,11 @@ public class OpeningHours {
 
     @Override
     public String toString() {
-        return value;
+        if (this.isDefault()) {
+            return EMPTY_STRING;
+        } else {
+            return value;
+        }
     }
 
     @Override

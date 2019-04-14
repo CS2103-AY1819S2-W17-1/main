@@ -13,6 +13,8 @@ public class Phone {
     public static final String MESSAGE_CONSTRAINTS =
             "Phone numbers should only contain numbers, and it should be at least 3 digits long";
     public static final String VALIDATION_REGEX = "\\d{3,}";
+    private static final String PHONE_PLACEHOLDER = "No phone added";
+    private static final String EMPTY_STRING = "";
     public final String value;
 
     /**
@@ -29,12 +31,30 @@ public class Phone {
      * Returns true if a given string is a valid phone number.
      */
     public static boolean isValidPhone(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) || test.equals(PHONE_PLACEHOLDER);
+    }
+
+    /**
+     * @return a default Phone object
+     */
+    public static Phone makeDefaultPhone() {
+        return new Phone(PHONE_PLACEHOLDER);
+    }
+
+    /**
+     * Returns if phone is a dummy phone
+     */
+    public boolean isDefault() {
+        return value.equals(PHONE_PLACEHOLDER);
     }
 
     @Override
     public String toString() {
-        return value;
+        if (isDefault()) {
+            return EMPTY_STRING;
+        } else {
+            return value;
+        }
     }
 
     @Override

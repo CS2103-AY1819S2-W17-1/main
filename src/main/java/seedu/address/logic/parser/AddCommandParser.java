@@ -43,21 +43,34 @@ public class AddCommandParser implements Parser<AddCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_POSTAL,
                         PREFIX_TAG, PREFIX_WEBLINK, PREFIX_OPENING_HOURS);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_POSTAL)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_POSTAL)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Postal postal = ParserUtil.parsePostal(argMultimap.getValue(PREFIX_POSTAL).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Weblink weblink;
+        // Optional fields
+        Email email;
+        Phone phone;
         OpeningHours openingHours;
+        Weblink weblink;
         Restaurant restaurant;
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_EMAIL)) {
+            email = Email.makeDefaultEmail();
+        } else {
+            email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+        }
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_PHONE)) {
+            phone = Phone.makeDefaultPhone();
+        } else {
+            phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
+        }
 
         if (!arePrefixesPresent(argMultimap, PREFIX_OPENING_HOURS)) {
             openingHours = OpeningHours.makeDefaultOpening();

@@ -217,6 +217,7 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         } catch (NoInternetException e) {
+            logger.info("No internet connection found");
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw new ParseException(e.getMessage());
         }
