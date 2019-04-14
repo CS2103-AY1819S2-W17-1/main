@@ -23,7 +23,7 @@
 <li><a href="#searching-restaurants-by-name-code-find-code">3.1.6. Searching restaurants by name: <code>find</code></a></li>
 <li><a href="#selecting-a-restaurant-code-select-code">3.1.7. Selecting a restaurant : <code>select</code></a></li>
 <li><a href="#setting-the-categories-of-a-restaurant-code-setcategories-code">3.1.8. Setting the categories of a restaurant : <code>setCategories</code></a></li>
-<li><a href="#filtering-restaurants-based-on-category-code-filter-code">3.1.9. Filtering restaurants based on category : <code>filter</code></a></li>
+<li><a href="#filtering-restaurants-based-on-category-code-filter-code">3.1.9. Filtering restaurants based on category: <code>filter</code></a></li>
 <li><a href="#display-website-of-selected-restaurant-code-visitweb-code">3.1.10. Display website of selected restaurant : <code>visitWeb</code></a></li>
 </ul>
 </li>
@@ -518,14 +518,36 @@ Selects the restaurant in the displayed restaurants list with index 3 and displa
 <div class="sect3">
 <h4 id="setting-the-categories-of-a-restaurant-code-setcategories-code"><a class="link" href="#setting-the-categories-of-a-restaurant-code-setcategories-code">3.1.8. Setting the categories of a restaurant : <code>setCategories</code></a></h4>
 <div class="paragraph">
-<p>Sets the cuisine of a restaurant identified by the index number used in the list.<br>
+<p>Sets the categories of a restaurant identified by the index number used in the list.<br>
 Format: <code>setCategories INDEX [c/CUISINE] [oc/OCCASION] [pr/PRICE_RANGE]</code></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>You can make use of the autocomplete suggestions to type faster!</p>
+</li>
+<li>
+<p>When a category&#8217;s prefix (<code>c/</code>, <code>oc/</code> or <code>pr/</code>) is keyed in, suggestions will appear. Use arrow keys to select the desired
+suggestion and press enter. The suggestion will be filled automatically for you!</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p><strong>Step by step guide on how to set categories:</strong></p>
 </div>
 <div class="paragraph">
-<p>Step 1: List all the restaurants by typing <code>list</code>, then pressing enter, as shown <em>below</em>.</p>
+<p>Step 1: List all the restaurants by typing <code>list</code>, then press enter, as shown <em>below</em>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -533,7 +555,7 @@ Format: <code>setCategories INDEX [c/CUISINE] [oc/OCCASION] [pr/PRICE_RANGE]</co
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 1: After typing `list`</em></p>
+<p><em>Figure 1: After typing <code>list</code>. Oh no, the categories for Aston&#8217;s are wrong! It is definitely not Chinese. Let&#8217;s change it.</em></p>
 </div>
 <div class="paragraph">
 <p>Step 2: Choose a restaurant you want to set categories to. Let us choose Astons for this example. Take note that Astons
@@ -549,7 +571,7 @@ is identified by <strong>INDEX 1</strong>. Start typing <code>setCategories 1 c/
 or you can also choose to continue typing something not in the suggestions.</em></p>
 </div>
 <div class="paragraph">
-<p>Step 3: Continue keying in the occasion prefix after you finished keying in the cuisine. The occasion prefix is oc/.
+<p>Step 3: Continue keying in the occasion prefix after you finished keying in the cuisine. The occasion prefix is <code>oc/</code>.
 Follow Figure 3 shown <em>below</em>.</p>
 </div>
 <div class="imageblock">
@@ -561,7 +583,7 @@ Follow Figure 3 shown <em>below</em>.</p>
 <p><em>Figure 3: Once again, you can pick the occasion you see in the suggestions or continue typing.</em></p>
 </div>
 <div class="paragraph">
-<p>Step 4: Key in the price range next, as demonstrated by <em>Figure 4 below</em>.</p>
+<p>Step 4: Key in the price range next, as demonstrated by <em>Figure 4 below</em>. The price range prefix is <code>pr/</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -599,24 +621,20 @@ following status message shown in the <em>Figure below</em>.</p>
 <p>You need to ensure that the index entered <strong>must be a positive integer</strong> <code>1, 2, 3, &#8230;&#8203;</code></p>
 </li>
 <li>
-<p>You need to ensure that the <code>Price Range</code> entered <strong>must</strong> only consist of 1-5 $ characters. e.g. $, $$$, $$$$$
-is okay but $$$$$$, cheap or $expensive will be rejected.</p>
+<p>You need to ensure that the <code>Price Range</code> entered <strong>must</strong> only consist of 1-5 $ characters. e.g. <code>$</code>, <code>$$$</code>, <code>$</code></p>
 </li>
 <li>
 <p>You need to ensure that <code>Cuisine</code> and <code>Occasion</code> <strong>must</strong> only contain alphanumeric characters and spaces.</p>
 </li>
 <li>
-<p>You do not need to worry about capitalization. <code>Cuisine</code> and <code>Occasion</code> will be autocapitalized.
-e.g. <code>fast food</code> and <code>premium casual</code> will be capitalized to
-<code>Fast Food</code> and <code>Premium Casual</code>. <code>fAST fOOD</code> will be converted into <code>Fast Food</code>.</p>
+<p>You do not need to worry about capitalization for <code>Cuisine</code> and <code>Occasion</code>.
+e.g. <code>fast food</code> will be capitalized to <code>Fast Food</code>.</p>
 </li>
 <li>
-<p>You do not need to be concerned about the order of categories keyed in. e.g. Entering <code>Price Range</code> before <code>Cuisine</code> will
-work as well.</p>
+<p>You can key in categories in any order. e.g. <code>Price Range</code> before <code>Cuisine</code></p>
 </li>
 <li>
-<p>You do not need to set categories one by one or set all three at once. You have complete freedom to set categories
-whether it is one at a time, two at a time or three at a time.</p>
+<p>You can set any number of categories at once.</p>
 </li>
 </ul>
 </div>
@@ -640,31 +658,9 @@ Only sets the cuisine of the third restaurant to <code>Western</code>.</p>
 </li>
 </ul>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>You can make use of the autocomplete suggestions to type faster!</p>
-</li>
-<li>
-<p>When a category&#8217;s prefix (<code>c/</code>, <code>oc/</code> or <code>pr/</code>) is keyed in, suggestions will appear. Use arrow keys to select the desired
-suggestion and press enter. The suggestion will be filled automatically for you!</p>
-</li>
-</ul>
-</div>
-</td>
-</tr>
-</table>
-</div>
 </div>
 <div class="sect3">
-<h4 id="filtering-restaurants-based-on-category-code-filter-code"><a class="link" href="#filtering-restaurants-based-on-category-code-filter-code">3.1.9. Filtering restaurants based on category : <code>filter</code></a></h4>
+<h4 id="filtering-restaurants-based-on-category-code-filter-code"><a class="link" href="#filtering-restaurants-based-on-category-code-filter-code">3.1.9. Filtering restaurants based on category: <code>filter</code></a></h4>
 <div class="paragraph">
 <p>Filters and lists the restaurants with categories matching the keywords entered.<br>
 Format: <code>filter KEYWORD [MORE_KEYWORDS]</code></p>
@@ -673,17 +669,11 @@ Format: <code>filter KEYWORD [MORE_KEYWORDS]</code></p>
 <p><strong>Step by step guide on how to filter:</strong></p>
 </div>
 <div class="paragraph">
-<p>Step 1: Suppose you want to filter out all the <code>Western</code> restaurants. Type <code>filter western</code>.</p>
-</div>
-<div class="paragraph">
-<p>Step 2: Press enter and you should see all the western restaurants.</p>
-</div>
-<div class="paragraph">
-<p>Step 3: Suppose now you want to filter out all <code>Western</code>, <code>Japanese</code>, as well as <code>Chinese</code> restaurants. Type <code>filter
+<p>Step 1: Suppose you want to filter out all <code>Western</code>, <code>Japanese</code>, as well as <code>Chinese</code> restaurants. Type <code>filter
 western japanese chinese</code> into the command box.</p>
 </div>
 <div class="paragraph">
-<p>Step 4: Press enter again and now all <code>Western</code>, <code>Japanese</code> and <code>Chinese</code> restaurants will be shown.</p>
+<p>Step 2: Press enter again and now all <code>Western</code>, <code>Japanese</code> and <code>Chinese</code> restaurants will be shown.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -695,23 +685,19 @@ western japanese chinese</code> into the command box.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>You do not need to worry about case. Filtering is case insensitive. e.g. <code>western</code> will match <code>Western</code></p>
+<p>You can enter keywords in any case. Filtering is case insensitive. e.g. <code>western</code> will match <code>Western</code></p>
 </li>
 <li>
-<p>You do not need to be concerned about which categories you want to filter. Filtering works across categories.
-e.g. <code>japanese $</code> will match all restaurants with <code>Cuisine</code> set as <code>Japanese</code> or <code>Price Range</code> set as <code>$</code>.
-Note this also means that the more keywords you add, the more general the filter becomes.</p>
+<p>You can filter across categories and also within categories of the same type. e.g. <code>japanese $</code>, <code>japanese western</code></p>
 </li>
 <li>
-<p>You can enter keywords in any order. <code>$ casual</code> is the same as <code>casual $</code>. Both will match restaurants that has
-<code>Price Range</code> as <code>$</code> or <code>Occasion</code> as <code>Casual</code>.</p>
+<p>Keying in more keywords will make the filter more general, not specific.</p>
 </li>
 <li>
-<p>You can filter multiple categories of the same type. e.g. <code>japanese western</code> will match both <code>Japanese</code> and <code>Western</code> cuisine
-restaurants. All <code>Japanese</code> and <code>Western</code> restaurants will be displayed.</p>
+<p>You can enter keywords in any order. <code>$ casual</code> is the same as <code>casual $</code>.</p>
 </li>
 <li>
-<p>You must enter words in full. e.g. <code>west</code> will not match <code>western</code></p>
+<p>You <strong>must</strong> enter words in full. e.g. <code>west</code> will not match <code>western</code></p>
 </li>
 <li>
 <p>Restaurants matching at least one keyword will be displayed. e.g. <code>fast food</code> will match <code>hawker food</code></p>
@@ -729,11 +715,11 @@ restaurants. All <code>Japanese</code> and <code>Western</code> restaurants will
 <ul>
 <li>
 <p><code>filter fine dining casual</code>
-Returns restaurants with any category matching <code>fine</code>, <code>dining</code> or <code>casual</code>.</p>
+Displays restaurants with any category matching <code>fine</code>, <code>dining</code> or <code>casual</code>.</p>
 </li>
 <li>
 <p><code>filter $ casual western</code>
-Returns restaurants with any category matching <code>$</code>, <code>casual</code> or <code>western</code>.</p>
+Displays restaurants with any category matching <code>$</code>, <code>casual</code> or <code>western</code>.</p>
 </li>
 </ul>
 </div>
@@ -1304,4 +1290,4 @@ e.g. <code>view</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-14 14:23:01 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-14 14:30:02 UTC</div></div></div></body></html>
