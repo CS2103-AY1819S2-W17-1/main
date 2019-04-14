@@ -33,7 +33,7 @@
 <li><a href="#code-select-code-feature-which-selects-a-restaurant-and-displays-all-of-its-information">3.2. <code>select</code> feature which selects a restaurant and displays all of its information</a></li>
 <li><a href="#undo-redo-feature">3.3. Undo/Redo feature</a></li>
 <li><a href="#restaurant-categorisation">3.4. Restaurant Categorisation</a></li>
-<li><a href="#adding-a-review-to-a-selected-restaurant">3.5. Adding a Review to a selected Restaurant</a></li>
+<li><a href="#add-adddefault-edit-delete-reviews">3.5. Add/AddDefault/Edit/Delete Reviews</a></li>
 <li><a href="#visit-webpage-feature">3.6. Visit Webpage Feature</a></li>
 <li><a href="#proposed-data-encryption">3.7. [Proposed] Data Encryption</a></li>
 <li><a href="#proposed-share-reviews-to-facebook">3.8. [Proposed] Share Reviews to Facebook</a></li>
@@ -1313,21 +1313,46 @@ users only need to remember one command, hence it is more intuitive for the user
 </div>
 </div>
 <div class="sect2">
-<h3 id="adding-a-review-to-a-selected-restaurant"><a class="link" href="#adding-a-review-to-a-selected-restaurant">3.5. Adding a Review to a selected Restaurant</a></h3>
+<h3 id="add-adddefault-edit-delete-reviews"><a class="link" href="#add-adddefault-edit-delete-reviews">3.5. Add/AddDefault/Edit/Delete Reviews</a></h3>
+<div class="paragraph">
+<p>Reviews are a core feature of the application. Each review is specific to a restaurant, and represents one visit/experience at that particular restaurant. This section describes the implementation of the functions dealing with creating, modifying and modifying reviews. There is also an enhancement in the form of adding default reviews which will be elaborated on.</p>
+</div>
 <div class="sect3">
-<h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">3.5.1. Current Implementation</a></h4>
+<h4 id="add-reviews"><a class="link" href="#add-reviews">3.5.1. Add Reviews</a></h4>
 <div class="paragraph">
-<p>The Restaurant class contains a list of reviews. Adding a Review to a restaurant would entail adding a review to this list.</p>
+<p>This command adds a review to a restaurant specified by the <code>INDEX</code> argument.</p>
 </div>
 <div class="paragraph">
-<p>This command is handled by the <code>AddReviewCommand</code> class, which takes in an <code>Index</code> (indicating the index of the restaurant as displayed on the UI) as well as the <code>Review</code> object to be added.</p>
+<p>Command format: <code>addReview INDEX re/(ENTRY) rr/(RATING)</code></p>
+</div>
+<div class="sect4">
+<h5 id="current-implementation-5"><a class="link" href="#current-implementation-5">Current Implementation</a></h5>
+<div class="paragraph">
+<p>The functionality of the addReview command can be better understood with the following activity diagram:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/AddReviewActivityDiagram.png" alt="AddReviewActivityDiagram" width="1000">
+</div>
 </div>
 <div class="paragraph">
-<p>An example of the correct format of this command is <code>addReview 1 re/Good food! rr/4</code>, which indicates a user trying to add a review (of entry "Good food!" and rating "4") to the first restaurant in a list.</p>
+<p>The <code>Restaurant</code> class contains a list of reviews. Adding a review to a restaurant would entail adding a review to this list to the specified restaurant.</p>
 </div>
 <div class="paragraph">
-<p>Once this command is entered into the command line and executed, the <code>AddReviewCommandParser</code> will parse the command based on the indicated prefixes. These prefixes are pre-defined inside <code>Cli-Syntax</code>.
-The parser will return an <code>AddReviewCommand</code> object, which stores the index of the restaurant to add the review too, as well as the review to be added itself. This is returned to the <code>Logic Manager</code>, which then executes the command.</p>
+<p>Implementing this feature involved the following major components:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>FoodDiaryParser</code> was modified to accept the command to add a review.</p>
+</li>
+<li>
+<p><code>AddReviewCommandParser</code> class to parse the command into the separate fields. The new Review is constructed here, and AddReviewCommand is constructed here with the new Review and Index.</p>
+</li>
+<li>
+<p><code>AddReviewCommand</code> class, which extends <code>Command</code> and takes in the index of the restaurant and the Review to be added. This component handles the execution logic and interactions with the model. The execution steps are detailed below.</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
 <p>The execution of this command involves:</p>
@@ -1345,22 +1370,264 @@ The parser will return an <code>AddReviewCommand</code> object, which stores the
 <p>Step 4. Creating a new restaurant object with the new list.</p>
 </div>
 <div class="paragraph">
-<p>Step 5. Replace the original restaurant with the new restaurant object in the model.</p>
+<p>Step 5. Replacing the original restaurant with the new restaurant object in the model.</p>
 </div>
 <div class="paragraph">
 <p>Refer to the sequence diagram below for an illustration of how this command is executed.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/AddReviewSd.png" alt="AddReviewSd" width="650">
+<img src="images/AddReviewSequenceDiagram.png" alt="AddReviewSequenceDiagram" width="1000">
 </div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="design-considerations-5"><a class="link" href="#design-considerations-5">Design considerations</a></h5>
+<div class="paragraph">
+<p>Plausible alternative implementations to the functionality are discussed in this section to illustrate the thought process and rationale behind our design decisions. You may wish to consider these ideas when further developing this application.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Alternative 1: Add reviews directly to the same restaurant object&#8217;s list rather than creating a new restaurant by object copy</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pros</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Less expensive operation to simply modify the same objects list of reviews</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cons</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Requires modification of the <code>Restaurant</code> class to include a setter method for reviews and increases the risk of unauthorised modification of restaurant data.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="ulist">
+<ul>
+<li>
+<p>Alternative 2: Have users select the restaurant they wish to review rather than indicate it as an index</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pros</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reduce complexity of the <code>AddReview</code> command by 1 argument</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cons</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Users will have to either input a command or use their mouse to click to select the restaurant, which are unnecessary steps.</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">3.5.2. Design considerations</a></h4>
+<h4 id="adddefault-reviews"><a class="link" href="#adddefault-reviews">3.5.2. AddDefault Reviews</a></h4>
 <div class="paragraph">
-<p>The primary consideration was the compatibility of this new command with the existing architecture.
-Given the stable implementation of the current system of parsing commands, any new command created should fit into the existing architecture with minimal changes to other components.</p>
+<p>This is a command to add pre-defined reviews with a shorter and simpler syntax. It is especially useful for people in a rush and who do not wish to enter the whole review.</p>
+</div>
+<div class="paragraph">
+<p>Users need only specify the <code>INDEX</code> of the restaurant they want to add the review to, and a <code>NUMBER</code> representing the default review they wish to leave. For example, "addR 1 2" will add the default review of rating 2 to the 1st restaurant on the list.</p>
+</div>
+<div class="paragraph">
+<p>Command format: <code>addR INDEX NUMBER</code></p>
+</div>
+<div class="sect4">
+<h5 id="current-implementation-6"><a class="link" href="#current-implementation-6">Current Implementation</a></h5>
+<div class="paragraph">
+<p>The Food Diary currently supports 5 default reviews, each corresponding to a rating from 1-5 inclusive. Do have a look at the User Guide for these 5 entries!</p>
+</div>
+<div class="paragraph">
+<p>The following activity diagram will give a clearer picture of the implementation of this command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/AddDefaultReviewActivityDiagram.png" alt="AddDefaultReviewActivityDiagram" width="1000">
+</div>
+</div>
+<div class="paragraph">
+<p>Implementing this feature involved the following components:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>FoodDiaryParser</code> modified to accept the addR command (to add default review)</p>
+</li>
+<li>
+<p><code>AddDefaultReviewCommandParser</code> class to read the INDEX and NUMBER</p>
+</li>
+<li>
+<p><code>AddDefaultReviewCommand</code> class to execute the logic of the command.</p>
+</li>
+<li>
+<p>Most Importantly, <code>AddDefaultReviewUtil</code> class, which stores the default values for the default reviews to be added.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The review <code>Entry</code>, which is composed of a String value, will be taken from the <code>AddDefaultReviewUtil</code> class. The review <code>Rating</code> used is the indicated <code>NUMBER</code> in the command. A new <code>Review</code> object is created from these two attributes and added.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="design-considerations-6"><a class="link" href="#design-considerations-6">Design Considerations</a></h5>
+<div class="paragraph">
+<p>These alternatives were considered as well:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Alternative 1: Adding a review directly from the new <code>AddDefaultReviewCommand</code> instead of creating an <code>AddReviewCommand</code></p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pros</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reduces coupling between the two command classes.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cons</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Violates the DRY (Don&#8217;t Repeat Yourself) Principle, as the code to add a review will be repeated.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="ulist">
+<ul>
+<li>
+<p>Alternative 2: Storing default review objects instead of only the review entry strings</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pros</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Easier and more efficient retrieval of default reviews.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cons</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The timestamps of the default reviews will be constant, and will not indicate accurately the time of the creation of the new default review.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="edit-reviews"><a class="link" href="#edit-reviews">3.5.3. Edit Reviews</a></h4>
+<div class="paragraph">
+<p>This command allows the modification of exiting reviews in The Food Diary.</p>
+</div>
+<div class="paragraph">
+<p>Command format: <code>editReview INDEX [re/ENTRY] [rr/RATING]</code>, where <code>INDEX</code> refers to the index of the review to edit in the selected restaurant, <code>ENTRY</code> and <code>RATING</code> are optional, but at least one of the two fields must be specified.</p>
+</div>
+<div class="sect4">
+<h5 id="current-implementation-7"><a class="link" href="#current-implementation-7">Current Implementation</a></h5>
+<div class="paragraph">
+<p>Executing this command requires the user to select the restaurant whose review is to be edited. This can be done via the select command or by a mouse click on the application GUI.</p>
+</div>
+<div class="paragraph">
+<p>Do refer to the sequence diagram below for a clearer picture of the implementation of this command. Note that the interaction between the <code>EditReviewCommand</code> and the <code>Model</code> is left out as it is the same as the one in <code>AddReviewCommand</code> above.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/EditReviewSequenceDiagram.png" alt="EditReviewSequenceDiagram" width="1000">
+</div>
+</div>
+<div class="paragraph">
+<p>The components involved in the execution of this command include:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Modifying <code>FoodDiaryParser</code> to accept tbe editReview command</p>
+</li>
+<li>
+<p><code>EditReviewCommandParser</code> class to parse the command with the optional fields</p>
+</li>
+<li>
+<p><code>EditReviewCommand</code> class to handle to logic of the execution of the command</p>
+</li>
+<li>
+<p><code>EditReviewDescriptor</code> class to store the changes for the different fields of the review</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The <code>EditReviewDescriptor</code> class can contain optional fields. This is so that the command does not have to modify every field in a review and users can specify which field they would like to modify.</p>
+</div>
+<div class="paragraph">
+<p>The steps involved in the execution of this command are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Step 1: Creating the <code>EditReviewDescriptor</code> based on input arguments.</p>
+</li>
+<li>
+<p>Step 2: Retrieving the currently selected restaurant from the model.</p>
+</li>
+<li>
+<p>Step 3: Creating a new restaurant based on the currently selected restaurant and the <code>EditReviewDescriptor</code></p>
+</li>
+<li>
+<p>Step 4: Replacing the selected restaurant with the new restaurant object in the model.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="design-considerations-7"><a class="link" href="#design-considerations-7">Design Considerations</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Alternative 1: Have users input the index of the restaurant into the command instead of having to select a restaurant first</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Considering the technical aspect, there is not much of a difference between the two implementations. However, this design decision took into account the fact that users most likely had to select the restaurant to look at the review they wish to edit before editing it. As such, it reduces the arguments input by the user, and makes use of what is likely going to happen anyways (the selection of the restaurant).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="delete-reviews"><a class="link" href="#delete-reviews">3.5.4. Delete Reviews</a></h4>
+<div class="paragraph">
+<p>Similar to the command to edit reviews, execution of this command requires the user to select a restaurant from the displayed list.</p>
+</div>
+<div class="paragraph">
+<p>Command format: <code>deleteReview INDEX</code>, where <code>INDEX</code> refers to the index of the review to be deleted from the selected restaurant.</p>
+</div>
+<div class="paragraph">
+<p>The implementation is a combination of the add and edit review commands: the selected restaurant is copied to a new restaurant object with a new list of reviews without the review to be deleted. This new restaurant object then replaces the selected restaurant in the model.</p>
 </div>
 </div>
 </div>
@@ -1518,7 +1785,7 @@ we can say that there is high chance that there is no internet connection and he
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">3.6.4. Design considerations</a></h4>
+<h4 id="design-considerations-8"><a class="link" href="#design-considerations-8">3.6.4. Design considerations</a></h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3097,4 +3364,4 @@ Expected: No categories are set. Error details shown in status message.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-14 14:30:02 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-14 14:38:30 UTC</div></div></div></body></html>

@@ -992,13 +992,10 @@ Format: <code>deleteReview INDEX</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>Deletes the review at the specified <code>INDEX</code>. The index refers to the index number of the review of the selected Restaurant. The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+<p>Deletes the review at the specified <code>INDEX</code>. The <code>INDEX</code> refers to the index number of the review of the selected Restaurant. The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
 </li>
 <li>
 <p>A restaurant must be selected via the select command or with a mouse click on the desired restaurant card (similar to the above screenshots).</p>
-</li>
-<li>
-<p>The index refers to the index number shown in the displayed reviews list.</p>
 </li>
 </ul>
 </div>
@@ -1019,7 +1016,7 @@ Deletes the 2nd review of the selected restaurant in the Food Diary.</p>
 <div class="sect3">
 <h4 id="adding-a-default-review-code-addr-code"><a class="link" href="#adding-a-default-review-code-addr-code">3.2.4. Adding a default review : <code>addR</code></a></h4>
 <div class="paragraph">
-<p>The Food Diary has built in default reviews. You can use this command to quickly add a review with minimal typing involved. The command and syntax to add default reviews is much shorter and simpler than the normal <code>addReview</code> command.</p>
+<p>In a real hurry? Fear not because The Food Diary has built in default reviews! You can use this command to quickly add a review with minimal typing. The command and syntax to add default reviews is much shorter and simpler than the normal <code>addReview</code> command.</p>
 </div>
 <div class="paragraph">
 <p>These default reviews are representative of the rating scale from 1 - 5. There is a default review entry associated with each default review rating. They are as follows:</p>
@@ -1044,20 +1041,23 @@ Deletes the 2nd review of the selected restaurant in the Food Diary.</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>Format: <code>addR NUMBER</code></p>
+<p>Format: <code>addR INDEX NUMBER</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>Adds a default review to the selected restaurant according to the NUMBER specified, i.e. if NUMBER is 3, the default review of rating 3 and entry "Average, normal" would be added to the selected restaurant.</p>
+<p>Adds a default review (according to <code>NUMBER</code>) to the specified restaurant (according to <code>INDEX</code>).</p>
 </li>
 <li>
-<p>A restaurant must be selected via the select command or with a mouse click on the desired restaurant card (similar to the above screenshots in the <code>editComamnd</code>).</p>
+<p><code>NUMBER</code> indicates the rating of the default rating to add, i.e. if <code>NUMBER</code> is 3, the default review of rating 3 and entry "Average, normal" would be added to the indicated restaurant.</p>
 </li>
 <li>
-<p>NUMBER must take a value of either 1, 2, 3, 4 or 5.</p>
+<p><code>INDEX</code> refers to the index number of the restaurant of the currently displayed list of restaurants.. The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p><code>NUMBER</code> must take a value of either 1, 2, 3, 4 or 5.</p>
 </li>
 </ul>
 </div>
@@ -1069,7 +1069,7 @@ Deletes the 2nd review of the selected restaurant in the Food Diary.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>addR 4</code> adds a review of rating 4 and entry "Good, would go again." to the selected restaurant.</p>
+<p><code>addR 1 4</code> adds a review of rating 4 and entry "Good, would go again." to the first restaurant on the displayed list.</p>
 </li>
 </ul>
 </div>
@@ -1093,7 +1093,7 @@ Deletes the 2nd review of the selected restaurant in the Food Diary.</p>
 <p><code>NUMBER</code> must take a value of either 1, 2, 3, 4 or 5.</p>
 </li>
 <li>
-<p><code>ENTRY</code> is a text field that include both alphabets and numbers.</p>
+<p><code>NEW_ENTRY</code> is a text field that includes both alphabets and numbers.</p>
 </li>
 </ul>
 </div>
@@ -1290,4 +1290,4 @@ e.g. <code>view</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-14 14:30:02 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-14 14:38:30 UTC</div></div></div></body></html>
