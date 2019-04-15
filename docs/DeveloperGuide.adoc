@@ -371,14 +371,12 @@ The enhancement made is to display greater quantity and quality of restaurant in
 
 You can refer to _Figure 1_ to see the chain of activities that happen when the `select` command is executed.
 
-image::SelectActivityDiagram.png[width="800"]
+image::SelectActivityDiagram.png[width="650"]
 _Figure 1. Activity Diagram for `select` command_
-
-The majors components involved in the implementation of this feature are the `FoodDiaryParser`, `SelectCommandParser` and `SelectCommand` classes. Their role in this implementation will be expounded on below.
 
 The following describes how the `select` mechanism behaves at each step:
 
-Step 1. The user executes `select INDEX` command, whereby `INDEX` is a positive integer within the range of indexes in the filtered restaurant list.
+Step 1. User executes `select INDEX` command, with `INDEX` as a positive integer within the range of indexes in the filtered restaurant list.
 
 Step 2. The `FoodDiaryParser` parses the user's input and constructs a `SelectCommandParser` object, which then parses the input index into an `Index` object and constructs a `SelectCommand` object.
 
@@ -389,42 +387,34 @@ The `RestaurantSummaryPanel` does so by calling its own `RestaurantSummaryPanel#
 the restaurant's `avgRating` and `totalVisit`.
 
 [NOTE]
-A restaurant with no reviews is indicated with `totalVisits` = 0 and `avgRating` = -1. The number -1 is chosen as all user input `Ratings` can only be a number between [0,5], thus -1 is a clear
-indication that there is no `avgRating` for the particular restaurant. This then allows a clear check that `avgRating` field displayed in the UI should be `N.A.`.
+A restaurant with no reviews is indicated with `totalVisits` = 0 and `avgRating` = -1. The number -1 is chosen as all user input `Ratings` can only be a number between [0, 5], thus -1 is a clear
+indication that there is no `avgRating` for the particular restaurant. This is a clear check to decide whether the `avgRating` field displayed in the UI should be `N.A.`.
 
 [NOTE]
 There is no state change to the Food Diary as the `select` command only selects a restaurant from the current `FilteredList` of restaurants.
 As such, this command cannot be undone or redone through the `undo` and `redo` commands respectively.
 
-You can refer to _Figure 2_ for a better idea of the internal implementation flow when a `select` command is executed.
+You can refer to _Figure 2_ for the internal implementation flow when a `select` command is executed.
 
-image::SelectSequenceDiagram.png[width="800"]
+image::SelectSequenceDiagram.png[width="675"]
 _Figure 2. Sequence Diagram for `select` command_
 
 ===== Design Considerations
 
 Two guiding design patterns are applied to this feature:
 
-- The Facade design pattern is used to allow access to `avgRating` and `totalVisit` of a `Restaurant` only through its `Summary` class.
+- The Facade design pattern is used to allow access to `avgRating` and `totalVisits` of a `Restaurant` only through its `Summary` class.
 
-- The Observer pattern is also applied in the UI component as the `RestaurantSummaryPanel` and `ReviewListPanel` gets updated automatically once the selected restaurant is changed.
+- The Observer pattern is also applied in the UI component as the `RestaurantSummaryPanel` and `ReviewListPanel` gets updated automatically once the selected restaurant is changed through the use of a listener for `selectedRestaurant`.
 
 ====== Aspect: How to structure the Summary in the UI
 
-* Alternative 1 (Current Choice): Implement `Summary` as a class in the `Restaurant` package
-
-|=====================
-| Pros | Applies Observer pattern and reduces duplicate code as calculation of `avgRating` only has to be done once in `Summary` class for it to be displayed on both `RestaurantCard` and `RestaurantSummaryPanel`
-| Cons | Results in coupling as it introduces dependency of `Summary` on `Review` class.
-|=====================
-
-* Alternative 2: Implement `Summary` as a UI component that listens to changes in the Review of the Restaurant
-
-|=========
-| Pros | Reduces dependency within Model component.
-| Cons | Increases duplicate code as `avgRating` of a Restaurant's `Summary` is displayed in both the `RestaurantCard` and `RestaurantSummaryPanel` and will thus have to be calculated twice.
-|=========
-
+* **Alternative 1 (current choice):** Implement `Summary` as a class in the `Restaurant` package
+** Pros: Applies Observer pattern and reduces duplicate code as calculation of `avgRating` only has to be done once in `Summary` class to display it on both `RestaurantCard` and `RestaurantSummaryPanel`.
+** Cons: Results in coupling as it introduces dependency of `Summary` on `Review` class.
+* **Alternative 2:** Implement `Summary` as a class in the UI component that listens to changes in the `Review` of the `Restaurant`
+** Pros: Reduces dependency within Model component.
+** Cons: Increases duplicate code as `avgRating` of a Restaurant's `Summary` is displayed in both the `RestaurantCard` and `RestaurantSummaryPanel` and will thus have to be calculated twice.
 
 ==== Sort Feature
 
@@ -436,14 +426,14 @@ By default, the restaurants would be sorted in descending order of ratings with 
 
 You can refer to _Figure 3_ below for a better understanding of the activity flow of the `sort` command.
 
-image::SortActivityDiagram.png[width="800"]
+image::SortActivityDiagram.png[width="700"]
 _Figure 3. Activity Diagram for `sort` command_
 
 The majors components involved in the implementation of this feature are:
 
 - `FoodDiaryParser`, which parses the user's input and constructs a `SelectCommandParser`, which then parses the input into `Order` and `Limit` and constructs a `SortCommand`.
 
-- `SortRating`, which implements Comparator<Restaurant> and serves as a comparator to sort the restaurants in the Food Diary by its `avgRating`.
+- `SortRating`, which implements `Comparator<Restaurant>`, serves as a comparator to sort the restaurants in the Food Diary by its `avgRating`.
 To construct this comparator, an `Order` has to be passed in to determine whether `SortRating#compare()` will be indicating ascending or descending order.
 
 - `SortCommand`, contains 2 sub-classes, `Order` and `Limit`, which are used for the construction of `SortCommand`.
@@ -474,7 +464,7 @@ Step 4. The sorted restaurant list is then stored in the Food Diary via `Model#c
 
 You can refer to _Figure 4_ below for a more detailed idea of how `sort` command is implemented internally.
 
-image::SortSequenceDiagram.png[width="800"]
+image::SortSequenceDiagram.png[width="750"]
 _Figure 4. Sequence Diagram for `sort` command_
 
 
@@ -482,32 +472,12 @@ _Figure 4. Sequence Diagram for `sort` command_
 
 ====== Aspect: How to apply the `Limit`
 
-* **Alternative 1 (current choice):** Let the `Limit` denote the number of ranks of restaurants to be displayed
-|=====================
-| Pros | Accurately shows the top/bottom ranked restaurants.
-| Cons | More expensive operations required to limit ranks of restaurants as a unique ratings list has to be stored to get the limited ranks.
-|=====================
-
-* **Alternative 2:** Let the `Limit` denote the number of restaurants to be displayed
-|=====================
-| Pros | More intuitive to users.
-| Cons | Does not provide an accurate depiction of top/bottom restaurants as multiple restaurants with the same ratings may not be displayed.
-|=====================
-
-====== Aspect: Whether to sort the restaurants in the Food Diary permanently or temporarily
-
-* **Alternative 1 (current choice):** Sort the restaurants permanently by saving the state of the Food Diary after command execution in `Model#commitFoodDiary()`
-|=====================
-| Pros | More intuitive to users as they can undo the `sort` command and return to the previous state of the Food Diary.
-| Cons | Uses more memory as the sorted list will be stored as a version of the Food Diary.
-|=====================
-
-* **Alternative 2:** Sort the restaurants temporarily by encapsulating `FilteredList` in a `SortedList`
-|=====================
-| Pros | Easy to implement.
-| Cons | Might be jarring to users as the sorted state of the Food Diary would not be saved upon leaving the application and there is no way for the user to
-         return to his/her originally ordered list of restaurants within the same window of use.
-|=====================
+* **Alternative 1 (current choice):** Let `Limit` denote the number of ranks of restaurants to be displayed
+** Pros: Accurately shows the top/bottom ranked restaurants.
+** Cons: More expensive operations required to limit ranks of restaurants as a unique ratings list has to be stored to get the limited ranks.
+* **Alternative 2:** Let `Limit` denote the number of restaurants to be displayed
+** Pros: More intuitive to users.
+** Cons: Does not provide an accurate depiction of top/bottom restaurants as multiple restaurants with the same ratings may not be displayed.
 
 // end::selectSortDG[]
 
@@ -515,54 +485,54 @@ _Figure 4. Sequence Diagram for `sort` command_
 === Undo/Redo feature
 ==== Current Implementation
 
-The undo/redo mechanism is facilitated by `VersionedAddressBook`.
-It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`.
+The undo/redo mechanism is facilitated by `VersionedFoodDiary`.
+It extends `FoodDiary` with an undo/redo history, stored internally as an `foodDiaryStateList` and `currentStatePointer`.
 Additionally, it implements the following operations:
 
-* `VersionedAddressBook#commit()` -- Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` -- Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` -- Restores a previously undone address book state from its history.
+* `VersionedFoodDiary#commit()` -- Saves the current food diary state in its history.
+* `VersionedFoodDiary#undo()` -- Restores the previous food diary state from its history.
+* `VersionedFoodDiary#redo()` -- Restores a previously undone food diary state from its history.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+These operations are exposed in the `Model` interface as `Model#commitFoodDiary()`, `Model#undoFoodDiary()` and `Model#redoFoodDiary()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `VersionedFoodDiary` will be initialized with the initial food diary state, and the `currentStatePointer` pointing to that single food diary state.
 
 image::UndoRedoStartingStateListDiagram.png[width="800"]
 
-Step 2. The user executes `delete 5` command to delete the 5th restaurant in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th restaurant in the food diary. The `delete` command calls `Model#commitFoodDiary()`, causing the modified state of the food diary after the `delete 5` command executes to be saved in the `foodDiaryStateList`, and the `currentStatePointer` is shifted to the newly inserted food diary state.
 
 image::UndoRedoNewCommand1StateListDiagram.png[width="800"]
 
-Step 3. The user executes `add n/David ...` to add a new restaurant. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David ...` to add a new restaurant. The `add` command also calls `Model#commitFoodDiary()`, causing another modified food diary state to be saved into the `foodDiaryStateList`.
 
 image::UndoRedoNewCommand2StateListDiagram.png[width="800"]
 
 [NOTE]
-If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+If a command fails its execution, it will not call `Model#commitFoodDiary()`, so the food diary state will not be saved into the `foodDiaryStateList`.
 
-Step 4. The user now decides that adding the restaurant was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the restaurant was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoFoodDiary()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous food diary state, and restores the food diary to that state.
 
 image::UndoRedoExecuteUndoStateListDiagram.png[width="800"]
 
 [NOTE]
-If the `currentStatePointer` is at index 0, pointing to the initial address book state, then there are no previous address book states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo.
+If the `currentStatePointer` is at index 0, pointing to the initial food diary state, then there are no previous food diary states to restore. The `undo` command uses `Model#canUndoFoodDiary()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo.
 
 The following sequence diagram shows how the undo operation works:
 
 image::UndoRedoSequenceDiagram.png[width="800"]
 
-The `redo` command does the opposite -- it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+The `redo` command does the opposite -- it calls `Model#redoFoodDiary()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the food diary to that state.
 
 [NOTE]
-If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone address book states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+If the `currentStatePointer` is at index `foodDiaryStateList.size() - 1`, pointing to the latest food diary state, then there are no undone food diary states to restore. The `redo` command uses `Model#canRedoFoodDiary()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the food diary, such as `list`, will usually not call `Model#commitFoodDiary()`, `Model#undoFoodDiary()` or `Model#redoFoodDiary()`. Thus, the `foodDiaryStateList` remains unchanged.
 
 image::UndoRedoNewCommand3StateListDiagram.png[width="800"]
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. We designed it this way because it no longer makes sense to redo the `add n/David ...` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitFoodDiary()`. Since the `currentStatePointer` is not pointing at the end of the `foodDiaryStateList`, all food diary states after the `currentStatePointer` will be purged. We designed it this way because it no longer makes sense to redo the `add n/David ...` command. This is the behavior that most modern desktop applications follow.
 
 image::UndoRedoNewCommand4StateListDiagram.png[width="800"]
 
@@ -574,7 +544,7 @@ image::UndoRedoActivityDiagram.png[width="650"]
 
 ===== Aspect: How undo & redo executes
 
-* **Alternative 1 (current choice):** Saves the entire address book.
+* **Alternative 1 (current choice):** Saves the entire food diary.
 ** Pros: Easy to implement.
 ** Cons: May have performance issues in terms of memory usage.
 * **Alternative 2:** Individual command knows how to undo/redo by itself.
@@ -583,9 +553,9 @@ image::UndoRedoActivityDiagram.png[width="650"]
 
 ===== Aspect: Data structure to support the undo/redo commands
 
-* **Alternative 1 (current choice):** Use a list to store the history of address book states.
+* **Alternative 1 (current choice):** Use a list to store the history of food diary states.
 ** Pros: Easy for new Computer Science student undergraduates to understand, who are likely to be the new incoming developers of our project.
-** Cons: Logic is duplicated twice. For example, when a new command is executed, we must remember to update both `HistoryManager` and `VersionedAddressBook`.
+** Cons: Logic is duplicated twice. For example, when a new command is executed, we must remember to update both `HistoryManager` and `VersionedFoodDiary`.
 * **Alternative 2:** Use `HistoryManager` for undo/redo
 ** Pros: We do not need to maintain a separate list, and just reuse what is already in the codebase.
 ** Cons: Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as `HistoryManager` now needs to do two different things.
@@ -1095,7 +1065,7 @@ Here are the steps to create a new release.
 
 === Managing Dependencies
 
-A project often depends on third-party libraries. For example, Address Book depends on the https://github.com/FasterXML/jackson[Jackson library] for JSON parsing. Managing these _dependencies_ can be automated using Gradle. For example, Gradle can download the dependencies automatically, which is better than these alternatives:
+A project often depends on third-party libraries. For example, Food Diary depends on the https://github.com/FasterXML/jackson[Jackson library] for JSON parsing. Managing these _dependencies_ can be automated using Gradle. For example, Gradle can download the dependencies automatically, which is better than these alternatives:
 
 [loweralpha]
 . Include those libraries in the repo (this bloats the repo size)
@@ -1131,23 +1101,15 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |Price savvy food lover |Add a price range to the restaurants I visited |Look for restaurants within budget
 
-|`* * *` |Food lover |Switch between restaurant view and review view |Switch easily between looking for cuisine/occasion and looking for ratings/comments
-
 |`* * *` |Food lover that is clumsy |Undo/redo any command |Quickly recover from a typo or wrong command
 
 |`* * *` |Food lover |Update and delete reviews for a restaurant |Ensure all reviews for a restaurant are up to date
-
-|`* *` |Food lovers with multiple devices |Export all my data and import into another device |Resume my food reviews on another device wherever I go
 
 |`* *` |Food lover |View a summary my food adventure data |Show off to my friends the number of food places I went
 
 |`* *` |Food lover |View restaurants ranked by ratings |Refer to my friends the restaurants I feel that are good
 
-|`* *` |Food lover |Add restaurant based on Google search |Easily add a new restaurant
-
 |`* *` |Food lover |Autocomplete categories I have keyed in before when setting categories|I can set categories faster
-
-|`*` |Food lover that travels |View restaurants and reviews separately by country |Easily see relevant restaurants and reviews when I can in a certain country
 
 |`*` |Food lover & influencer |Share my reviews on Facebook |Recommend my friends to food I’ve eaten
 
@@ -1178,32 +1140,6 @@ Use case ends.
 * 2a. Food Lover enters a name and location that already exists in Food Diary
 [none]
 ** 2a1. Food Diary tells Food Lover that the restaurant already exists and asks user to enter another name and location
-
-[discrete]
-=== Use case: Adding a restaurant by Google Search by Food Lover to Food Diary
-
-*MSS*
-
-1. Food Lover enters command to add restaurant by Google Search
-2. Food Diary adds restaurant
-+
-Use case ends.
-
-*Extensions*
-
-[none]
-* 2a. Food Lover enters a name that already exists in Food Diary
-[none]
-** 2a1. Food Diary tells Food Lover that the restaurant already exists
-** 2a2. Food Diary asks user to enter another name and location
-+
-
-[none]
-* 2b. Food Diary is unable to retrieve anything from Google.
-[none]
-** 2b1. Food Diary tells user that retrieval of information has failed.
-+
-Use case ends
 
 [discrete]
 === Use case: Deleting a restaurant from Food Diary
@@ -1277,19 +1213,19 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: Sort Restaurants in Food Diary (rating, price)
+=== Use case: Sort Restaurants in Food Diary (rating)
 
 *MSS*
 
-1. Food Lover enters command, category to sort by (i.e. rating, price)
-2. Food Diary displays restaurants according to category
+1. Food Lover enters command to sort restaurants by rating, order to sort it by and number of ranks to show
+2. Food Diary displays restaurants according to order and ranks specified
 +
 Use case ends.
 
 *Extensions*
 
 [none]
-* 1a. Food Lover enters an invalid category
+* 1a. Food Lover enters an invalid order/rank
 [none]
 ** 1a1. Food Lover tells user that no such category exists.
 +

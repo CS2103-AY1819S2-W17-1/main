@@ -75,8 +75,8 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
 
 * *`list`* : lists all restaurants
-* **`addReview`** `n/MCDONALDS rr/4 re/delicious` : adds a review to MCDONALDS with rating 4 with the comment "delicious"
-* **`delete`**`3` : deletes the 3rd restaurant shown in the index
+* *`addReview 1 rr/4 re/delicious`* : adds a review to the 1st restaurant in the list, Astons, with rating 4 with the comment "delicious"
+* *`delete 3`* : deletes the 3rd restaurant shown in the list
 * *`exit`* : exits the app
 
 .  Refer to <<Features>> for details of each command.
@@ -88,10 +88,10 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 ====
 *Command Format*
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in `add n/RESTAURANT_NAME`, `RESTAURANT_NAME` is a parameter which can be used as `add n/Burger King`.
-* Items in square brackets are optional. e.g. in `add n/RESTAURANT_NAME
+* Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/Burger King`.
+* Items in square brackets are optional. e.g. in `add n/NAME a/ADDRESS po/POSTAL CODE [p/PHONE] [e/EMAIL] [t/TAG]…​ [w/WEBLINK] [o/OPENING_HOURS]`, `PHONE`, `EMAIL`, `TAG`, `WEBLINK` and `OPENING_HOURS` are optional.
 * Items with `…`​ after them can be used multiple times including zero times e.g. `[t/TAG]...` can be used as `{nbsp}` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-* Parameters can be in any order e.g. if the command specifies `n/RESTAURANT_NAME r/RATING`, `r/RATING n/RESTAURANT_NAME` is also acceptable.
+* Parameters can be in any order e.g. if the command specifies `re/ENTRY rr/RATING`, `rr/RATING re/ENTRY` is also acceptable.
 ====
 
 
@@ -104,10 +104,9 @@ You can add a restaurant that is not found in the current list of restaurants. +
 Format: `add n/NAME a/ADDRESS po/POSTAL CODE [p/PHONE] [e/EMAIL] [t/TAG]... [w/WEBLINK] [o/OPENING_HOURS]`
 
 ****
-* To add a restaurant, the minimal information you need to have is their name, address and postal code.
-* A restaurant can have any number of tags (including 0)
-* A restaurant can have a weblink or none
-* A restaurant can have one opening hours or none
+* To add a restaurant, the minimal information you need to have is its name, address and postal code.
+* A restaurant can have any number of tags (including 0).
+* A restaurant can have a phone number, email, weblink and opening hours or none.
 ****
 
 Examples:
@@ -118,14 +117,13 @@ Examples:
 
 [NOTE]
 ====
-When you are adding in the Weblink, FoodDiary will check whether the Weblink is valid for you. You need to have internet connection else,
-the FoodDiary will proceed to add the restaurant without the Weblink.
+When you are adding in the Weblink, the Food Diary will check whether the Weblink is valid for you. You need to have internet connection, else
+the Food Diary will proceed to add the restaurant without the Weblink.
+====
 
 image:NoInternetAdd.PNG[width=640]
 
 _Image 1.1 When there is no internet connection, adding a restaurant with weblink will display this result_
-====
-
 
 
 ==== Editing details of a restaurant  : `edit`
@@ -145,8 +143,8 @@ Changes the name of the second restaurant in the list to `MACS`.
 
 [NOTE]
 ====
-When you are editing the Weblink of a restaurant, FoodDiary will check whether the Weblink is valid for you. You need to have internet connection else,
-the FoodDiary will not edit the Weblink for you.
+When you are editing the Weblink of a restaurant, the Food Diary will check whether the Weblink is valid for you. You need to have internet connection else,
+the Food Diary will not edit the Weblink for you.
 ====
 
 // end::addedit[]
@@ -201,7 +199,7 @@ Shows all the restaurants that has no reviews ranked based on the proximity to t
 
 [TIP]
 ====
-If you simply want to view unreviewed restaurants, enter `listUnvisited po/000000`
+If you simply want to view unreviewed restaurants, enter `listUnvisited po/000000`.
 ====
 // end::listUnvisitedUG[]
 
@@ -210,43 +208,53 @@ If you simply want to view unreviewed restaurants, enter `listUnvisited po/00000
 ==== Sorting restaurants by rating: `sort`
 
 Sorting your restaurants from favourite to least favourite, or vice versa, has never been easier.
-Order all of the restaurants in the Food Diary from highest to lowest ratings based on the average ratings you've given that restaurant in all your reviews for them. +
+Order all of the restaurants in the Food Diary from highest to lowest ratings based on the average ratings from all the reviews that you have given each restaurant. +
 Format: `sort [or/ORDER] [l/LIMIT]`
 
 [NOTE]
 ====
-* `ORDER` can only take the form of `or/ASC` or `or/DES`, case-insensitive.
+* `ORDER` refers to the order in which the restaurants will be sorted and can only take the form of `or/ASC` or `or/DES`, case-insensitive.
 ** When `sort or/ASC` is executed, the list of restaurants returned will be in ascending order of ratings.
 ** When `sort or/DES` is executed, the list of restaurants returned will be in descending order of ratings.
-* `LIMIT` *must be a positive integer* `1, 2, 3, ...`
-* If `LIMIT` you have entered is larger than the number of unique ratings in the list of restaurants, all of the restaurants in the sorted list will be shown.
+* `LIMIT` refers to the number of ranks of restaurants to be displayed and *must be a positive integer* `1, 2, 3, ...`
+* If the `LIMIT` you have entered is larger than the number of unique ratings in the list of restaurants, all of the restaurants in the sorted list will be shown.
 ====
 
 [TIP]
 ====
-* Simply want to see your favourite restaurants? Enter the `sort` command without any parameters to see all of the restaurants, from highest to lowest rating!
+* Just want to see your favourite restaurants first? Enter the `sort` command without any parameters to see all of the restaurants, from highest to lowest rating!
 ====
-
-image::sortasc.png[width="600"]
-_Figure 1. Result obtained when the command `sort or/ASC l/2` is executed
-
-image::sortdes.png[width="600"]
-_Figure 2. Result obtained when the command `sort or/DES l/2` is executed_
 
 Examples:
 
-* `sort` or `sort or/DES`
-Both will sort the list of restaurants in descending order of ratings.
+* `sort` or `sort or/DES` +
+Both will sort your list of restaurants in descending order of ratings.
 * `sort or/asC` or `sort or/ASC` +
-Both will sort the list of restaurants in ascending order of ratings.
-* `sort or/ASC l/2`
-Your list of restaurants will be sorted in ascending order of ratings and only the restaurants with the lowest 2 ratings will be displayed.
+Both will sort your list of restaurants in ascending order of ratings.
+* `sort or/ASC l/2` +
+Your list of restaurants will be sorted in ascending order of ratings and you will only see the restaurants with the 2 lowest ratings displayed.
 
 [NOTE]
 ====
 Restaurants with no reviews will have no ratings, and will thus have an `N.A.` rating. Restaurants with `N.A.` rating will come before
-those with positive ratings if in ascending order, and at the end of the list if sorted in descending order.
+those with positive ratings if in ascending order, and after those with positive ratings if sorted in descending order.
 ====
+
+Example of usage:
+
+- Before the `sort` command is executed, the following shows the list of restaurants in the restaurant list.
+
+image:beforesort1.png[width="250"] image:beforesort2.png[width="250"]
+
+_Figure 1. List of restaurants before sorting, take note of their unordered ratings_
+
+- After 2 different `sort` commands are executed
+
+|=====================
+| image:sortasc.png[width="250"] | image:sortdes.png[width="250"]
+| _Figure 2. List of restaurants with the 2 lowest ratings in ascending order is obtained when the command `sort or/ASC l/2` is executed_ | _Figure 3. List of restaurants with the 3 highest ratings in descending order of ratings is obtained when the command `sort or/DES l/3` is executed_
+|=====================
+
 // end::sort[]
 
 
@@ -280,13 +288,13 @@ Format: `select INDEX`
 Examples:
 
 * `select 3` +
-Selects the restaurant in the displayed restaurants list with index 3 and displays its summary, reviews and website.
+Selects the restaurant in the displayed restaurants list with index 3 and displays its summary and reviews.
 
-image::selectbefore.png[width="600"]
+image::selectbefore.png[width="450"]
 _Figure 1. Before selecting any restaurant_
 
-image::selectafter.png[width="600"]
-_Figure 2. After selecting restaurant with index 3, Chilis' summary, reviews and website are displayed in the second, third and fourth panels (from left to right) respectively_
+image::selectafter.png[width="450"]
+_Figure 2. After selecting restaurant with index 3, Chilis' summary and reviews are displayed in the second and third (from left to right) respectively_
 // end::select[]
 
 
@@ -379,9 +387,9 @@ Step 2: Press enter again and now all `Western`, `Japanese` and `Chinese` restau
 
 Some examples you can try:
 
-* `filter fine dining casual`
+* `filter fine dining casual` +
 Displays restaurants with any category matching `fine`, `dining` or `casual`.
-* `filter $ casual western`
+* `filter $ casual western` +
 Displays restaurants with any category matching `$`, `casual` or `western`.
 // end::categorization[]
 
@@ -389,7 +397,7 @@ Displays restaurants with any category matching `$`, `casual` or `western`.
 // tag::visitweb[]
 ==== Display website of selected restaurant : `visitWeb`
 
-The restaurants website can serve as your reference when you are adding it into your restaurant list or when writing a review for the restaurant.
+The restaurant's website can serve as your reference when you are adding it into your restaurant list or when writing a review for the restaurant.
 
 You can display the website of a restaurant identified by the index number used in the list based on its weblink. +
 Format: `visitWeb INDEX`
@@ -405,7 +413,7 @@ Format: `visitWeb URL` +
 
 This allows you to visit website of any restaurant before they are entered into the list of restaurants in the `FoodDiary`.
 
-Website is displayed on a browser window which shows upon visitWeb command.
+Website is displayed on a browser window which shows upon `visitWeb` command.
 
 [NOTE]
 ====
@@ -415,8 +423,8 @@ A URL is a valid link to a website. It should be in this format: local-part.doma
 . The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses,
 (!#$%&'*+/=?`{|}~^.-)
 . This is followed by a '.' and then a domain name. The domain name must:
-.. be at least 2 characters long
-.. start and end with alphanumeric characters
+.. be at least 2 characters long,
+.. start and end with alphanumeric characters,
 .. consist of alphanumeric characters, a period or a hyphen for the characters in between, if any.
 ====
 
@@ -447,8 +455,8 @@ Adds a review to the Food Diary +
 Format: `addReview INDEX re/ENTRY rr/RATING`
 
 ****
-* Adds the review to the restaurant specified by the `INDEX`. The index refers to the index number of the restaurant of the currently displayed list of restaurants.. The index *must be a positive integer* 1, 2, 3, ...
-* `ENTRY` is a text field that include both alphabets and numbers.
+* Adds the review to the restaurant specified by the `INDEX`. The index refers to the index number of the restaurant in the currently displayed list of restaurants. The index *must be a positive integer* 1, 2, 3, ...
+* `ENTRY` is a text field that includes both alphabets and numbers.
 * `RATING` is a number that has to be a value from 0-5 inclusive. It represents a score out of 5 that is assigned to the restaurant with the added review.
 * Both fields (`ENTRY` and `RATING`) are compulsory and must be provided. There are no default values that either will take should the field be unspecified.
 ****
@@ -551,11 +559,6 @@ Examples:
 
 === General Features
 
-==== Viewing help : `help`
-
-Format: `help`
-
-
 // tag::nameUG[]
 ==== Personalising your food diary with your name: `name`
 
@@ -611,10 +614,30 @@ Examples:
 
 [NOTE]
 ====
-You will not be able to share the review to Facebook if you do not allow The Food Diary write permission to your Facebook account.
+You will not be able to share the review to Facebook if you do not give The Food Diary write permission to your Facebook account.
 ====
 // end::shareFB[]
 
+==== Undo a command : `undo`
+
+Undoes your last command. +
+Format: `undo`
+
+[NOTE]
+This command is only able to undo commands that made a change in the state of the Food Diary.
+i.e. Commands such as `select`, `list`, `listUnvisited` and `find` will not be able to be undone using this `undo` command.
+
+==== Redo a command : `redo`
+
+Redoes your `undo` command. +
+Format: `redo`
+
+[NOTE]
+This command is only able to redo a command that was undone by an `undo` command.
+
+==== Viewing help : `help`
+
+Format: `help`
 
 ==== Exiting the program : `exit`
 
@@ -648,6 +671,8 @@ e.g. `delete 1`
 * *list* : `list`
 * *listUnvisited* : `listUnvisited po/POSTAL_CODE` +
 e.g. `listUnvisited po/267951`
+* *sort* : `sort [or/ORDER] [l/LIMIT]`
+e.g. `sort or/ASC l/2`
 * *find* : `find KEYWORD [MORE_KEYWORDS]`
 e.g. `find KFC Chicken`
 * *select* : `select INDEX`
@@ -680,5 +705,7 @@ e.g. `view`
 
 Miscellaneous
 
+* *undo* : `undo`
+* *redo* : `redo`
 * *help* : `help`
 * *exit* : `exit`
