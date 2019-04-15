@@ -30,7 +30,7 @@ It serves as a journal, allowing the users to give reviews and ratings to the re
 can reference the website while writing a review.</p>
 </div>
 <div class="paragraph">
-<p>The following symbols can help you better understand the some considerations that I had as you read through
+<p>The following symbol can help you better understand the some considerations that I had as you read through
 my contributions to the User Guide and Developer Guide</p>
 </div>
 <div class="admonitionblock note">
@@ -41,18 +41,6 @@ my contributions to the User Guide and Developer Guide</p>
 </td>
 <td class="content">
 This is a <strong>note</strong>. A note indicates important additional information that should be read.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-This is a <strong>tip</strong>. A tip indicates good to know information that would improve your user experience.
 </td>
 </tr>
 </table>
@@ -239,15 +227,15 @@ Format: <code>add n/NAME a/ADDRESS po/POSTAL CODE [p/PHONE] [e/EMAIL] [t/TAG]&#8
 <p>When you are adding in the Weblink, FoodDiary will check whether the Weblink is valid for you. You need to have internet connection else,
 the FoodDiary will proceed to add the restaurant without the Weblink.</p>
 </div>
-</td>
-</tr>
-</table>
-</div>
 <div class="paragraph">
 <p><span class="image"><img src="../images/NoInternetAdd.PNG" alt="NoInternetAdd" width="640"></span></p>
 </div>
 <div class="paragraph">
 <p><em>Image 1.1 When there is no internet connection, adding a restaurant with weblink will display this result</em></p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect3">
@@ -295,12 +283,6 @@ the FoodDiary will not edit the Weblink for you.</p>
 </td>
 </tr>
 </table>
-</div>
-<div class="paragraph">
-<p>When you are changing a restaurant&#8217;s Weblink to an invalid Weblink, you will receive the following error message.</p>
-</div>
-<div class="paragraph">
-<p>When you are editing a restaurant&#8217;s Weblink with no internet connection, the FoodDiary will edit your restaurant but not the Weblink.</p>
 </div>
 </div>
 <div class="sect3">
@@ -389,7 +371,8 @@ Format: <code>visitWeb URL</code><br></p>
 <ul>
 <li>
 <p><code>list</code><br>
-<code>visitWeb 4</code><br></p>
+<code>visitWeb 4</code><br>
+This command displays the webpage of the 4th Restaurant in your restaurant list.</p>
 </li>
 <li>
 <p><code>visitWeb www.jollibee.com.ph</code><br>
@@ -403,7 +386,7 @@ This command displays webpage of Jollibee as shown below.</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Image 1.1 Result of `visitWeb www.jollibee.com.ph`</em></p>
+<p><em>Image 1.1 Result of <code>visitWeb www.jollibee.com.ph</code>.</em></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -453,7 +436,7 @@ You need to have internet connection to visit the website of the restaurant.
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-When restaurant is added to Food Diary, the <code>Weblink</code> added with the restaurant is checked by <code>WebUtil</code> to ensure that the <code>Weblink</code> is a Url that belongs to a website that exists.
+When restaurant is added to Food Diary with the <code>Add</code> feature, the <code>Weblink</code> added with the restaurant is checked by <code>WebUtil</code> to ensure that the <code>Weblink</code> is a Url that belongs to a website that exists.
 If the protocol is absent, <code>WebUtil</code> will check if the <code>Weblink</code> uses HTTP or HTTPS protocol and append to it. This will be hidden from the user.
 If there is no internet connection, <code>WebUtil</code> is unable to validate <code>Weblink</code> and Food Diary will add the restaurant without the <code>Weblink</code>.
 </td>
@@ -482,6 +465,9 @@ Since website of restaurant might be taken down after it has been added to the r
 <li>
 <p>Validate <code>Weblink</code> by pinging its Url and checking the HTTP response code.</p>
 </li>
+<li>
+<p>Pass <code>Weblink</code> to <code>BrowserPanel</code> through <code>CommandResult</code> and invoke <code>WebView</code> engine to display website.</p>
+</li>
 </ol>
 </div>
 <div class="admonitionblock note">
@@ -498,13 +484,6 @@ HTTP response codes:<br>
 </td>
 </tr>
 </table>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Pass <code>Weblink</code> to <code>BrowserPanel</code> through <code>CommandResult</code> and invoke <code>WebView</code> engine to display website.</p>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>The following sequence diagram shows how the visitWeb <code>index</code> works:</p>
@@ -614,4 +593,4 @@ we can say that there is high chance that there is no internet connection and he
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 14:06:46 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 14:22:01 UTC</div></div></div></body></html>
