@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Chan Qing Zhou - Project Portfolio</title><link rel="stylesheet" href="../stylesheets/gh-pages.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">The Food Diary</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link active" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/cs2103-ay1819s2-w17-1/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Chan Qing Zhou - Project Portfolio</h1></div><div id="content"><div class="sect1">
-<h2 id="project-food-diary"><a class="link" href="#project-food-diary">PROJECT: Food Diary</a></h2>
+<h2 id="project-the-food-diary"><a class="link" href="#project-the-food-diary">PROJECT: The Food Diary</a></h2>
 <div class="sectionbody">
 <hr>
 </div>
@@ -10,10 +10,14 @@
 <h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This project portfolio page serves to document my contributions to <em>The Food Diary</em>, a software engineering project undertaken as part of the National University of Singapore(NUS) School of Computing&#8217;s Software Engineering module,CS2103T.</p>
+<p>This project portfolio page serves to document my contributions to <em>The Food Diary</em>, a software engineering project undertaken
+as part of the National University of Singapore(NUS) School of Computing&#8217;s Software Engineering module,CS2103T.
+More information on this module can be found <a href="https://ivle.nus.edu.sg/V1/lms/public/view_moduleoutline.aspx?CourseID=DBE4B268-893E-4DCB-9666-0E9150581F2A&amp;ClickFrom=StuViewBtn">here</a></p>
 </div>
 <div class="paragraph">
-<p>The Food Diary is a <strong>journal application</strong> for food lovers in Singapore to record their reviews of restaurants they have visited and receive recommendations for restaurants. The user interacts with it using a Command Line Interface(CLI), and it has a Graphical User Interface(GUI) created with JavaFX. It is written in Java, and has about 10 kLoC.</p>
+<p>The Food Diary is a <strong>journal application</strong> for food lovers in Singapore to record their reviews of restaurants they have visited and
+receive recommendations for restaurants for future visits. The user interacts with it using a Command Line Interface(CLI),
+and it has a Graphical User Interface(GUI) created with JavaFX. It is written in Java, and has about 10,000 Lines of Code.</p>
 </div>
 </div>
 </div>
@@ -23,20 +27,22 @@
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Major enhancement</strong>: I added *the ability to get restaurant recommendations based proximity to a location. *</p>
+<p><strong>Major enhancement</strong>: I added <strong>the ability to get restaurant recommendations based proximity to a location.</strong></p>
 <div class="ulist">
 <ul>
 <li>
-<p>What it does: allows the user to list restaurants that they haven&#8217;t reviewed ranked based on how close the restaurant is to the location they provide.</p>
+<p>What it does: This feature allows the user to list restaurants that they have not reviewed, based on the proximity of the restaurant to the location they provide.</p>
 </li>
 <li>
-<p>Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.</p>
+<p>Justification: This feature improves the product significantly because a user can receive recommendations based on their current location, making it a lot more convenient for them to find restaurants.</p>
 </li>
 <li>
-<p>Highlights: This enhancement required the creation of many components to function. Firstly, a python script was used to collect the postal data and parse it into a json file. A new storage system was then created to parse the postal data json file. Finally, this data was then used to sort the restaurants.</p>
+<p>Highlights: This enhancement required the creation of multiple components to function. Firstly, a Python script was used to collect
+the postal data and parse it into a json file. A new storage system was then created to parse the postal data json file.
+ Finally, this data was then used to sort the restaurants.</p>
 </li>
 <li>
-<p>Credits: <a href="https://docs.onemap.sg/" class="bare">https://docs.onemap.sg/</a> API is used to generate the postal data.</p>
+<p>Credits: <a href="https://docs.onemap.sg/">OneMap API</a> was used to generate the postal data.</p>
 </li>
 </ul>
 </div>
@@ -45,10 +51,7 @@
 <p><strong>Minor enhancement</strong>: I added a name command that allows users to <strong>personalise The Food Diary with their own name.</strong></p>
 </li>
 <li>
-<p><strong>Code contributed</strong>: [<a href="https://github.com">Functional code</a>] [<a href="https://github.com">Test code</a>] <em>{give links to collated code files}</em></p>
-</li>
-<li>
-<p><strong>Other contributions</strong>:</p>
+<p><strong>Code contributed</strong>: The code that I have contributed to this project can be found <a href="https://nus-cs2103-ay1819s2.github.io/cs2103-dashboard/#search=chanqingzhou">here</a></p>
 <div class="ulist">
 <ul>
 <li>
@@ -56,20 +59,13 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Managed releases <code>v1.3</code> (1 release) on GitHub</p>
+<p>Released <code>v1.4</code> jar file on GitHub</p>
 </li>
 <li>
-<p>Released <code>v1.3</code> jar file on GitHub</p>
-</li>
-</ul>
-</div>
+<p>Included coveralls on GitHub: <a href="https://github.com/CS2103-AY1819S2-W17-1/main/pull/144">#144</a></p>
 </li>
 <li>
-<p>Enhancements to existing features:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Wrote additional tests for existing features to increase coverage.</p>
+<p>Searched for bugs within the project and raised issues: <a href="https://github.com/CS2103-AY1819S2-W17-1/main/issues/101">#101</a></p>
 </li>
 </ul>
 </div>
@@ -79,7 +75,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Create the initial User Guide: <a href="https://github.com">#2</a></p>
+<p>Create the initial User Guide: <a href="https://github.com/CS2103-AY1819S2-W17-1/main/pull/2">#2</a></p>
 </li>
 </ul>
 </div>
@@ -89,7 +85,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>PRs reviewed (with non-trivial review comments): <a href="https://github.com">#18</a></p>
+<p>PRs reviewed (with non-trivial review comments): <a href="https://github.com/CS2103-AY1819S2-W17-1/main/pull/18">#18</a>, <a href="https://github.com/CS2103-AY1819S2-W17-1/main/pull/96">#96</a></p>
 </li>
 </ul>
 </div>
@@ -120,14 +116,14 @@
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users.</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the Food Diary 's User Guide . They showcase my ability to write documentation targeting end-users.</em></p></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 <div class="sect1">
-<h2 id="welcome-to-the-food-diary"><a class="link" href="#welcome-to-the-food-diary">Welcome to the Food Diary</a></h2>
+<h2 id="welcome-to-the-food-diary"><a class="link" href="#welcome-to-the-food-diary">Welcome to The Food Diary</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>If you would like to get use the Food Diary straightaway, jump to the <a href="#Quick Start">[Quick Start]</a> to get started</p>
@@ -206,7 +202,7 @@ This is a <strong>warning</strong>. A warning indicates critical information tha
 <div class="sect3">
 <h4 id="listing-all-restaurants-that-you-haven-t-visited-code-listunvisited-code"><a class="link" href="#listing-all-restaurants-that-you-haven-t-visited-code-listunvisited-code">Listing all restaurants that you haven&#8217;t visited : <code>listUnvisited</code></a></h4>
 <div class="paragraph">
-<p>Shows a list of all restaurants that hasn&#8217;t been reviewed by you, ranked based on the proximity to a given postal code.<br>
+<p>Shows a list of all restaurants that hasn&#8217;t been reviewed by you, ranked based on the proximity to the postal code provided by you.<br>
 Format: <code>listUnvisited po/POSTAL_CODE</code></p>
 </div>
 <div class="admonitionblock note">
@@ -217,7 +213,7 @@ Format: <code>listUnvisited po/POSTAL_CODE</code></p>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Calculation of proximity is based on postal codes. If no postal code or an invalid postal code is provided for a restaurant, it will appear at the bottom of the list.</p>
+<p>Calculation of proximity is based on postal code provided for the restaurant. If no postal code or an invalid postal code is provided for a restaurant, it will appear at the bottom of the list.</p>
 </div>
 </td>
 </tr>
@@ -230,7 +226,7 @@ Format: <code>listUnvisited po/POSTAL_CODE</code></p>
 <ul>
 <li>
 <p><code>listUnvisited po/267951</code><br>
-Returns all the restaurants that has no reviews ranked based on the proximity to a given postal code</p>
+Returns all the restaurants that has no reviews ranked based on the proximity to a postal code <code>267951</code>.</p>
 </li>
 </ul>
 </div>
@@ -287,8 +283,10 @@ Format: <code>view</code></p>
 </ul>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="../images/viewCommand.png" alt="viewCommand" width="790"></span>
-<em>Figure 7. Your profile statistics will be reflected in the result command box as pointed out in the picture above</em></p>
+<p><span class="image"><img src="../images/viewCommand.png" alt="viewCommand" width="790"></span></p>
+</div>
+<div class="paragraph">
+<p><em>Figure 7. Your profile statistics will be reflected in the result command box as pointed out in the picture above</em></p>
 </div>
 </div>
 </div>
@@ -307,56 +305,78 @@ Format: <code>view</code></p>
 </tbody>
 </table>
 <div class="sect2">
-<h3 id="listunvisited-feature-which-sorts-by-distance-nearest-to-you"><a class="link" href="#listunvisited-feature-which-sorts-by-distance-nearest-to-you">listUnvisited feature which sorts by distance nearest to you</a></h3>
+<h3 id="code-listunvisited-code-feature-which-sorts-code-restaurant-code-by-distance-to-a-specified-postal-code"><a class="link" href="#code-listunvisited-code-feature-which-sorts-code-restaurant-code-by-distance-to-a-specified-postal-code"><code>listUnvisited</code> feature which sorts <code>Restaurant</code> by distance to a specified postal code</a></h3>
 <div class="sect3">
 <h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
 <div class="paragraph">
-<p>The 'listUnvisited' feature accepts the user&#8217;s current postal code and displays restaurants without reviews nearest to the user&#8217;s postal code.</p>
+<p>The <code>listUnvisited</code> feature accepts a postal code as user input and displays restaurants without reviews nearest to the user&#8217;s inputted postal code.</p>
 </div>
 <div class="paragraph">
 <p>The implementation of this feature can be broken down into 3 main components.</p>
 </div>
 <div class="paragraph">
-<p>1)Storage Component</p>
+<p><strong>1) Storage Component</strong></p>
 </div>
 <div class="paragraph">
-<p>2)Model Component</p>
+<p><strong>2) Model Component</strong></p>
 </div>
 <div class="paragraph">
-<p>3)Logic Component</p>
+<p><strong>3) Logic Component</strong></p>
 </div>
 <div class="paragraph">
 <p>These implementations and scope of these components will be discussed below.</p>
 </div>
 <div class="paragraph">
-<p><strong><span class="underline">1.Storage Component</span></strong></p>
+<p><strong><span class="underline">1. Storage Component</span></strong></p>
 </div>
 <div class="paragraph">
-<p>The storage component function is to serialise the JSON data file <code>PostalData.json</code>
-into <code>JsonSerializablePostalData</code> which contains a <code>List</code> of <code>JsonAdaptedPostalData</code> which contains the x and y-coordinates of every postal code in Singapore as of 13/03/2019.
-This is exposed through the <code>StorageManager#getPostalData()</code> class.</p>
+<p>The <code>Storage</code> component&#8217;s function is to serialise the JSON data file <code>PostalData.json</code>, which contains the x and y-coordinates of every postal code in Singapore as of 13/03/2019.
+The data is serialised into <code>JsonSerializablePostalData</code> which contains a <code>List</code> of <code>JsonAdaptedPostalData</code>.
+This data can be retreived through the <code>StorageManager#getPostalData()</code> method.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+In order to update the PostalData.json, you can run the script found <a href="https://github.com/chanqingzhou/postalDataScript">here</a>.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p>In order to update the PostalData.json, you can run the script found at &#8230;&#8203;.</p>
+<p><strong><span class="underline">2. Model Component</span></strong></p>
 </div>
 <div class="paragraph">
-<p><strong><span class="underline">2.Model Component</span></strong></p>
+<p>The <code>Model</code> component&#8217;s function is to allow the retrieval of the <code>PostalData</code> of a specific postal code.
+It contains a <code>PostalDataSet</code> which contains a <code>HashMap</code> of <code>String</code> representing the postal code mapped to the corresponding <code>PostalData</code>.
+This contains the x and y-coordinates of the corresponding postal code.
+The retrieval is done through the <code>PostalDataSet#getPostalData(int postal)</code> method.
+<code>PostalDataSet</code> is obtained through the <code>Model#getPostalDataSet()</code> interface which returns of a <code>Optional&lt;PostalDataSet&gt;</code>.</p>
 </div>
 <div class="paragraph">
-<p>The Model component function is to allow other components to get the PostalData of a specific postal code.
-This is done through the <code>PostalDataSet</code> which is obtained from the <code>StorageManager</code>. <code>PostalDataSet</code> contains a <code>HashMap</code> of <code>Integer</code> representing the postal code mapped to <code>PostalData</code>.
-This is exposed through the <code>Model#getPostalData(int postal)</code> which returns of a <code>Optional&lt;PostalData&gt;</code> of the postal code provided.</p>
+<p><strong><span class="underline">3.Logic Component</span></strong></p>
 </div>
 <div class="paragraph">
-<p><strong><span class="underline">3.Logic Component</span></strong>
-The logic component consists of two key sub-components, the <code>Command</code> component and the <code>Comparator</code> component.
-The <code>Command</code> component parses the user input into a postal code and creates a new <code>SortDistanceComparator&lt;Restaurant&gt;</code> class with the postal code inputted as the parameters.
-This <code>SortDistanceComparator</code> is then passed to the <code>Model</code> class to sort the <code>SortedList</code> which encapsulates the <code>FilteredList</code>.</p>
+<p>The <code>Logic</code> component consists of two key sub-components, the <code>Command</code> component and the <code>Comparator</code> component.
+The <code>Command</code> component parses the user input into a <code>Postal</code> and then checks if the <code>Postal</code> is within the <code>PostalDataSet</code>.
+If the postal code provided is not within <code>PostalDataSet</code>, the <code>ListUnvisitedCommand</code> will simply filter out unreviewed restaurants.
+Otherwise, if the postal code is valid, it will creates a new <code>SortDistanceComparator&lt;Restaurant&gt;</code> class with the postal code and <code>PostalDataSet</code> inputted as the parameters.
+This <code>SortDistanceComparator</code> is then passed to the <code>Model</code> class to sort the <code>SortedList</code> which encapsulates the <code>FilteredList</code>.
+This sequence is illustrated in the activity diagram below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ListUnvisitedLogicActivityDiagram.png" alt="ListUnvisitedLogicActivityDiagram" width="800">
+</div>
 </div>
 <div class="paragraph">
 <p>The <code>SortDistanceComparator&lt;Restaurant&gt;</code> class sorts the <code>Restaurant</code> based on the distance to the user inputted postal code.
-It does this by first querying the <code>PostalData</code> of the postal code of the <code>Restaurant</code> from <code>Model</code> then calculating the distance from the user inputted postal code.
-The result is then stored within the <code>Comparator</code> class.</p>
+It does this by first querying the <code>PostalData</code> of the postal code of the <code>Restaurant</code> from <code>PostalDataSet</code> then
+calculating the distance from the user inputted postal code.
+This result is then stored within the <code>Comparator</code> class.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -366,21 +386,23 @@ The result is then stored within the <code>Comparator</code> class.</p>
 </td>
 <td class="content">
 If a <code>Restaurant</code> postal code is invalid or not in <code>PostalDataSet</code>, the distance will be set to <code>Double.MAX_VALUE</code>.
+This implies that these <code>Restaurant</code> will appear at the bottom of the <code>SortedList</code>.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p><code>SortDistance</code> implements the function <code>compare(Restaurant firstRestaurant ,Restaurant secondRestaurant)</code>.</p>
-</div>
-<div class="paragraph">
 <p>Given below is an example usage scenario and how 3 components behaves at each step.</p>
 </div>
 <div class="paragraph">
-<p>Step 1. The user launches the application for the first time. The <code>PostalDataSet</code> will be initialised with data from <code>PostalData.json</code> through the <code>Storage</code> component.</p>
+<p>Step 1. The user launches the application for the first time. The <code>PostalDataSet</code> will be initialised with data from <code>PostalData.json</code>
+through the <code>Storage</code> component.</p>
 </div>
 <div class="paragraph">
-<p>Step 2. The user calls <code>listUnvisited po/267951</code>. A new <code>SortBy</code> will be created containing the <code>PostalData</code> of '267951'. This command will then call the method <code>Model#filterAndSort(Predicate PREDICATE_SHOW_UNVISITED_RESTAURANTS, Comparator sortBy).</code></p>
+<p>Step 2. The user calls <code>listUnvisited po/267951</code>. The <code>listUnvisitedCommand</code> class will be initialised.
+A new <code>SortDistanceComparator</code> will be created by the
+'listUnvisitedCommand` class containing the <code>PostalData</code> of '267951'.
+The command will then call the method <code>Model#filterAndSort(Predicate PREDICATE_SHOW_UNVISITED_RESTAURANTS, Comparator sortBy).</code></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -389,7 +411,7 @@ If a <code>Restaurant</code> postal code is invalid or not in <code>PostalDataSe
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If the postal code provided by the user is invalid, there will be no change in ordering of the <code>Restaurant</code>.
+If the postal code provided by the user is invalid, there will be no change in ordering of the <code>Restaurant</code>. The <code>Restaurant</code> will be filtered to only show <code>Restaurant</code> without any <code>Review</code>
 </td>
 </tr>
 </table>
@@ -398,7 +420,8 @@ If the postal code provided by the user is invalid, there will be no change in o
 <p>Step 3. The <code>Model#filterAndSortByLocation()</code> will first filter the <code>filterList</code> to show all <code>Restaurants</code> with zero reviews.</p>
 </div>
 <div class="paragraph">
-<p>Step 4. The <code>sortedList</code> which encapsulates the <code>filteredList</code> will then be sorted based on the <code>sortBy</code> <code>Comparator</code> provided to show the nearest <code>Restaurants</code> with zero review.</p>
+<p>Step 4. The <code>sortedList</code> which encapsulates the <code>filteredList</code> will then be sorted based on the <code>Comparator</code>
+provided to show the nearest <code>Restaurants</code> with zero review.</p>
 </div>
 <div class="paragraph">
 <p>The following sequence diagram summarizes what happens when the user executes a listUnvisited Command.</p>
@@ -445,31 +468,31 @@ If the postal code provided by the user is invalid, there will be no change in o
 </div>
 </div>
 <div class="sect4">
-<h5 id="aspect-construction-of-comparator-to-compare-restaurants"><a class="link" href="#aspect-construction-of-comparator-to-compare-restaurants">Aspect: Construction of comparator to compare Restaurants</a></h5>
+<h5 id="aspect-accessing-of-local-postal-data"><a class="link" href="#aspect-accessing-of-local-postal-data">Aspect: Accessing of local postal data</a></h5>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Comparator constructor is done in the <code>listUnvisitedCommand</code>.</p>
+<p><strong>Alternative 1 (current choice):</strong> <code>PostalData</code> is retrieved for each <code>Restaurant</code> by the <code>Comparator</code>.</p>
 <div class="ulist">
 <ul>
 <li>
 <p>Pros: Easy to implement.</p>
 </li>
 <li>
-<p>Cons: Increased coupling between <code>Command</code> and <code>Model</code>.</p>
+<p>Cons: Increased coupling between <code>Logic</code> and <code>Model</code>. There might also be performance issues.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> Passing the user entered postal code into the <code>ModelManager</code>.</p>
+<p><strong>Alternative 2:</strong> Using the x and y coordinates as a field in the Restaurant class</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Coupling is reduced between <code>Command</code> and <code>Model</code>.</p>
+<p>Pros: Repeated calls to retrieve the <code>PostalData</code> from <code>PostalDataSet</code> is not required.</p>
 </li>
 <li>
-<p>Cons: Violates Single Responsibility Principle and Separation of Concerns as <code>ModelManager</code> needs to handle the logic component of the command.</p>
+<p>Cons: If incorrect postal data is provided, the incorrect x and y coordinates will be written to the data file. This may be difficult to correct.</p>
 </li>
 </ul>
 </div>
@@ -526,4 +549,4 @@ If the postal code provided by the user is invalid, there will be no change in o
 <p><em>{Optionally, you may include other projects in your portfolio.}</em></p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 09:25:30 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 10:03:48 UTC</div></div></div></body></html>
