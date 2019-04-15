@@ -16,8 +16,8 @@ More information on this module can be found <a href="https://ivle.nus.edu.sg/V1
 </div>
 <div class="paragraph">
 <p>The Food Diary is a <strong>journal application</strong> for food lovers in Singapore to record their reviews of restaurants they have visited and
-receive recommendations for restaurants for future visits. The user interacts with it using a Command Line Interface(CLI),
-and it has a Graphical User Interface(GUI) created with JavaFX. It is written in Java, and has about 10,000 Lines of Code.</p>
+receive recommendations of restaurants for future visits. The user interacts with the application using a Command Line Interface(CLI).
+It also contains a Graphical User Interface(GUI) created with JavaFX. It is written in Java, and has about 10,000 Lines of Code.</p>
 </div>
 </div>
 </div>
@@ -27,7 +27,7 @@ and it has a Graphical User Interface(GUI) created with JavaFX. It is written in
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Major enhancement</strong>: I added <strong>the ability to get restaurant recommendations based proximity to a location.</strong></p>
+<p><strong>Major enhancement</strong>: I added <strong>the ability to get restaurant recommendations based on proximity to a location.</strong></p>
 <div class="ulist">
 <ul>
 <li>
@@ -38,8 +38,8 @@ and it has a Graphical User Interface(GUI) created with JavaFX. It is written in
 </li>
 <li>
 <p>Highlights: This enhancement required the creation of multiple components to function. Firstly, a Python script was used to collect
-the postal data and parse it into a json file. A new storage system was then created to parse the postal data json file.
- Finally, this data was then used to sort the restaurants.</p>
+the postal data and parse it into a json file. Secondly, a new storage system was created to parse the postal data json file.
+ Finally, this data was then used to sort the restagiurants.</p>
 </li>
 <li>
 <p>Credits: <a href="https://docs.onemap.sg/">OneMap API</a> was used to generate the postal data.</p>
@@ -58,9 +58,6 @@ the postal data and parse it into a json file. A new storage system was then cre
 <p>Project management:</p>
 <div class="ulist">
 <ul>
-<li>
-<p>Released <code>v1.4</code> jar file on GitHub</p>
-</li>
 <li>
 <p>Included coveralls on GitHub: <a href="https://github.com/CS2103-AY1819S2-W17-1/main/pull/144">#144</a></p>
 </li>
@@ -116,7 +113,9 @@ the postal data and parse it into a json file. A new storage system was then cre
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the Food Diary 's User Guide . They showcase my ability to write documentation targeting end-users.</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the Food Diary 's User Guide.
+I was in-charge of writing the introduction for the User Guide, on top of the commands I have written.
+This showcases my ability to write documentation targeting end-users.</em></p></td>
 </tr>
 </tbody>
 </table>
@@ -131,7 +130,7 @@ the postal data and parse it into a json file. A new storage system was then cre
 </div>
 </div>
 <div class="paragraph">
-<p>If you would like to get use the Food Diary straightaway, jump to the <a href="#Quick Start">[Quick Start]</a> to get started</p>
+<p>If you would like to get use the Food Diary straightaway, jump to <a href="#Quick Start">[Quick Start]</a> to get started</p>
 </div>
 <div class="paragraph">
 <p><strong>What is the Food Diary? </strong></p>
@@ -143,11 +142,15 @@ the postal data and parse it into a json file. A new storage system was then cre
 <p><strong>Why use the Food Diary? </strong></p>
 </div>
 <div class="paragraph">
-<p>FD is optimized for those who prefer to work with a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, FD can get your foodie tasks done faster than traditional GUI apps.
-Additionally, FD also stores your data locally, ensuring that your privacy is protected.</p>
+<p>The Food Diary is a one-stop application for you to document your food adventures and receive personalised recommendations for the next hidden gem to please your tastebuds.</p>
 </div>
 <div class="paragraph">
-<p>Some of the features that can look forward to:</p>
+<p>Despite being optimized for those who prefer to work with a Command Line Interface (CLI), the Food Diary also has the benefits of a Graphical User Interface (GUI).
+To all you fast-typers out there, FD can get your foodie tasks done faster than traditional GUI apps!
+Furthermore, FD also stores your data locally, ensuring that you get security on top of speed.</p>
+</div>
+<div class="paragraph">
+<p>Some of the features that you can look forward to:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -161,6 +164,9 @@ Additionally, FD also stores your data locally, ensuring that your privacy is pr
 <p>Finding out about new restaurants near you for your next gastronomical adventure!</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>Read on to find out more about the other exciting features of FD!</p>
 </div>
 <div class="paragraph">
 <p><strong>Callout</strong></p>
@@ -205,9 +211,9 @@ This is a <strong>warning</strong>. A warning indicates critical information tha
 </table>
 </div>
 <div class="sect3">
-<h4 id="listing-all-restaurants-that-you-haven-t-visited-code-listunvisited-code"><a class="link" href="#listing-all-restaurants-that-you-haven-t-visited-code-listunvisited-code">Listing all restaurants that you haven&#8217;t visited : <code>listUnvisited</code></a></h4>
+<h4 id="listing-all-restaurants-that-you-have-not-visited-code-listunvisited-code"><a class="link" href="#listing-all-restaurants-that-you-have-not-visited-code-listunvisited-code">Listing all restaurants that you have not visited : <code>listUnvisited</code></a></h4>
 <div class="paragraph">
-<p>Shows a list of all restaurants that hasn&#8217;t been reviewed by you, ranked based on the proximity to the postal code provided by you.<br>
+<p>Shows a list of all restaurants that have not been reviewed by you, ranked based on the proximity to the postal code provided by you.<br>
 Format: <code>listUnvisited po/POSTAL_CODE</code></p>
 </div>
 <div class="admonitionblock note">
@@ -218,7 +224,7 @@ Format: <code>listUnvisited po/POSTAL_CODE</code></p>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Calculation of proximity is based on postal code provided for the restaurant. If no postal code or an invalid postal code is provided for a restaurant, it will appear at the bottom of the list.</p>
+<p>Calculation of proximity is based on <code>Restaurant</code> 's postal code. If no postal code or an invalid postal code is provided for a restaurant, it will appear at the bottom of the list.</p>
 </div>
 </td>
 </tr>
@@ -231,7 +237,7 @@ Format: <code>listUnvisited po/POSTAL_CODE</code></p>
 <ul>
 <li>
 <p><code>listUnvisited po/267951</code><br>
-Returns all the restaurants that has no reviews ranked based on the proximity to a postal code <code>267951</code>.</p>
+Shows all the restaurants that has no reviews ranked based on the proximity to the postal code <code>267951</code>.</p>
 </li>
 </ul>
 </div>
@@ -262,7 +268,7 @@ Format: <code>name n/YOUR_NAME</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>name n/Jack The Sheep</code></p>
+<p><code>name n/Jack Stone</code></p>
 </li>
 </ul>
 </div>
@@ -270,18 +276,17 @@ Format: <code>name n/YOUR_NAME</code></p>
 <div class="sect3">
 <h4 id="view-your-profile-and-usage-statistics-code-view-code"><a class="link" href="#view-your-profile-and-usage-statistics-code-view-code">View your profile and usage statistics : <code>view</code></a></h4>
 <div class="paragraph">
-<p>Set the cuisine of a restaurant identified by the index number used in the list.<br>
+<p>View your individual Food Diary profile and usage statistics.<br>
 Format: <code>view</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
 </div>
-<div class="paragraph">
-<p><code>view</code><br>
-<code>View personalised statistics for John Doe. You have a total of 7 reviews and a total of 11 restaurants.</code></p>
-</div>
 <div class="ulist">
 <ul>
+<li>
+<p><code>view</code><br></p>
+</li>
 <li>
 <p>Example of profile statistics is shown below:</p>
 </li>
@@ -305,12 +310,13 @@ Format: <code>view</code></p>
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project.</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the Developer Guide.
+ This showcase my ability to write technical documentation and the technical depth of my contributions to the project.</em></p></td>
 </tr>
 </tbody>
 </table>
 <div class="sect2">
-<h3 id="code-listunvisited-code-feature-which-sorts-code-restaurant-code-by-distance-to-a-specified-postal-code"><a class="link" href="#code-listunvisited-code-feature-which-sorts-code-restaurant-code-by-distance-to-a-specified-postal-code"><code>listUnvisited</code> feature which sorts <code>Restaurant</code> by distance to a specified postal code</a></h3>
+<h3 id="listunvisited-feature-which-sorts-restaurants-by-distance-to-a-specified-postal-code"><a class="link" href="#listunvisited-feature-which-sorts-restaurants-by-distance-to-a-specified-postal-code">listUnvisited feature which sorts Restaurants by distance to a specified postal code</a></h3>
 <div class="sect3">
 <h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
 <div class="paragraph">
@@ -329,7 +335,7 @@ Format: <code>view</code></p>
 <p><strong>3) Logic Component</strong></p>
 </div>
 <div class="paragraph">
-<p>These implementations and scope of these components will be discussed below.</p>
+<p>The implementations of these components will be discussed below.</p>
 </div>
 <div class="paragraph">
 <p><strong><span class="underline">1. Storage Component</span></strong></p>
@@ -337,7 +343,7 @@ Format: <code>view</code></p>
 <div class="paragraph">
 <p>The <code>Storage</code> component&#8217;s function is to serialise the JSON data file <code>PostalData.json</code>, which contains the x and y-coordinates of every postal code in Singapore as of 13/03/2019.
 The data is serialised into <code>JsonSerializablePostalData</code> which contains a <code>List</code> of <code>JsonAdaptedPostalData</code>.
-This data can be retreived through the <code>StorageManager#getPostalData()</code> method.</p>
+This data can be retrieved through the <code>StorageManager#getPostalData()</code> method.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -359,7 +365,7 @@ In order to update the PostalData.json, you can run the script found <a href="ht
 It contains a <code>PostalDataSet</code> which contains a <code>HashMap</code> of <code>String</code> representing the postal code mapped to the corresponding <code>PostalData</code>.
 This contains the x and y-coordinates of the corresponding postal code.
 The retrieval is done through the <code>PostalDataSet#getPostalData(int postal)</code> method.
-<code>PostalDataSet</code> is obtained through the <code>Model#getPostalDataSet()</code> interface which returns of a <code>Optional&lt;PostalDataSet&gt;</code>.</p>
+<code>PostalDataSet</code> is obtained through the <code>Model#getPostalDataSet()</code> interface.</p>
 </div>
 <div class="paragraph">
 <p><strong><span class="underline">3.Logic Component</span></strong></p>
@@ -368,7 +374,7 @@ The retrieval is done through the <code>PostalDataSet#getPostalData(int postal)<
 <p>The <code>Logic</code> component consists of two key sub-components, the <code>Command</code> component and the <code>Comparator</code> component.
 The <code>Command</code> component parses the user input into a <code>Postal</code> and then checks if the <code>Postal</code> is within the <code>PostalDataSet</code>.
 If the postal code provided is not within <code>PostalDataSet</code>, the <code>ListUnvisitedCommand</code> will simply filter out unreviewed restaurants.
-Otherwise, if the postal code is valid, it will creates a new <code>SortDistanceComparator&lt;Restaurant&gt;</code> class with the postal code and <code>PostalDataSet</code> inputted as the parameters.
+Otherwise, if the postal code is valid, it will create a new <code>SortDistanceComparator&lt;Restaurant&gt;</code> class with the postal code and <code>PostalDataSet</code> inputted as the parameters.
 This <code>SortDistanceComparator</code> is then passed to the <code>Model</code> class to sort the <code>SortedList</code> which encapsulates the <code>FilteredList</code>.
 This sequence is illustrated in the activity diagram below.</p>
 </div>
@@ -378,7 +384,7 @@ This sequence is illustrated in the activity diagram below.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>SortDistanceComparator&lt;Restaurant&gt;</code> class sorts the <code>Restaurant</code> based on the distance to the user inputted postal code.
+<p>The <code>SortDistanceComparator&lt;Restaurant&gt;</code> class sorts the <code>Restaurant</code> based on the distance to the user&#8217;s inputted postal code.
 It does this by first querying the <code>PostalData</code> of the postal code of the <code>Restaurant</code> from <code>PostalDataSet</code> then
 calculating the distance from the user inputted postal code.
 This result is then stored within the <code>Comparator</code> class.</p>
@@ -390,8 +396,8 @@ This result is then stored within the <code>Comparator</code> class.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If a <code>Restaurant</code> postal code is invalid or not in <code>PostalDataSet</code>, the distance will be set to <code>Double.MAX_VALUE</code>.
-This implies that these <code>Restaurant</code> will appear at the bottom of the <code>SortedList</code>.
+If a <code>Restaurant</code> 's postal code is not in <code>PostalDataSet</code>, the distance will be set to <code>Double.MAX_VALUE</code>.
+This implies that this <code>Restaurant</code> will appear at the bottom of the <code>SortedList</code>.
 </td>
 </tr>
 </table>
@@ -406,7 +412,7 @@ through the <code>Storage</code> component.</p>
 <div class="paragraph">
 <p>Step 2. The user calls <code>listUnvisited po/267951</code>. The <code>listUnvisitedCommand</code> class will be initialised.
 A new <code>SortDistanceComparator</code> will be created by the
-'listUnvisitedCommand` class containing the <code>PostalData</code> of '267951'.
+<code>listUnvisitedCommand</code> class containing the <code>PostalData</code> of '267951'.
 The command will then call the method <code>Model#filterAndSort(Predicate PREDICATE_SHOW_UNVISITED_RESTAURANTS, Comparator sortBy).</code></p>
 </div>
 <div class="admonitionblock note">
@@ -416,7 +422,7 @@ The command will then call the method <code>Model#filterAndSort(Predicate PREDIC
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If the postal code provided by the user is invalid, there will be no change in ordering of the <code>Restaurant</code>. The <code>Restaurant</code> will be filtered to only show <code>Restaurant</code> without any <code>Review</code>
+If the postal code provided by the user is invalid, there will be no change in ordering of the <code>Restaurant</code>. The list of <code>Restaurant</code> will be filtered to only show <code>Restaurant</code> without any <code>Review</code>.
 </td>
 </tr>
 </table>
@@ -545,13 +551,4 @@ provided to show the nearest <code>Restaurants</code> with zero review.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="project-powerpointlabs"><a class="link" href="#project-powerpointlabs">PROJECT: PowerPointLabs</a></h2>
-<div class="sectionbody">
-<hr>
-<div class="paragraph">
-<p><em>{Optionally, you may include other projects in your portfolio.}</em></p>
-</div>
-</div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 14:38:13 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 15:09:26 UTC</div></div></div></body></html>

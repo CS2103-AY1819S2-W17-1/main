@@ -30,7 +30,7 @@
 </li>
 <li><a href="#implementation">4. Implementation</a>
 <ul class="sectlevel2">
-<li><a href="#code-listunvisited-code-feature-which-sorts-code-restaurant-code-by-distance-to-a-specified-postal-code">4.1. <code>listUnvisited</code> feature which sorts <code>Restaurant</code> by distance to a specified postal code</a></li>
+<li><a href="#listunvisited-feature-which-sorts-restaurants-by-distance-to-a-specified-postal-code">4.1. listUnvisited feature which sorts Restaurants by distance to a specified postal code</a></li>
 <li><a href="#display-of-restaurants-and-restaurant-details">4.2. Display of Restaurants and Restaurant Details</a></li>
 <li><a href="#undo-redo-feature">4.3. Undo/Redo feature</a></li>
 <li><a href="#restaurant-categorisation">4.4. Restaurant Categorisation</a></li>
@@ -636,7 +636,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Food Diary</c
 <p>This section describes some noteworthy details on how certain features are implemented.</p>
 </div>
 <div class="sect2">
-<h3 id="code-listunvisited-code-feature-which-sorts-code-restaurant-code-by-distance-to-a-specified-postal-code"><a class="link" href="#code-listunvisited-code-feature-which-sorts-code-restaurant-code-by-distance-to-a-specified-postal-code">4.1. <code>listUnvisited</code> feature which sorts <code>Restaurant</code> by distance to a specified postal code</a></h3>
+<h3 id="listunvisited-feature-which-sorts-restaurants-by-distance-to-a-specified-postal-code"><a class="link" href="#listunvisited-feature-which-sorts-restaurants-by-distance-to-a-specified-postal-code">4.1. listUnvisited feature which sorts Restaurants by distance to a specified postal code</a></h3>
 <div class="sect3">
 <h4 id="current-implementation"><a class="link" href="#current-implementation">4.1.1. Current Implementation</a></h4>
 <div class="paragraph">
@@ -655,7 +655,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Food Diary</c
 <p><strong>3) Logic Component</strong></p>
 </div>
 <div class="paragraph">
-<p>These implementations and scope of these components will be discussed below.</p>
+<p>The implementations of these components will be discussed below.</p>
 </div>
 <div class="paragraph">
 <p><strong><span class="underline">1. Storage Component</span></strong></p>
@@ -663,7 +663,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Food Diary</c
 <div class="paragraph">
 <p>The <code>Storage</code> component&#8217;s function is to serialise the JSON data file <code>PostalData.json</code>, which contains the x and y-coordinates of every postal code in Singapore as of 13/03/2019.
 The data is serialised into <code>JsonSerializablePostalData</code> which contains a <code>List</code> of <code>JsonAdaptedPostalData</code>.
-This data can be retreived through the <code>StorageManager#getPostalData()</code> method.</p>
+This data can be retrieved through the <code>StorageManager#getPostalData()</code> method.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -685,7 +685,7 @@ In order to update the PostalData.json, you can run the script found <a href="ht
 It contains a <code>PostalDataSet</code> which contains a <code>HashMap</code> of <code>String</code> representing the postal code mapped to the corresponding <code>PostalData</code>.
 This contains the x and y-coordinates of the corresponding postal code.
 The retrieval is done through the <code>PostalDataSet#getPostalData(int postal)</code> method.
-<code>PostalDataSet</code> is obtained through the <code>Model#getPostalDataSet()</code> interface which returns of a <code>Optional&lt;PostalDataSet&gt;</code>.</p>
+<code>PostalDataSet</code> is obtained through the <code>Model#getPostalDataSet()</code> interface.</p>
 </div>
 <div class="paragraph">
 <p><strong><span class="underline">3.Logic Component</span></strong></p>
@@ -694,7 +694,7 @@ The retrieval is done through the <code>PostalDataSet#getPostalData(int postal)<
 <p>The <code>Logic</code> component consists of two key sub-components, the <code>Command</code> component and the <code>Comparator</code> component.
 The <code>Command</code> component parses the user input into a <code>Postal</code> and then checks if the <code>Postal</code> is within the <code>PostalDataSet</code>.
 If the postal code provided is not within <code>PostalDataSet</code>, the <code>ListUnvisitedCommand</code> will simply filter out unreviewed restaurants.
-Otherwise, if the postal code is valid, it will creates a new <code>SortDistanceComparator&lt;Restaurant&gt;</code> class with the postal code and <code>PostalDataSet</code> inputted as the parameters.
+Otherwise, if the postal code is valid, it will create a new <code>SortDistanceComparator&lt;Restaurant&gt;</code> class with the postal code and <code>PostalDataSet</code> inputted as the parameters.
 This <code>SortDistanceComparator</code> is then passed to the <code>Model</code> class to sort the <code>SortedList</code> which encapsulates the <code>FilteredList</code>.
 This sequence is illustrated in the activity diagram below.</p>
 </div>
@@ -704,7 +704,7 @@ This sequence is illustrated in the activity diagram below.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>SortDistanceComparator&lt;Restaurant&gt;</code> class sorts the <code>Restaurant</code> based on the distance to the user inputted postal code.
+<p>The <code>SortDistanceComparator&lt;Restaurant&gt;</code> class sorts the <code>Restaurant</code> based on the distance to the user&#8217;s inputted postal code.
 It does this by first querying the <code>PostalData</code> of the postal code of the <code>Restaurant</code> from <code>PostalDataSet</code> then
 calculating the distance from the user inputted postal code.
 This result is then stored within the <code>Comparator</code> class.</p>
@@ -716,8 +716,8 @@ This result is then stored within the <code>Comparator</code> class.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If a <code>Restaurant</code> postal code is invalid or not in <code>PostalDataSet</code>, the distance will be set to <code>Double.MAX_VALUE</code>.
-This implies that these <code>Restaurant</code> will appear at the bottom of the <code>SortedList</code>.
+If a <code>Restaurant</code> 's postal code is not in <code>PostalDataSet</code>, the distance will be set to <code>Double.MAX_VALUE</code>.
+This implies that this <code>Restaurant</code> will appear at the bottom of the <code>SortedList</code>.
 </td>
 </tr>
 </table>
@@ -732,7 +732,7 @@ through the <code>Storage</code> component.</p>
 <div class="paragraph">
 <p>Step 2. The user calls <code>listUnvisited po/267951</code>. The <code>listUnvisitedCommand</code> class will be initialised.
 A new <code>SortDistanceComparator</code> will be created by the
-'listUnvisitedCommand` class containing the <code>PostalData</code> of '267951'.
+<code>listUnvisitedCommand</code> class containing the <code>PostalData</code> of '267951'.
 The command will then call the method <code>Model#filterAndSort(Predicate PREDICATE_SHOW_UNVISITED_RESTAURANTS, Comparator sortBy).</code></p>
 </div>
 <div class="admonitionblock note">
@@ -742,7 +742,7 @@ The command will then call the method <code>Model#filterAndSort(Predicate PREDIC
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If the postal code provided by the user is invalid, there will be no change in ordering of the <code>Restaurant</code>. The <code>Restaurant</code> will be filtered to only show <code>Restaurant</code> without any <code>Review</code>
+If the postal code provided by the user is invalid, there will be no change in ordering of the <code>Restaurant</code>. The list of <code>Restaurant</code> will be filtered to only show <code>Restaurant</code> without any <code>Review</code>.
 </td>
 </tr>
 </table>
@@ -3735,4 +3735,4 @@ Expected: Error message showing no internet connection found is displayed in the
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 14:38:13 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 15:09:26 UTC</div></div></div></body></html>
