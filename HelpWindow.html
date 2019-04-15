@@ -2,6 +2,11 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="header"><h1>The Food Diary - User Guide</h1></div><div id="content"><div id="preamble">
 <div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="images/userguide.png" alt="userguide" width="600">
+</div>
+</div>
 <div class="paragraph">
 <p>By: <code>W17-1</code>      Since: <code>Feb 2019</code>      Licence: <code>MIT</code></p>
 </div>
@@ -20,11 +25,12 @@
 <li><a href="#deleting-a-restaurant-code-delete-code">3.1.3. Deleting a restaurant: <code>delete</code></a></li>
 <li><a href="#listing-all-restaurants-code-list-code">3.1.4. Listing all restaurants : <code>list</code></a></li>
 <li><a href="#listing-all-restaurants-that-you-haven-t-visited-code-listunvisited-code">3.1.5. Listing all restaurants that you haven&#8217;t visited : <code>listUnvisited</code></a></li>
-<li><a href="#searching-restaurants-by-name-code-find-code">3.1.6. Searching restaurants by name: <code>find</code></a></li>
-<li><a href="#selecting-a-restaurant-code-select-code">3.1.7. Selecting a restaurant : <code>select</code></a></li>
-<li><a href="#setting-the-categories-of-a-restaurant-code-setcategories-code">3.1.8. Setting the categories of a restaurant : <code>setCategories</code></a></li>
-<li><a href="#filtering-restaurants-based-on-category-code-filter-code">3.1.9. Filtering restaurants based on category: <code>filter</code></a></li>
-<li><a href="#display-website-of-selected-restaurant-code-visitweb-code">3.1.10. Display website of selected restaurant : <code>visitWeb</code></a></li>
+<li><a href="#sorting-restaurants-by-rating-code-sort-code">3.1.6. Sorting restaurants by rating: <code>sort</code></a></li>
+<li><a href="#searching-restaurants-by-name-code-find-code">3.1.7. Searching restaurants by name: <code>find</code></a></li>
+<li><a href="#selecting-a-restaurant-code-select-code">3.1.8. Selecting a restaurant : <code>select</code></a></li>
+<li><a href="#setting-the-categories-of-a-restaurant-code-setcategories-code">3.1.9. Setting the categories of a restaurant : <code>setCategories</code></a></li>
+<li><a href="#filtering-restaurants-based-on-category-code-filter-code">3.1.10. Filtering restaurants based on category: <code>filter</code></a></li>
+<li><a href="#display-website-of-selected-restaurant-code-visitweb-code">3.1.11. Display website of selected restaurant : <code>visitWeb</code></a></li>
 </ul>
 </li>
 <li><a href="#review-features">3.2. Review Features</a>
@@ -41,8 +47,9 @@
 <li><a href="#viewing-help-code-help-code">3.3.1. Viewing help : <code>help</code></a></li>
 <li><a href="#personalising-your-food-diary-with-your-name-code-name-code">3.3.2. Personalising your food diary with your name: <code>name</code></a></li>
 <li><a href="#view-your-profile-and-usage-statistics-code-view-code">3.3.3. View your profile and usage statistics : <code>view</code></a></li>
-<li><a href="#exiting-the-program-code-exit-code">3.3.4. Exiting the program : <code>exit</code></a></li>
-<li><a href="#saving-the-data">3.3.5. Saving the data</a></li>
+<li><a href="#share-to-facebook-code-share-code-coming-in-v2-0">3.3.4. Share to Facebook: <code>share</code> (Coming in v2.0)</a></li>
+<li><a href="#exiting-the-program-code-exit-code">3.3.5. Exiting the program : <code>exit</code></a></li>
+<li><a href="#saving-the-data">3.3.6. Saving the data</a></li>
 </ul>
 </li>
 </ul>
@@ -112,7 +119,7 @@ This is a <strong>note</strong>. A warning indicates important additional inform
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-This is a <strong>tip</strong>. A tip indicates good to know information that would improve your user experience
+This is a <strong>tip</strong>. A tip indicates good to know information that would improve your user experience.
 </td>
 </tr>
 </table>
@@ -436,7 +443,117 @@ Returns all the restaurants that has no reviews ranked based on the proximity to
 </div>
 </div>
 <div class="sect3">
-<h4 id="searching-restaurants-by-name-code-find-code"><a class="link" href="#searching-restaurants-by-name-code-find-code">3.1.6. Searching restaurants by name: <code>find</code></a></h4>
+<h4 id="sorting-restaurants-by-rating-code-sort-code"><a class="link" href="#sorting-restaurants-by-rating-code-sort-code">3.1.6. Sorting restaurants by rating: <code>sort</code></a></h4>
+<div class="paragraph">
+<p>Sorting your restaurants from favourite to least favourite, or vice versa, has never been easier.
+Order all of the restaurants in the Food Diary from highest to lowest ratings based on the average ratings you&#8217;ve given that restaurant in all your reviews for them.<br>
+Format: <code>sort [or/ORDER] [l/LIMIT]</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>ORDER</code> can only take the form of <code>or/ASC</code> or <code>or/DES</code>, case-insensitive.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>When <code>sort or/ASC</code> is executed, the list of restaurants returned will be in ascending order of ratings.</p>
+</li>
+<li>
+<p>When <code>sort or/DES</code> is executed, the list of restaurants returned will be in descending order of ratings.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>LIMIT</code> <strong>must be a positive integer</strong> <code>1, 2, 3, &#8230;&#8203;</code></p>
+</li>
+<li>
+<p>If <code>LIMIT</code> you have entered is larger than the number of unique ratings in the list of restaurants, all of the restaurants in the sorted list will be shown.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Simply want to see your favourite restaurants? Enter the <code>sort</code> command without any parameters to see all of the restaurants, from highest to lowest rating!</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/sortasc.png" alt="sortasc" width="600">
+</div>
+</div>
+<div class="paragraph">
+<p>_Figure 1. Result obtained when the command <code>sort or/ASC l/2</code> is executed</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/sortdes.png" alt="sortdes" width="600">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 2. Result obtained when the command <code>sort or/DES l/2</code> is executed</em></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>sort</code> or <code>sort or/DES</code>
+Both will sort the list of restaurants in descending order of ratings.</p>
+</li>
+<li>
+<p><code>sort or/asC</code> or <code>sort or/ASC</code><br>
+Both will sort the list of restaurants in ascending order of ratings.</p>
+</li>
+<li>
+<p><code>sort or/ASC l/2</code>
+Your list of restaurants will be sorted in ascending order of ratings and only the restaurants with the lowest 2 ratings will be displayed.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Restaurants with no reviews will have no ratings, and will thus have an <code>N.A.</code> rating. Restaurants with <code>N.A.</code> rating will come before
+those with positive ratings if in ascending order, and at the end of the list if sorted in descending order.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="searching-restaurants-by-name-code-find-code"><a class="link" href="#searching-restaurants-by-name-code-find-code">3.1.7. Searching restaurants by name: <code>find</code></a></h4>
 <div class="paragraph">
 <p>Find restaurants with names containing any of the given keywords.<br>
 Format: <code>find KEYWORD [MORE_KEYWORDS]</code></p>
@@ -468,7 +585,7 @@ Returns any restaurant with name containing <code>KFC</code>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="selecting-a-restaurant-code-select-code"><a class="link" href="#selecting-a-restaurant-code-select-code">3.1.7. Selecting a restaurant : <code>select</code></a></h4>
+<h4 id="selecting-a-restaurant-code-select-code"><a class="link" href="#selecting-a-restaurant-code-select-code">3.1.8. Selecting a restaurant : <code>select</code></a></h4>
 <div class="paragraph">
 <p>Select a restaurant based on its index on the list and display information about it.<br>
 Format: <code>select INDEX</code></p>
@@ -500,7 +617,7 @@ Selects the restaurant in the displayed restaurants list with index 3 and displa
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/selectbefore.png" alt="selectbefore" width="800">
+<img src="images/selectbefore.png" alt="selectbefore" width="600">
 </div>
 </div>
 <div class="paragraph">
@@ -508,7 +625,7 @@ Selects the restaurant in the displayed restaurants list with index 3 and displa
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/selectafter.png" alt="selectafter" width="800">
+<img src="images/selectafter.png" alt="selectafter" width="600">
 </div>
 </div>
 <div class="paragraph">
@@ -516,7 +633,7 @@ Selects the restaurant in the displayed restaurants list with index 3 and displa
 </div>
 </div>
 <div class="sect3">
-<h4 id="setting-the-categories-of-a-restaurant-code-setcategories-code"><a class="link" href="#setting-the-categories-of-a-restaurant-code-setcategories-code">3.1.8. Setting the categories of a restaurant : <code>setCategories</code></a></h4>
+<h4 id="setting-the-categories-of-a-restaurant-code-setcategories-code"><a class="link" href="#setting-the-categories-of-a-restaurant-code-setcategories-code">3.1.9. Setting the categories of a restaurant : <code>setCategories</code></a></h4>
 <div class="paragraph">
 <p>Sets the categories of a restaurant identified by the index number used in the list.<br>
 Format: <code>setCategories INDEX [c/CUISINE] [oc/OCCASION] [pr/PRICE_RANGE]</code></p>
@@ -660,7 +777,7 @@ Only sets the cuisine of the third restaurant to <code>Western</code>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="filtering-restaurants-based-on-category-code-filter-code"><a class="link" href="#filtering-restaurants-based-on-category-code-filter-code">3.1.9. Filtering restaurants based on category: <code>filter</code></a></h4>
+<h4 id="filtering-restaurants-based-on-category-code-filter-code"><a class="link" href="#filtering-restaurants-based-on-category-code-filter-code">3.1.10. Filtering restaurants based on category: <code>filter</code></a></h4>
 <div class="paragraph">
 <p>Filters and lists the restaurants with categories matching the keywords entered.<br>
 Format: <code>filter KEYWORD [MORE_KEYWORDS]</code></p>
@@ -725,7 +842,7 @@ Displays restaurants with any category matching <code>$</code>, <code>casual</co
 </div>
 </div>
 <div class="sect3">
-<h4 id="display-website-of-selected-restaurant-code-visitweb-code"><a class="link" href="#display-website-of-selected-restaurant-code-visitweb-code">3.1.10. Display website of selected restaurant : <code>visitWeb</code></a></h4>
+<h4 id="display-website-of-selected-restaurant-code-visitweb-code"><a class="link" href="#display-website-of-selected-restaurant-code-visitweb-code">3.1.11. Display website of selected restaurant : <code>visitWeb</code></a></h4>
 <div class="paragraph">
 <p>The restaurants website can serve as your reference when you are adding it into your restaurant list or when writing a review for the restaurant.</p>
 </div>
@@ -1164,14 +1281,85 @@ Format: <code>view</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.3.4. Exiting the program : <code>exit</code></a></h4>
+<h4 id="share-to-facebook-code-share-code-coming-in-v2-0"><a class="link" href="#share-to-facebook-code-share-code-coming-in-v2-0">3.3.4. Share to Facebook: <code>share</code> (Coming in v2.0)</a></h4>
+<div class="paragraph">
+<p>Share your reviews to Facebook.<br>
+Format: <code>share INDEX</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>You have to use <code>select</code> command to select a restaurant whose review will be shared.</p>
+</li>
+<li>
+<p>The index refers to the index number of a review shown in the selected restaurant&#8217;s list of reviews.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> <code>1, 2, 3, &#8230;&#8203;</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Steps to share your review to Facebook:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Select your desired restaurant by either clicking on it using a mouse or executing the <code>select INDEX</code> command, using its index number to replace <code>INDEX</code>.</p>
+</li>
+<li>
+<p>Enter <code>share INDEX</code> command, replacing <code>INDEX</code> with the desired review&#8217;s index number to indicate the review to be shared.</p>
+</li>
+<li>
+<p>Enter your login details when prompted by the Facebook pop-up.</p>
+</li>
+<li>
+<p>Give write permission to The Food Diary post the review on your Facebook account. Rest assured that your account details would not be retained in The Food Diary to protect your privacy.</p>
+</li>
+<li>
+<p>Click the <code>Share to Wall</code> button when prompted and you&#8217;ll see your review on your Facebook wall!</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>list</code><br>
+<code>share 2</code></p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>You will not be able to share the review to Facebook if you do not allow The Food Diary write permission to your Facebook account.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.3.5. Exiting the program : <code>exit</code></a></h4>
 <div class="paragraph">
 <p>Exits the program.<br>
 Format: <code>exit</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="saving-the-data"><a class="link" href="#saving-the-data">3.3.5. Saving the data</a></h4>
+<h4 id="saving-the-data"><a class="link" href="#saving-the-data">3.3.6. Saving the data</a></h4>
 <div class="paragraph">
 <p>The Food Diary data are saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.</p>
@@ -1292,4 +1480,4 @@ e.g. <code>view</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 10:03:48 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 10:16:33 UTC</div></div></div></body></html>

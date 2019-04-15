@@ -2,6 +2,11 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="index.html">The Food Diary</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link active" href="DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/cs2103-ay1819s2-w17-1/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>The Food Diary - Developer Guide</h1></div><div id="content"><div id="preamble">
 <div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="images/developerguide.png" alt="developerguide" width="600">
+</div>
+</div>
 <div class="paragraph">
 <p>By: <code>W17-1</code>      Since: <code>Feb 2019</code>      Licence: <code>MIT</code></p>
 </div>
@@ -9,63 +14,64 @@
 <div id="toc" class="toc">
 <div id="toctitle"></div>
 <ul class="sectlevel1">
-<li><a href="#setting-up">1. Setting up</a>
+<li><a href="#welcome-to-the-food-diary">1. Welcome to the Food Diary</a></li>
+<li><a href="#setting-up">2. Setting up</a>
 <ul class="sectlevel2">
-<li><a href="#prerequisites">1.1. Prerequisites</a></li>
-<li><a href="#setting-up-the-project-in-your-computer">1.2. Setting up the project in your computer</a></li>
-<li><a href="#verifying-the-setup">1.3. Verifying the setup</a></li>
-<li><a href="#configurations-to-do-before-writing-code">1.4. Configurations to do before writing code</a></li>
+<li><a href="#prerequisites">2.1. Prerequisites</a></li>
+<li><a href="#setting-up-the-project-in-your-computer">2.2. Setting up the project in your computer</a></li>
+<li><a href="#verifying-the-setup">2.3. Verifying the setup</a></li>
+<li><a href="#configurations-to-do-before-writing-code">2.4. Configurations to do before writing code</a></li>
 </ul>
 </li>
-<li><a href="#design">2. Design</a>
+<li><a href="#design">3. Design</a>
 <ul class="sectlevel2">
-<li><a href="#Design-Architecture">2.1. Architecture</a></li>
-<li><a href="#Design-Ui">2.2. UI component</a></li>
-<li><a href="#Design-Logic">2.3. Logic component</a></li>
-<li><a href="#Design-Model">2.4. Model component</a></li>
-<li><a href="#Design-Storage">2.5. Storage component</a></li>
-<li><a href="#Design-Commons">2.6. Common classes</a></li>
+<li><a href="#Design-Architecture">3.1. Architecture</a></li>
+<li><a href="#Design-Ui">3.2. UI component</a></li>
+<li><a href="#Design-Logic">3.3. Logic component</a></li>
+<li><a href="#Design-Model">3.4. Model component</a></li>
+<li><a href="#Design-Storage">3.5. Storage component</a></li>
+<li><a href="#Design-Commons">3.6. Common classes</a></li>
 </ul>
 </li>
-<li><a href="#implementation">3. Implementation</a>
+<li><a href="#implementation">4. Implementation</a>
 <ul class="sectlevel2">
-<li><a href="#code-listunvisited-code-feature-which-sorts-code-restaurant-code-by-distance-to-a-specified-postal-code">3.1. <code>listUnvisited</code> feature which sorts <code>Restaurant</code> by distance to a specified postal code</a></li>
-<li><a href="#code-select-code-feature-which-selects-a-restaurant-and-displays-all-of-its-information">3.2. <code>select</code> feature which selects a restaurant and displays all of its information</a></li>
-<li><a href="#undo-redo-feature">3.3. Undo/Redo feature</a></li>
-<li><a href="#restaurant-categorisation">3.4. Restaurant Categorisation</a></li>
-<li><a href="#add-adddefault-edit-delete-reviews">3.5. Add/AddDefault/Edit/Delete Reviews</a></li>
-<li><a href="#visit-webpage-feature">3.6. Visit Webpage Feature</a></li>
-<li><a href="#proposed-data-encryption">3.7. [Proposed] Data Encryption</a></li>
-<li><a href="#proposed-share-reviews-to-facebook">3.8. [Proposed] Share Reviews to Facebook</a></li>
-<li><a href="#logging">3.9. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.10. Configuration</a></li>
+<li><a href="#code-listunvisited-code-feature-which-sorts-code-restaurant-code-by-distance-to-a-specified-postal-code">4.1. <code>listUnvisited</code> feature which sorts <code>Restaurant</code> by distance to a specified postal code</a></li>
+<li><a href="#display-of-restaurants-and-restaurant-details">4.2. Display of Restaurants and Restaurant Details</a></li>
+<li><a href="#undo-redo-feature">4.3. Undo/Redo feature</a></li>
+<li><a href="#restaurant-categorisation">4.4. Restaurant Categorisation</a></li>
+<li><a href="#add-adddefault-edit-delete-reviews">4.5. Add/AddDefault/Edit/Delete Reviews</a></li>
+<li><a href="#visit-webpage-feature">4.6. Visit Webpage Feature</a></li>
+<li><a href="#proposed-data-encryption">4.7. [Proposed] Data Encryption</a></li>
+<li><a href="#proposed-share-reviews-to-facebook">4.8. [Proposed] Share Reviews to Facebook</a></li>
+<li><a href="#logging">4.9. Logging</a></li>
+<li><a href="#Implementation-Configuration">4.10. Configuration</a></li>
 </ul>
 </li>
-<li><a href="#documentation">4. Documentation</a>
+<li><a href="#documentation">5. Documentation</a>
 <ul class="sectlevel2">
-<li><a href="#editing-documentation">4.1. Editing Documentation</a></li>
-<li><a href="#publishing-documentation">4.2. Publishing Documentation</a></li>
-<li><a href="#converting-documentation-to-pdf-format">4.3. Converting Documentation to PDF format</a></li>
-<li><a href="#Docs-SiteWideDocSettings">4.4. Site-wide Documentation Settings</a></li>
-<li><a href="#Docs-PerFileDocSettings">4.5. Per-file Documentation Settings</a></li>
-<li><a href="#site-template">4.6. Site Template</a></li>
+<li><a href="#editing-documentation">5.1. Editing Documentation</a></li>
+<li><a href="#publishing-documentation">5.2. Publishing Documentation</a></li>
+<li><a href="#converting-documentation-to-pdf-format">5.3. Converting Documentation to PDF format</a></li>
+<li><a href="#Docs-SiteWideDocSettings">5.4. Site-wide Documentation Settings</a></li>
+<li><a href="#Docs-PerFileDocSettings">5.5. Per-file Documentation Settings</a></li>
+<li><a href="#site-template">5.6. Site Template</a></li>
 </ul>
 </li>
-<li><a href="#Testing">5. Testing</a>
+<li><a href="#Testing">6. Testing</a>
 <ul class="sectlevel2">
-<li><a href="#running-tests">5.1. Running Tests</a></li>
-<li><a href="#types-of-tests">5.2. Types of tests</a></li>
-<li><a href="#troubleshooting-testing">5.3. Troubleshooting Testing</a></li>
+<li><a href="#running-tests">6.1. Running Tests</a></li>
+<li><a href="#types-of-tests">6.2. Types of tests</a></li>
+<li><a href="#troubleshooting-testing">6.3. Troubleshooting Testing</a></li>
 </ul>
 </li>
-<li><a href="#dev-ops">6. Dev Ops</a>
+<li><a href="#dev-ops">7. Dev Ops</a>
 <ul class="sectlevel2">
-<li><a href="#build-automation">6.1. Build Automation</a></li>
-<li><a href="#continuous-integration">6.2. Continuous Integration</a></li>
-<li><a href="#coverage-reporting">6.3. Coverage Reporting</a></li>
-<li><a href="#documentation-previews">6.4. Documentation Previews</a></li>
-<li><a href="#making-a-release">6.5. Making a Release</a></li>
-<li><a href="#managing-dependencies">6.6. Managing Dependencies</a></li>
+<li><a href="#build-automation">7.1. Build Automation</a></li>
+<li><a href="#continuous-integration">7.2. Continuous Integration</a></li>
+<li><a href="#coverage-reporting">7.3. Coverage Reporting</a></li>
+<li><a href="#documentation-previews">7.4. Documentation Previews</a></li>
+<li><a href="#making-a-release">7.5. Making a Release</a></li>
+<li><a href="#managing-dependencies">7.6. Managing Dependencies</a></li>
 </ul>
 </li>
 <li><a href="#GetStartedProgramming">Appendix A: Product Scope</a></li>
@@ -78,22 +84,79 @@
 <li><a href="#launch-and-shutdown">F.1. Launch and Shutdown</a></li>
 <li><a href="#deleting-a-restaurant">F.2. Deleting a restaurant</a></li>
 <li><a href="#selecting-a-restaurant">F.3. Selecting a restaurant</a></li>
-<li><a href="#adding-a-review-to-a-restaurant">F.4. Adding a Review to a restaurant</a></li>
-<li><a href="#adding-a-default-review-to-a-restaurant">F.5. Adding a default Review to a restaurant</a></li>
-<li><a href="#editing-the-review-of-a-restaurant">F.6. Editing the Review of a restaurant</a></li>
-<li><a href="#deleting-the-review-of-a-restaurant">F.7. Deleting the Review of a restaurant</a></li>
-<li><a href="#setting-the-categories-of-a-restaurant">F.8. Setting the categories of a restaurant</a></li>
-<li><a href="#saving-data">F.9. Saving data</a></li>
+<li><a href="#sorting-restaurant-list">F.4. Sorting restaurant list</a></li>
+<li><a href="#adding-a-review-to-a-restaurant">F.5. Adding a Review to a restaurant</a></li>
+<li><a href="#adding-a-default-review-to-a-restaurant">F.6. Adding a default Review to a restaurant</a></li>
+<li><a href="#editing-the-review-of-a-restaurant">F.7. Editing the Review of a restaurant</a></li>
+<li><a href="#deleting-the-review-of-a-restaurant">F.8. Deleting the Review of a restaurant</a></li>
+<li><a href="#setting-the-categories-of-a-restaurant">F.9. Setting the categories of a restaurant</a></li>
+<li><a href="#saving-data">F.10. Saving data</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect1">
-<h2 id="setting-up"><a class="link" href="#setting-up">1. Setting up</a></h2>
+<h2 id="welcome-to-the-food-diary"><a class="link" href="#welcome-to-the-food-diary">1. Welcome to the Food Diary</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Welcome to the <strong>Food Diary</strong>! The <strong>Food Diary</strong> is a desktop app for storing your personal food reviews and obtain food recommendations based on your past reviews.</p>
+</div>
+<div class="paragraph">
+<p>This developer guide contains information on the mechanics of all of the features of the <strong>Food Diary</strong> and is thus suited for developers of all levels to learn the inner workings of our application and how to effectively build on them.</p>
+</div>
+<div class="paragraph">
+<p>If you would like to improve on the <strong>Food Diary</strong>, here&#8217;s a good place to start!</p>
+</div>
+<div class="paragraph">
+<p><strong>Callouts</strong></p>
+</div>
+<div class="paragraph">
+<p>Callouts are boxes with important information regarding the usage of the Food Diary. These 3 callouts are used throughout our User Guide.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This is a <strong>note</strong>. A warning indicates important additional information that should be read.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+This is a <strong>tip</strong>. A tip indicates good to know information that would improve your user experience
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+This is a <strong>warning</strong>. A warning indicates critical information that would affect the functionality of this programme.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="setting-up"><a class="link" href="#setting-up">2. Setting up</a></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="prerequisites"><a class="link" href="#prerequisites">1.1. Prerequisites</a></h3>
+<h3 id="prerequisites"><a class="link" href="#prerequisites">2.1. Prerequisites</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -132,7 +195,7 @@ Do not disable them. If you have disabled them, go to <code>File</code> &gt; <co
 </div>
 </div>
 <div class="sect2">
-<h3 id="setting-up-the-project-in-your-computer"><a class="link" href="#setting-up-the-project-in-your-computer">1.2. Setting up the project in your computer</a></h3>
+<h3 id="setting-up-the-project-in-your-computer"><a class="link" href="#setting-up-the-project-in-your-computer">2.2. Setting up the project in your computer</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -190,7 +253,7 @@ This will generate all resources required by the application and tests.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="verifying-the-setup"><a class="link" href="#verifying-the-setup">1.3. Verifying the setup</a></h3>
+<h3 id="verifying-the-setup"><a class="link" href="#verifying-the-setup">2.3. Verifying the setup</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -203,9 +266,9 @@ This will generate all resources required by the application and tests.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurations-to-do-before-writing-code"><a class="link" href="#configurations-to-do-before-writing-code">1.4. Configurations to do before writing code</a></h3>
+<h3 id="configurations-to-do-before-writing-code"><a class="link" href="#configurations-to-do-before-writing-code">2.4. Configurations to do before writing code</a></h3>
 <div class="sect3">
-<h4 id="configuring-the-coding-style"><a class="link" href="#configuring-the-coding-style">1.4.1. Configuring the coding style</a></h4>
+<h4 id="configuring-the-coding-style"><a class="link" href="#configuring-the-coding-style">2.4.1. Configuring the coding style</a></h4>
 <div class="paragraph">
 <p>This project follows <a href="https://github.com/oss-generic/process/blob/master/docs/CodingStandards.adoc">oss-generic coding standards</a>. IntelliJ&#8217;s default style is mostly compliant with ours but it uses a different import order from ours. To rectify,</p>
 </div>
@@ -237,7 +300,7 @@ This will generate all resources required by the application and tests.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="updating-documentation-to-match-your-fork"><a class="link" href="#updating-documentation-to-match-your-fork">1.4.2. Updating documentation to match your fork</a></h4>
+<h4 id="updating-documentation-to-match-your-fork"><a class="link" href="#updating-documentation-to-match-your-fork">2.4.2. Updating documentation to match your fork</a></h4>
 <div class="paragraph">
 <p>After forking the repo, the documentation will still have the SE-EDU branding and refer to the <code>se-edu/addressbook-level4</code> repo.</p>
 </div>
@@ -256,7 +319,7 @@ This will generate all resources required by the application and tests.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="setting-up-ci"><a class="link" href="#setting-up-ci">1.4.3. Setting up CI</a></h4>
+<h4 id="setting-up-ci"><a class="link" href="#setting-up-ci">2.4.3. Setting up CI</a></h4>
 <div class="paragraph">
 <p>Set up Travis to perform Continuous Integration (CI) for your fork. See <a href="UsingTravis.html">UsingTravis.adoc</a> to learn how to set it up.</p>
 </div>
@@ -292,14 +355,14 @@ Having both Travis and AppVeyor ensures your App works on both Unix-based platfo
 </div>
 </div>
 <div class="sect3">
-<h4 id="getting-started-with-coding"><a class="link" href="#getting-started-with-coding">1.4.4. Getting started with coding</a></h4>
+<h4 id="getting-started-with-coding"><a class="link" href="#getting-started-with-coding">2.4.4. Getting started with coding</a></h4>
 <div class="paragraph">
 <p>When you are ready to start coding,</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Get some sense of the overall design by reading <a href="#Design-Architecture">Section 2.1, &#8220;Architecture&#8221;</a>.</p>
+<p>Get some sense of the overall design by reading <a href="#Design-Architecture">Section 3.1, &#8220;Architecture&#8221;</a>.</p>
 </li>
 <li>
 <p>Take a look at <a href="#GetStartedProgramming">Appendix A, <em>Product Scope</em></a>.</p>
@@ -311,10 +374,10 @@ Having both Travis and AppVeyor ensures your App works on both Unix-based platfo
 </div>
 </div>
 <div class="sect1">
-<h2 id="design"><a class="link" href="#design">2. Design</a></h2>
+<h2 id="design"><a class="link" href="#design">3. Design</a></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="Design-Architecture"><a class="link" href="#Design-Architecture">2.1. Architecture</a></h3>
+<h3 id="Design-Architecture"><a class="link" href="#Design-Architecture">3.1. Architecture</a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/Architecture.png" alt="Architecture" width="600">
@@ -416,7 +479,7 @@ The following class plays an important role at the architecture level:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="Design-Ui"><a class="link" href="#Design-Ui">2.2. UI component</a></h3>
+<h3 id="Design-Ui"><a class="link" href="#Design-Ui">3.2. UI component</a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/UiClassDiagramV1.3.png" alt="UiClassDiagramV1.3" width="800">
@@ -427,7 +490,7 @@ The following class plays an important role at the architecture level:</p>
 <p><strong>API</strong> : <a href="https://github.com/cs2103-ay1819s2-w17-1/main/src/main/java/seedu/address/ui/Ui.java"><code>Ui.java</code></a></p>
 </div>
 <div class="paragraph">
-<p>The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>RestaurantListPanel</code>, <code>StatusBarFooter</code>, <code>BrowserPanel</code>, 'ReviewListPanel', etc. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
+<p>The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>RestaurantListPanel</code>, <code>StatusBarFooter</code>, <code>BrowserPanel</code>, <code>ReviewListPanel</code>, etc. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
 </div>
 <div class="paragraph">
 <p>The <code>UI</code> component uses JavaFx UI framework. The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder. For example, the layout of the <a href="https://github.com/cs2103-ay1819s2-w17-1/main/src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/cs2103-ay1819s2-w17-1/main/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
@@ -447,7 +510,7 @@ The following class plays an important role at the architecture level:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="Design-Logic"><a class="link" href="#Design-Logic">2.3. Logic component</a></h3>
+<h3 id="Design-Logic"><a class="link" href="#Design-Logic">3.3. Logic component</a></h3>
 <div id="fig-LogicClassDiagram" class="imageblock">
 <div class="content">
 <img src="images/LogicClassDiagram.png" alt="LogicClassDiagram" width="800">
@@ -488,7 +551,7 @@ The following class plays an important role at the architecture level:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="Design-Model"><a class="link" href="#Design-Model">2.4. Model component</a></h3>
+<h3 id="Design-Model"><a class="link" href="#Design-Model">3.4. Model component</a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/ModelClassDiagramV1.3.png" alt="ModelClassDiagramV1.3" width="800">
@@ -533,7 +596,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Food Diary</c
 </div>
 </div>
 <div class="sect2">
-<h3 id="Design-Storage"><a class="link" href="#Design-Storage">2.5. Storage component</a></h3>
+<h3 id="Design-Storage"><a class="link" href="#Design-Storage">3.5. Storage component</a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/StorageClassDiagramV1.2.png" alt="StorageClassDiagramV1.2" width="800">
@@ -558,7 +621,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Food Diary</c
 </div>
 </div>
 <div class="sect2">
-<h3 id="Design-Commons"><a class="link" href="#Design-Commons">2.6. Common classes</a></h3>
+<h3 id="Design-Commons"><a class="link" href="#Design-Commons">3.6. Common classes</a></h3>
 <div class="paragraph">
 <p>Classes used by multiple components are in the <code>seedu.addressbook.commons</code> package.</p>
 </div>
@@ -566,15 +629,15 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Food Diary</c
 </div>
 </div>
 <div class="sect1">
-<h2 id="implementation"><a class="link" href="#implementation">3. Implementation</a></h2>
+<h2 id="implementation"><a class="link" href="#implementation">4. Implementation</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>This section describes some noteworthy details on how certain features are implemented.</p>
 </div>
 <div class="sect2">
-<h3 id="code-listunvisited-code-feature-which-sorts-code-restaurant-code-by-distance-to-a-specified-postal-code"><a class="link" href="#code-listunvisited-code-feature-which-sorts-code-restaurant-code-by-distance-to-a-specified-postal-code">3.1. <code>listUnvisited</code> feature which sorts <code>Restaurant</code> by distance to a specified postal code</a></h3>
+<h3 id="code-listunvisited-code-feature-which-sorts-code-restaurant-code-by-distance-to-a-specified-postal-code"><a class="link" href="#code-listunvisited-code-feature-which-sorts-code-restaurant-code-by-distance-to-a-specified-postal-code">4.1. <code>listUnvisited</code> feature which sorts <code>Restaurant</code> by distance to a specified postal code</a></h3>
 <div class="sect3">
-<h4 id="current-implementation"><a class="link" href="#current-implementation">3.1.1. Current Implementation</a></h4>
+<h4 id="current-implementation"><a class="link" href="#current-implementation">4.1.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The <code>listUnvisited</code> feature accepts a postal code as user input and displays restaurants without reviews nearest to the user&#8217;s inputted postal code.</p>
 </div>
@@ -700,7 +763,7 @@ provided to show the nearest <code>Restaurants</code> with zero review.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">3.1.2. Design Considerations</a></h4>
+<h4 id="design-considerations"><a class="link" href="#design-considerations">4.1.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-is-location-data-accessed-for-each-postal-code"><a class="link" href="#aspect-how-is-location-data-accessed-for-each-postal-code">Aspect: How is location data accessed for each postal code?</a></h5>
 <div class="ulist">
@@ -770,15 +833,26 @@ provided to show the nearest <code>Restaurants</code> with zero review.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="code-select-code-feature-which-selects-a-restaurant-and-displays-all-of-its-information"><a class="link" href="#code-select-code-feature-which-selects-a-restaurant-and-displays-all-of-its-information">3.2. <code>select</code> feature which selects a restaurant and displays all of its information</a></h3>
+<h3 id="display-of-restaurants-and-restaurant-details"><a class="link" href="#display-of-restaurants-and-restaurant-details">4.2. Display of Restaurants and Restaurant Details</a></h3>
+<div class="paragraph">
+<p>In order to enhance user&#8217;s experience in the Food Diary, the <code>select</code> feature is enhanced and a new <code>sort</code> feature is implemented.
+These two features complete the diary aspect of the application by generating total visits and average ratings from the user&#8217;s own reviews and allowing users to sort the restaurants to see their favourite ones.
+This section describes the implementation of these two features.</p>
+</div>
 <div class="sect3">
-<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.2.1. Current Implementation</a></h4>
+<h4 id="select-feature"><a class="link" href="#select-feature">4.2.1. Select Feature</a></h4>
+<div class="paragraph">
+<p>The <code>select</code> feature displays a restaurant&#8217;s summary and reviews when it is selected.
+The restaurant&#8217;s summary is made up its generated data, the average rating and total visits, which are calculated from the reviews of a restaurant in the <code>Summary</code> class.</p>
+</div>
+<div class="sect4">
+<h5 id="current-implementation-2"><a class="link" href="#current-implementation-2">Current Implementation</a></h5>
 <div class="paragraph">
 <p>The <code>select</code> feature is a pre-existing one from AddressBook Level 4.
-The enhancement made is to improve the User Experience by displaying increased quantity and quality of restaurant information upon selection.</p>
+The enhancement made is to display greater quantity and quality of restaurant information upon selection.</p>
 </div>
 <div class="paragraph">
-<p>The following is the chain of activities that happen when the <code>select</code> command is executed.</p>
+<p>You can refer to <em>Figure 1</em> to see the chain of activities that happen when the <code>select</code> command is executed.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -786,40 +860,27 @@ The enhancement made is to improve the User Experience by displaying increased q
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>selection</code> mechanism is facilitated by&#8230;&#8203;</p>
+<p><em>Figure 1. Activity Diagram for <code>select</code> command</em></p>
 </div>
 <div class="paragraph">
-<p>The undo/redo mechanism is facilitated by <code>VersionedAddressBook</code>.
-It extends <code>AddressBook</code> with an undo/redo history, stored internally as an <code>addressBookStateList</code> and <code>currentStatePointer</code>.
-Additionally, it implements the following operations:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>VersionedAddressBook#commit()</code>&#8201;&#8212;&#8201;Saves the current address book state in its history.</p>
-</li>
-<li>
-<p><code>VersionedAddressBook#undo()</code>&#8201;&#8212;&#8201;Restores the previous address book state from its history.</p>
-</li>
-<li>
-<p><code>VersionedAddressBook#redo()</code>&#8201;&#8212;&#8201;Restores a previously undone address book state from its history.</p>
-</li>
-</ul>
+<p>The majors components involved in the implementation of this feature are the <code>FoodDiaryParser</code>, <code>SelectCommandParser</code> and <code>SelectCommand</code> classes. Their role in this implementation will be expounded on below.</p>
 </div>
 <div class="paragraph">
-<p>These operations are exposed in the <code>Model</code> interface as <code>Model#commitAddressBook()</code>, <code>Model#undoAddressBook()</code> and <code>Model#redoAddressBook()</code> respectively.</p>
+<p>The following describes how the <code>select</code> mechanism behaves at each step:</p>
 </div>
 <div class="paragraph">
-<p>Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.</p>
+<p>Step 1. The user executes <code>select INDEX</code> command, whereby <code>INDEX</code> is a positive integer within the range of indexes in the filtered restaurant list.</p>
 </div>
 <div class="paragraph">
-<p>Step 1. The user launches the application for the first time. The <code>VersionedAddressBook</code> will be initialized with the initial address book state, and the <code>currentStatePointer</code> pointing to that single address book state.</p>
+<p>Step 2. The <code>FoodDiaryParser</code> parses the user&#8217;s input and constructs a <code>SelectCommandParser</code> object, which then parses the input index into an <code>Index</code> object and constructs a <code>SelectCommand</code> object.</p>
 </div>
 <div class="paragraph">
-<p>Step 2. The user executes <code>delete 5</code> command to delete the 5th restaurant in the address book. The <code>delete</code> command calls <code>Model#commitAddressBook()</code>, causing the modified state of the address book after the <code>delete 5</code> command executes to be saved in the <code>addressBookStateList</code>, and the <code>currentStatePointer</code> is shifted to the newly inserted address book state.</p>
+<p>Step 3. The <code>SelectCommand</code> is executed and calls on <code>Model#setSelectedRestaurant()</code> to set the selected restaurant to be the restaurant with the target <code>Index</code> in the current filtered restaurant list.</p>
 </div>
 <div class="paragraph">
-<p>Step 3. The user executes <code>add n/David &#8230;&#8203;</code> to add a new restaurant. The <code>add</code> command also calls <code>Model#commitAddressBook()</code>, causing another modified address book state to be saved into the <code>addressBookStateList</code>.</p>
+<p>Step 4. The listeners in the <code>RestaurantSummaryPanel</code> and <code>ReviewListPanel</code> pick up the new value of the selected restaurant and loads the restaurant&#8217;s summary and reviews respectively onto the GUI.
+The <code>RestaurantSummaryPanel</code> does so by calling its own <code>RestaurantSummaryPanel#loadSummary()</code> operation, which retrieves the selected restaurant&#8217;s attributes such as <code>Summary</code>, and through it,
+the restaurant&#8217;s <code>avgRating</code> and <code>totalVisit</code>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -828,13 +889,11 @@ Additionally, it implements the following operations:</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If a command fails its execution, it will not call <code>Model#commitAddressBook()</code>, so the address book state will not be saved into the <code>addressBookStateList</code>.
+A restaurant with no reviews is indicated with <code>totalVisits</code> = 0 and <code>avgRating</code> = -1. The number -1 is chosen as all user input <code>Ratings</code> can only be a number between [0,5], thus -1 is a clear
+indication that there is no <code>avgRating</code> for the particular restaurant. This then allows a clear check that <code>avgRating</code> field displayed in the UI should be <code>N.A.</code>.
 </td>
 </tr>
 </table>
-</div>
-<div class="paragraph">
-<p>Step 4. The user now decides that adding the restaurant was a mistake, and decides to undo that action by executing the <code>undo</code> command. The <code>undo</code> command will call <code>Model#undoAddressBook()</code>, which will shift the <code>currentStatePointer</code> once to the left, pointing it to the previous address book state, and restores the address book to that state.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -843,118 +902,301 @@ If a command fails its execution, it will not call <code>Model#commitAddressBook
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If the <code>currentStatePointer</code> is at index 0, pointing to the initial address book state, then there are no previous address book states to restore. The <code>undo</code> command uses <code>Model#canUndoAddressBook()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo.
+There is no state change to the Food Diary as the <code>select</code> command only selects a restaurant from the current <code>FilteredList</code> of restaurants.
+As such, this command cannot be undone or redone through the <code>undo</code> and <code>redo</code> commands respectively.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>The following sequence diagram shows how the undo operation works:</p>
-</div>
-<div class="paragraph">
-<p>The <code>redo</code> command does the opposite&#8201;&#8212;&#8201;it calls <code>Model#redoAddressBook()</code>, which shifts the <code>currentStatePointer</code> once to the right, pointing to the previously undone state, and restores the address book to that state.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If the <code>currentStatePointer</code> is at index <code>addressBookStateList.size() - 1</code>, pointing to the latest address book state, then there are no undone address book states to restore. The <code>redo</code> command uses <code>Model#canRedoAddressBook()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Step 5. The user then decides to execute the command <code>list</code>. Commands that do not modify the address book, such as <code>list</code>, will usually not call <code>Model#commitAddressBook()</code>, <code>Model#undoAddressBook()</code> or <code>Model#redoAddressBook()</code>. Thus, the <code>addressBookStateList</code> remains unchanged.</p>
-</div>
-<div class="paragraph">
-<p>Step 6. The user executes <code>clear</code>, which calls <code>Model#commitAddressBook()</code>. Since the <code>currentStatePointer</code> is not pointing at the end of the <code>addressBookStateList</code>, all address book states after the <code>currentStatePointer</code> will be purged. We designed it this way because it no longer makes sense to redo the <code>add n/David &#8230;&#8203;</code> command. This is the behavior that most modern desktop applications follow.</p>
-</div>
-<div class="paragraph">
-<p>The following activity diagram summarizes what happens when a user executes a new command:</p>
+<p>You can refer to <em>Figure 2</em> for a better idea of the internal implementation flow when a <code>select</code> command is executed.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/SelectSequenceDiagram.png" alt="SelectSequenceDiagram" width="800">
 </div>
 </div>
+<div class="paragraph">
+<p><em>Figure 2. Sequence Diagram for <code>select</code> command</em></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h5>
+<div class="paragraph">
+<p>Two guiding design patterns are applied to this feature:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The Facade design pattern is used to allow access to <code>avgRating</code> and <code>totalVisit</code> of a <code>Restaurant</code> only through its <code>Summary</code> class.</p>
+</li>
+<li>
+<p>The Observer pattern is also applied in the UI component as the <code>RestaurantSummaryPanel</code> and <code>ReviewListPanel</code> gets updated automatically once the selected restaurant is changed.</p>
+</li>
+</ul>
+</div>
+<div class="sect5">
+<h6 id="aspect-how-to-structure-the-summary-in-the-ui"><a class="link" href="#aspect-how-to-structure-the-summary-in-the-ui">Aspect: How to structure the Summary in the UI</a></h6>
+<div class="ulist">
+<ul>
+<li>
+<p>Alternative 1 (Current Choice): Implement <code>Summary</code> as a class in the <code>Restaurant</code> package</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pros</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Applies Observer pattern and reduces duplicate code as calculation of <code>avgRating</code> only has to be done once in <code>Summary</code> class for it to be displayed on both <code>RestaurantCard</code> and <code>RestaurantSummaryPanel</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cons</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Results in coupling as it introduces dependency of <code>Summary</code> on <code>Review</code> class.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="ulist">
+<ul>
+<li>
+<p>Alternative 2: Implement <code>Summary</code> as a UI component that listens to changes in the Review of the Restaurant</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pros</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reduces dependency within Model component.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cons</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Increases duplicate code as <code>avgRating</code> of a Restaurant&#8217;s <code>Summary</code> is displayed in both the <code>RestaurantCard</code> and <code>RestaurantSummaryPanel</code> and will thus have to be calculated twice.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.2. Design Considerations</a></h4>
-<div class="sect4">
-<h5 id="aspect-how-to-structure-the-summary-in-the-ui"><a class="link" href="#aspect-how-to-structure-the-summary-in-the-ui">Aspect: How to structure the Summary in the UI</a></h5>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice):</strong> Implement <code>Summary</code> as a class in the <code>Restaurant</code> package</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Easy to implement.</p>
-</li>
-<li>
-<p>Cons: May have performance issues in terms of memory usage.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 2:</strong> Implement <code>Summary</code> as a UI component that listens to changes in the Review of the Restaurant</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Will use less memory (e.g. for <code>delete</code>, just save the restaurant being deleted).</p>
-</li>
-<li>
-<p>Cons: We must ensure that the implementation of each individual command are correct.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
+<h4 id="sort-feature"><a class="link" href="#sort-feature">4.2.2. Sort Feature</a></h4>
+<div class="paragraph">
+<p>The <code>sort</code> feature allows users to sort the restaurants in the Food Diary in ascending or descending order of ratings, and even limit the number of top/bottom ranked Restaurants shown.</p>
 </div>
 <div class="sect4">
-<h5 id="aspect-data-structure-to-support-the-undo-redo-commands"><a class="link" href="#aspect-data-structure-to-support-the-undo-redo-commands">Aspect: Data structure to support the undo/redo commands</a></h5>
+<h5 id="current-implementation-3"><a class="link" href="#current-implementation-3">Current Implementation</a></h5>
+<div class="paragraph">
+<p>The command format is <code>sort [or/ORDER] [l/LIMIT]</code> with optional <code>ORDER</code> and <code>LIMIT</code> parameters.
+By default, the restaurants would be sorted in descending order of ratings with no limit applied.</p>
+</div>
+<div class="paragraph">
+<p>You can refer to <em>Figure 3</em> below for a better understanding of the activity flow of the <code>sort</code> command.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SortActivityDiagram.png" alt="SortActivityDiagram" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 3. Activity Diagram for <code>sort</code> command</em></p>
+</div>
+<div class="paragraph">
+<p>The majors components involved in the implementation of this feature are:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Use a list to store the history of address book states.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Easy for new Computer Science student undergraduates to understand, who are likely to be the new incoming developers of our project.</p>
+<p><code>FoodDiaryParser</code>, which parses the user&#8217;s input and constructs a <code>SelectCommandParser</code>, which then parses the input into <code>Order</code> and <code>Limit</code> and constructs a <code>SortCommand</code>.</p>
 </li>
 <li>
-<p>Cons: Logic is duplicated twice. For example, when a new command is executed, we must remember to update both <code>HistoryManager</code> and <code>VersionedAddressBook</code>.</p>
+<p><code>SortRating</code>, which implements Comparator&lt;Restaurant&gt; and serves as a comparator to sort the restaurants in the Food Diary by its <code>avgRating</code>.
+To construct this comparator, an <code>Order</code> has to be passed in to determine whether <code>SortRating#compare()</code> will be indicating ascending or descending order.</p>
+</li>
+<li>
+<p><code>SortCommand</code>, contains 2 sub-classes, <code>Order</code> and <code>Limit</code>, which are used for the construction of <code>SortCommand</code>.
+<code>SortCommand</code> is where the <code>SortRating</code> comparator is constructed and passed into the <code>Model#sortRestaurantList()</code> operation. The filtering of the sorted list to the <code>Limit</code>, if present, also takes place here.</p>
 </li>
 </ul>
 </div>
-</li>
-<li>
-<p><strong>Alternative 2:</strong> Use <code>HistoryManager</code> for undo/redo</p>
+<div class="paragraph">
+<p>The following shows how the sort mechanism behaves at each step.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user executes <code>sort [or/ORDER] [l/LIMIT]</code> command.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. The <code>FoodDiaryParser</code> parses the user&#8217;s input and constructs a <code>SortCommandParser</code> object, which then parses the inputs into <code>Order</code> and <code>Limit</code> objects, and constructs a <code>SortCommand</code> object using the <code>Order</code> and <code>Limit</code> constructed.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If there is no order in the user&#8217;s input, the default <code>Order</code> will be constructed using the String <code>"DES"</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If there is no limit in the user&#8217;s input, an <code>Optional.empty()</code> object will be used in place of <code>Limit</code> in the construction of a <code>SortCommand</code> object.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Step 3. The <code>SortCommand</code> is executed.</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: We do not need to maintain a separate list, and just reuse what is already in the codebase.</p>
+<p>Step 3.1. A <code>SortRating</code> comparator is constructed and <code>Model#sortRestaurantList()</code> call to sort the list of restaurants in the Food Diary.</p>
 </li>
 <li>
-<p>Cons: Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as <code>HistoryManager</code> now needs to do two different things.</p>
+<p>Step 3.2. If <code>Limit</code> is present, <code>SortCommand#filterToLimit()</code> is called to get a <code>uniqueRatings</code> list from <code>Model#getUniqueRatings()</code> to get the borderline of the <code>avgRatings</code> to be included in the filtered list.
+A predicate containing the borderline <code>avgRating</code> is then created and passed into <code>Model#updateFilteredRestaurantList()</code> to filter the sorted restaurant list. Else, if <code>Limit</code> is not present, the predicate passed
+into <code>Model#updateFilteredRestaurantList()</code> to display all restaurants.</p>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>Step 4. The sorted restaurant list is then stored in the Food Diary via <code>Model#commitFoodDiary()</code>.</p>
+</div>
+<div class="paragraph">
+<p>You can refer to <em>Figure 4</em> below for a more detailed idea of how <code>sort</code> command is implemented internally.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SortSequenceDiagram.png" alt="SortSequenceDiagram" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 4. Sequence Diagram for <code>sort</code> command</em></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="design-considerations-3"><a class="link" href="#design-considerations-3">Design Considerations</a></h5>
+<div class="sect5">
+<h6 id="aspect-how-to-apply-the-code-limit-code"><a class="link" href="#aspect-how-to-apply-the-code-limit-code">Aspect: How to apply the <code>Limit</code></a></h6>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Let the <code>Limit</code> denote the number of ranks of restaurants to be displayed</p>
 </li>
 </ul>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pros</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Accurately shows the top/bottom ranked restaurants.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cons</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">More expensive operations required to limit ranks of restaurants as a unique ratings list has to be stored to get the limited ranks.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 2:</strong> Let the <code>Limit</code> denote the number of restaurants to be displayed</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pros</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">More intuitive to users.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cons</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Does not provide an accurate depiction of top/bottom restaurants as multiple restaurants with the same ratings may not be displayed.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="aspect-whether-to-sort-the-restaurants-in-the-food-diary-permanently-or-temporarily"><a class="link" href="#aspect-whether-to-sort-the-restaurants-in-the-food-diary-permanently-or-temporarily">Aspect: Whether to sort the restaurants in the Food Diary permanently or temporarily</a></h6>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Sort the restaurants permanently by saving the state of the Food Diary after command execution in <code>Model#commitFoodDiary()</code></p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pros</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">More intuitive to users as they can undo the <code>sort</code> command and return to the previous state of the Food Diary.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cons</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Uses more memory as the sorted list will be stored as a version of the Food Diary.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 2:</strong> Sort the restaurants temporarily by encapsulating <code>FilteredList</code> in a <code>SortedList</code></p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pros</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Easy to implement.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cons</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Might be jarring to users as the sorted state of the Food Diary would not be saved upon leaving the application and there is no way for the user to
+         return to his/her originally ordered list of restaurants within the same window of use.</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">3.3. Undo/Redo feature</a></h3>
+<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">4.3. Undo/Redo feature</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.3.1. Current Implementation</a></h4>
+<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">4.3.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The undo/redo mechanism is facilitated by <code>VersionedAddressBook</code>.
 It extends <code>AddressBook</code> with an undo/redo history, stored internally as an <code>addressBookStateList</code> and <code>currentStatePointer</code>.
@@ -1084,7 +1326,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.3.2. Design Considerations</a></h4>
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">4.3.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-undo-redo-executes"><a class="link" href="#aspect-how-undo-redo-executes">Aspect: How undo &amp; redo executes</a></h5>
 <div class="ulist">
@@ -1119,7 +1361,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect4">
-<h5 id="aspect-data-structure-to-support-the-undo-redo-commands-2"><a class="link" href="#aspect-data-structure-to-support-the-undo-redo-commands-2">Aspect: Data structure to support the undo/redo commands</a></h5>
+<h5 id="aspect-data-structure-to-support-the-undo-redo-commands"><a class="link" href="#aspect-data-structure-to-support-the-undo-redo-commands">Aspect: Data structure to support the undo/redo commands</a></h5>
 <div class="ulist">
 <ul>
 <li>
@@ -1154,13 +1396,13 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="restaurant-categorisation"><a class="link" href="#restaurant-categorisation">3.4. Restaurant Categorisation</a></h3>
+<h3 id="restaurant-categorisation"><a class="link" href="#restaurant-categorisation">4.4. Restaurant Categorisation</a></h3>
 <div class="paragraph">
 <p>Restaurants can be classified using categories. Each restaurant can have each of the optional categories defined.
 Currently, 3 different types of categories are implemented in v1.4: <code>Cuisine</code>, <code>Occasion</code> and <code>Price Range</code>.</p>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.4.1. Current Implementation</a></h4>
+<h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">4.4.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>Restaurant Categorisation is mainly implemented using the following commands:</p>
 </div>
@@ -1222,7 +1464,7 @@ executes internally.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.4.2. Design Considerations</a></h4>
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">4.4.2. Design Considerations</a></h4>
 <div class="paragraph">
 <p>You can find out more about why certain areas of the feature are implemented a certain way here. Other possible
 alternatives are also considered and reasons as to why they were not chosen are also explained here.</p>
@@ -1342,12 +1584,12 @@ users only need to remember one command, hence it is more intuitive for the user
 </div>
 </div>
 <div class="sect2">
-<h3 id="add-adddefault-edit-delete-reviews"><a class="link" href="#add-adddefault-edit-delete-reviews">3.5. Add/AddDefault/Edit/Delete Reviews</a></h3>
+<h3 id="add-adddefault-edit-delete-reviews"><a class="link" href="#add-adddefault-edit-delete-reviews">4.5. Add/AddDefault/Edit/Delete Reviews</a></h3>
 <div class="paragraph">
 <p>Reviews are a core feature of the application. Each review is specific to a restaurant, and represents one visit/experience at that particular restaurant. This section describes the implementation of the functions dealing with creating, modifying and modifying reviews. There is also an enhancement in the form of adding default reviews which will be elaborated on.</p>
 </div>
 <div class="sect3">
-<h4 id="add-reviews"><a class="link" href="#add-reviews">3.5.1. Add Reviews</a></h4>
+<h4 id="add-reviews"><a class="link" href="#add-reviews">4.5.1. Add Reviews</a></h4>
 <div class="paragraph">
 <p>This command adds a review to a restaurant specified by the <code>INDEX</code> argument.</p>
 </div>
@@ -1355,7 +1597,7 @@ users only need to remember one command, hence it is more intuitive for the user
 <p>Command format: <code>addReview INDEX re/(ENTRY) rr/(RATING)</code></p>
 </div>
 <div class="sect4">
-<h5 id="current-implementation-5"><a class="link" href="#current-implementation-5">Current Implementation</a></h5>
+<h5 id="current-implementation-6"><a class="link" href="#current-implementation-6">Current Implementation</a></h5>
 <div class="paragraph">
 <p>The functionality of the addReview command can be better understood with the following activity diagram:</p>
 </div>
@@ -1411,7 +1653,7 @@ users only need to remember one command, hence it is more intuitive for the user
 </div>
 </div>
 <div class="sect4">
-<h5 id="design-considerations-5"><a class="link" href="#design-considerations-5">Design considerations</a></h5>
+<h5 id="design-considerations-6"><a class="link" href="#design-considerations-6">Design considerations</a></h5>
 <div class="paragraph">
 <p>Plausible alternative implementations to the functionality are discussed in this section to illustrate the thought process and rationale behind our design decisions. You may wish to consider these ideas when further developing this application.</p>
 </div>
@@ -1464,7 +1706,7 @@ users only need to remember one command, hence it is more intuitive for the user
 </div>
 </div>
 <div class="sect3">
-<h4 id="adddefault-reviews"><a class="link" href="#adddefault-reviews">3.5.2. AddDefault Reviews</a></h4>
+<h4 id="adddefault-reviews"><a class="link" href="#adddefault-reviews">4.5.2. AddDefault Reviews</a></h4>
 <div class="paragraph">
 <p>This is a command to add pre-defined reviews with a shorter and simpler syntax. It is especially useful for people in a rush and who do not wish to enter the whole review.</p>
 </div>
@@ -1475,7 +1717,7 @@ users only need to remember one command, hence it is more intuitive for the user
 <p>Command format: <code>addR INDEX NUMBER</code></p>
 </div>
 <div class="sect4">
-<h5 id="current-implementation-6"><a class="link" href="#current-implementation-6">Current Implementation</a></h5>
+<h5 id="current-implementation-7"><a class="link" href="#current-implementation-7">Current Implementation</a></h5>
 <div class="paragraph">
 <p>The Food Diary currently supports 5 default reviews, each corresponding to a rating from 1-5 inclusive. Do have a look at the User Guide for these 5 entries!</p>
 </div>
@@ -1511,7 +1753,7 @@ users only need to remember one command, hence it is more intuitive for the user
 </div>
 </div>
 <div class="sect4">
-<h5 id="design-considerations-6"><a class="link" href="#design-considerations-6">Design Considerations</a></h5>
+<h5 id="design-considerations-7"><a class="link" href="#design-considerations-7">Design Considerations</a></h5>
 <div class="paragraph">
 <p>These alternatives were considered as well:</p>
 </div>
@@ -1564,15 +1806,15 @@ users only need to remember one command, hence it is more intuitive for the user
 </div>
 </div>
 <div class="sect3">
-<h4 id="edit-reviews"><a class="link" href="#edit-reviews">3.5.3. Edit Reviews</a></h4>
+<h4 id="edit-reviews"><a class="link" href="#edit-reviews">4.5.3. Edit Reviews</a></h4>
 <div class="paragraph">
-<p>This command allows the modification of exiting reviews in The Food Diary.</p>
+<p>This command allows the modification of exiting reviews in the Food Diary.</p>
 </div>
 <div class="paragraph">
 <p>Command format: <code>editReview INDEX [re/ENTRY] [rr/RATING]</code>, where <code>INDEX</code> refers to the index of the review to edit in the selected restaurant, <code>ENTRY</code> and <code>RATING</code> are optional, but at least one of the two fields must be specified.</p>
 </div>
 <div class="sect4">
-<h5 id="current-implementation-7"><a class="link" href="#current-implementation-7">Current Implementation</a></h5>
+<h5 id="current-implementation-8"><a class="link" href="#current-implementation-8">Current Implementation</a></h5>
 <div class="paragraph">
 <p>Executing this command requires the user to select the restaurant whose review is to be edited. This can be done via the select command or by a mouse click on the application GUI.</p>
 </div>
@@ -1627,7 +1869,7 @@ users only need to remember one command, hence it is more intuitive for the user
 </div>
 </div>
 <div class="sect4">
-<h5 id="design-considerations-7"><a class="link" href="#design-considerations-7">Design Considerations</a></h5>
+<h5 id="design-considerations-8"><a class="link" href="#design-considerations-8">Design Considerations</a></h5>
 <div class="ulist">
 <ul>
 <li>
@@ -1648,7 +1890,7 @@ users only need to remember one command, hence it is more intuitive for the user
 </div>
 </div>
 <div class="sect3">
-<h4 id="delete-reviews"><a class="link" href="#delete-reviews">3.5.4. Delete Reviews</a></h4>
+<h4 id="delete-reviews"><a class="link" href="#delete-reviews">4.5.4. Delete Reviews</a></h4>
 <div class="paragraph">
 <p>Similar to the command to edit reviews, execution of this command requires the user to select a restaurant from the displayed list.</p>
 </div>
@@ -1661,12 +1903,12 @@ users only need to remember one command, hence it is more intuitive for the user
 </div>
 </div>
 <div class="sect2">
-<h3 id="visit-webpage-feature"><a class="link" href="#visit-webpage-feature">3.6. Visit Webpage Feature</a></h3>
+<h3 id="visit-webpage-feature"><a class="link" href="#visit-webpage-feature">4.6. Visit Webpage Feature</a></h3>
 <div class="paragraph">
 <p>Website can be displayed on the <code>BrowserPanel</code> with <code>visitWeb</code> command.</p>
 </div>
 <div class="sect3">
-<h4 id="visitweb-code-index-code"><a class="link" href="#visitweb-code-index-code">3.6.1. visitWeb <code>INDEX</code></a></h4>
+<h4 id="visitweb-code-index-code"><a class="link" href="#visitweb-code-index-code">4.6.1. visitWeb <code>INDEX</code></a></h4>
 <div class="paragraph">
 <p>Visits website of <code>Restaurant</code> selected by user.</p>
 </div>
@@ -1746,10 +1988,10 @@ HTTP response codes:<br>
 </div>
 </div>
 <div class="sect3">
-<h4 id="visitweb-code-weblink-code"><a class="link" href="#visitweb-code-weblink-code">3.6.2. visitWeb <code>weblink</code></a></h4>
+<h4 id="visitweb-code-weblink-code"><a class="link" href="#visitweb-code-weblink-code">4.6.2. visitWeb <code>weblink</code></a></h4>
 <div class="paragraph">
 <p>Visits website entered by user.
-This allows user to visit website of restaurant that are not added to the FoodDiary.</p>
+This allows user to visit website of restaurant that are not added to the Food Diary.</p>
 </div>
 <div class="paragraph">
 <p>The difference between this command and the previous is that, the <code>Weblink</code> is directly passed into <code>VisitWebCommand</code> instead of the <code>INDEX</code> of the restaurant.
@@ -1770,16 +2012,16 @@ Thus, there is a need to validate this <code>Weblink</code> with the help of <co
 <p>To illustrate the level of checks done in visiting web further, the command is broken down into the following steps.</p>
 </div>
 <div class="paragraph">
-<p>Step 1. FoodLover enters visitWeb <code>Weblink</code> command.</p>
+<p>Step 1. Food Lover enters visitWeb <code>Weblink</code> command.</p>
 </div>
 <div class="paragraph">
-<p>Step 2. FoodDiary checks if the entered <code>Weblink</code> is in the correct Url form. Else, display error message and show example of the correct form of <code>Weblink</code></p>
+<p>Step 2. Food Diary checks if the entered <code>Weblink</code> is in the correct Url form. Else, display error message and show example of the correct form of <code>Weblink</code></p>
 </div>
 <div class="paragraph">
-<p>Step 2. FoodDiary checks if internet connection is present. If not, throw <code>NoInternetException</code> and show error message.</p>
+<p>Step 2. Food Diary checks if internet connection is present. If not, throw <code>NoInternetException</code> and show error message.</p>
 </div>
 <div class="paragraph">
-<p>Step 3. FoodDiary validates the weblink entered. If weblink does not exist, or it is not in the correct Url format, throw <code>ParseException</code> and show error message.</p>
+<p>Step 3. Food Diary validates the weblink entered. If weblink does not exist, or it is not in the correct Url format, throw <code>ParseException</code> and show error message.</p>
 </div>
 <div class="paragraph">
 <p>Step 4. Display website on browser window.</p>
@@ -1797,7 +2039,7 @@ Thus, there is a need to validate this <code>Weblink</code> with the help of <co
 </div>
 </div>
 <div class="sect3">
-<h4 id="enhancements"><a class="link" href="#enhancements">3.6.3. Enhancements</a></h4>
+<h4 id="enhancements"><a class="link" href="#enhancements">4.6.3. Enhancements</a></h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1814,7 +2056,7 @@ we can say that there is high chance that there is no internet connection and he
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-8"><a class="link" href="#design-considerations-8">3.6.4. Design considerations</a></h4>
+<h4 id="design-considerations-9"><a class="link" href="#design-considerations-9">4.6.4. Design considerations</a></h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1841,26 +2083,26 @@ we can say that there is high chance that there is no internet connection and he
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.7. [Proposed] Data Encryption</a></h3>
+<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">4.7. [Proposed] Data Encryption</a></h3>
 <div class="paragraph">
 <p><em>{Explain here how the data encryption feature will be implemented}</em></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-share-reviews-to-facebook"><a class="link" href="#proposed-share-reviews-to-facebook">3.8. [Proposed] Share Reviews to Facebook</a></h3>
+<h3 id="proposed-share-reviews-to-facebook"><a class="link" href="#proposed-share-reviews-to-facebook">4.8. [Proposed] Share Reviews to Facebook</a></h3>
 <div class="paragraph">
 <p><em>{Explain here how the share reviews feature will be implemented}</em></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.9. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">4.9. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.10, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 4.10, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1891,7 +2133,7 @@ we can say that there is high chance that there is no internet connection and he
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.10. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">4.10. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -1899,7 +2141,7 @@ we can say that there is high chance that there is no internet connection and he
 </div>
 </div>
 <div class="sect1">
-<h2 id="documentation"><a class="link" href="#documentation">4. Documentation</a></h2>
+<h2 id="documentation"><a class="link" href="#documentation">5. Documentation</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>We use asciidoc for writing documentation.</p>
@@ -1917,20 +2159,20 @@ We chose asciidoc over Markdown because asciidoc, although a bit more complex th
 </table>
 </div>
 <div class="sect2">
-<h3 id="editing-documentation"><a class="link" href="#editing-documentation">4.1. Editing Documentation</a></h3>
+<h3 id="editing-documentation"><a class="link" href="#editing-documentation">5.1. Editing Documentation</a></h3>
 <div class="paragraph">
 <p>See <a href="UsingGradle.html#rendering-asciidoc-files">UsingGradle.adoc</a> to learn how to render <code>.adoc</code> files locally to preview the end result of your edits.
 Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows you to preview the changes you have made to your <code>.adoc</code> files in real-time.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="publishing-documentation"><a class="link" href="#publishing-documentation">4.2. Publishing Documentation</a></h3>
+<h3 id="publishing-documentation"><a class="link" href="#publishing-documentation">5.2. Publishing Documentation</a></h3>
 <div class="paragraph">
 <p>See <a href="UsingTravis.html#deploying-github-pages">UsingTravis.adoc</a> to learn how to deploy GitHub Pages using Travis.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="converting-documentation-to-pdf-format"><a class="link" href="#converting-documentation-to-pdf-format">4.3. Converting Documentation to PDF format</a></h3>
+<h3 id="converting-documentation-to-pdf-format"><a class="link" href="#converting-documentation-to-pdf-format">5.3. Converting Documentation to PDF format</a></h3>
 <div class="paragraph">
 <p>We use <a href="https://www.google.com/chrome/browser/desktop/">Google Chrome</a> for converting documentation to PDF format, as Chrome&#8217;s PDF engine preserves hyperlinks used in webpages.</p>
 </div>
@@ -1961,7 +2203,7 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 </div>
 </div>
 <div class="sect2">
-<h3 id="Docs-SiteWideDocSettings"><a class="link" href="#Docs-SiteWideDocSettings">4.4. Site-wide Documentation Settings</a></h3>
+<h3 id="Docs-SiteWideDocSettings"><a class="link" href="#Docs-SiteWideDocSettings">5.4. Site-wide Documentation Settings</a></h3>
 <div class="paragraph">
 <p>The <a href="https://github.com/cs2103-ay1819s2-w17-1/main/build.gradle"><code>build.gradle</code></a> file specifies some project-specific <a href="https://asciidoctor.org/docs/user-manual/#attributes">asciidoc attributes</a> which affects how all documentation files within this project are rendered.</p>
 </div>
@@ -2020,7 +2262,7 @@ This will render the SE-EDU navigation bar at the top of the page, and add some 
 </table>
 </div>
 <div class="sect2">
-<h3 id="Docs-PerFileDocSettings"><a class="link" href="#Docs-PerFileDocSettings">4.5. Per-file Documentation Settings</a></h3>
+<h3 id="Docs-PerFileDocSettings"><a class="link" href="#Docs-PerFileDocSettings">5.5. Per-file Documentation Settings</a></h3>
 <div class="paragraph">
 <p>Each <code>.adoc</code> file may also specify some file-specific <a href="https://asciidoctor.org/docs/user-manual/#attributes">asciidoc attributes</a> which affects how the file is rendered.</p>
 </div>
@@ -2077,7 +2319,7 @@ One of: <code>UserGuide</code>, <code>DeveloperGuide</code>, <code>LearningOutco
 </table>
 </div>
 <div class="sect2">
-<h3 id="site-template"><a class="link" href="#site-template">4.6. Site Template</a></h3>
+<h3 id="site-template"><a class="link" href="#site-template">5.6. Site Template</a></h3>
 <div class="paragraph">
 <p>The files in <a href="https://github.com/cs2103-ay1819s2-w17-1/main/docs/stylesheets"><code>docs/stylesheets</code></a> are the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS stylesheets</a> of the site.
 You can modify them to change some properties of the site&#8217;s design.</p>
@@ -2106,10 +2348,10 @@ The SE-EDU team does not provide support for modified template files.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="Testing"><a class="link" href="#Testing">5. Testing</a></h2>
+<h2 id="Testing"><a class="link" href="#Testing">6. Testing</a></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="running-tests"><a class="link" href="#running-tests">5.1. Running Tests</a></h3>
+<h3 id="running-tests"><a class="link" href="#running-tests">6.1. Running Tests</a></h3>
 <div class="paragraph">
 <p>There are three ways to run tests.</p>
 </div>
@@ -2171,7 +2413,7 @@ See <a href="UsingGradle.html">UsingGradle.adoc</a> for more info on how to run 
 </div>
 </div>
 <div class="sect2">
-<h3 id="types-of-tests"><a class="link" href="#types-of-tests">5.2. Types of tests</a></h3>
+<h3 id="types-of-tests"><a class="link" href="#types-of-tests">6.2. Types of tests</a></h3>
 <div class="paragraph">
 <p>We have two types of tests:</p>
 </div>
@@ -2213,7 +2455,7 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="troubleshooting-testing"><a class="link" href="#troubleshooting-testing">5.3. Troubleshooting Testing</a></h3>
+<h3 id="troubleshooting-testing"><a class="link" href="#troubleshooting-testing">6.3. Troubleshooting Testing</a></h3>
 <div class="paragraph">
 <p><strong>Problem: <code>HelpWindowTest</code> fails with a <code>NullPointerException</code>.</strong></p>
 </div>
@@ -2231,34 +2473,34 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="dev-ops"><a class="link" href="#dev-ops">6. Dev Ops</a></h2>
+<h2 id="dev-ops"><a class="link" href="#dev-ops">7. Dev Ops</a></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="build-automation"><a class="link" href="#build-automation">6.1. Build Automation</a></h3>
+<h3 id="build-automation"><a class="link" href="#build-automation">7.1. Build Automation</a></h3>
 <div class="paragraph">
 <p>See <a href="UsingGradle.html">UsingGradle.adoc</a> to learn how to use Gradle for build automation.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="continuous-integration"><a class="link" href="#continuous-integration">6.2. Continuous Integration</a></h3>
+<h3 id="continuous-integration"><a class="link" href="#continuous-integration">7.2. Continuous Integration</a></h3>
 <div class="paragraph">
 <p>We use <a href="https://travis-ci.org/">Travis CI</a> and <a href="https://www.appveyor.com/">AppVeyor</a> to perform <em>Continuous Integration</em> on our projects. See <a href="UsingTravis.html">UsingTravis.adoc</a> and <a href="UsingAppVeyor.html">UsingAppVeyor.adoc</a> for more details.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="coverage-reporting"><a class="link" href="#coverage-reporting">6.3. Coverage Reporting</a></h3>
+<h3 id="coverage-reporting"><a class="link" href="#coverage-reporting">7.3. Coverage Reporting</a></h3>
 <div class="paragraph">
 <p>We use <a href="https://coveralls.io/">Coveralls</a> to track the code coverage of our projects. See <a href="UsingCoveralls.html">UsingCoveralls.adoc</a> for more details.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="documentation-previews"><a class="link" href="#documentation-previews">6.4. Documentation Previews</a></h3>
+<h3 id="documentation-previews"><a class="link" href="#documentation-previews">7.4. Documentation Previews</a></h3>
 <div class="paragraph">
 <p>When a pull request has changes to asciidoc files, you can use <a href="https://www.netlify.com/">Netlify</a> to see a preview of how the HTML version of those asciidoc files will look like when the pull request is merged. See <a href="UsingNetlify.html">UsingNetlify.adoc</a> for more details.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="making-a-release"><a class="link" href="#making-a-release">6.5. Making a Release</a></h3>
+<h3 id="making-a-release"><a class="link" href="#making-a-release">7.5. Making a Release</a></h3>
 <div class="paragraph">
 <p>Here are the steps to create a new release.</p>
 </div>
@@ -2280,7 +2522,7 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="managing-dependencies"><a class="link" href="#managing-dependencies">6.6. Managing Dependencies</a></h3>
+<h3 id="managing-dependencies"><a class="link" href="#managing-dependencies">7.6. Managing Dependencies</a></h3>
 <div class="paragraph">
 <p>A project often depends on third-party libraries. For example, Address Book depends on the <a href="https://github.com/FasterXML/jackson">Jackson library</a> for JSON parsing. Managing these <em>dependencies</em> can be automated using Gradle. For example, Gradle can download the dependencies automatically, which is better than these alternatives:</p>
 </div>
@@ -2444,19 +2686,19 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <h2 id="use-cases"><a class="link" href="#use-cases">Appendix C: Use Cases</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>(For all use cases below, the <strong>System</strong> is the <code>FoodDiary</code> and the <strong>Actor</strong> is the <code>FoodLover</code>, unless specified otherwise)</p>
+<p>(For all use cases below, the <strong>System</strong> is the <code>Food Diary</code> and the <strong>Actor</strong> is the <code>Food Lover</code>, unless specified otherwise)</p>
 </div>
-<h3 id="use-case-adding-a-restaurant-by-foodlover-to-fooddiary" class="discrete">Use case: Adding a restaurant by FoodLover to FoodDiary</h3>
+<h3 id="use-case-adding-a-restaurant-by-food-lover-to-food-diary" class="discrete">Use case: Adding a restaurant by Food Lover to Food Diary</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>FoodLover enters command to add restaurant</p>
+<p>Food Lover enters command to add restaurant</p>
 </li>
 <li>
-<p>FoodDiary adds restaurant</p>
+<p>Food Diary adds restaurant</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2469,28 +2711,28 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2a. FoodLover enters a name and location that already exists in FoodDiary</p>
+<p>2a. Food Lover enters a name and location that already exists in Food Diary</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2a1. FoodDiary tells FoodLover that the restaurant already exists and asks user to enter another name and location</p>
+<p>2a1. Food Diary tells Food Lover that the restaurant already exists and asks user to enter another name and location</p>
 </li>
 </ul>
 </div>
 </li>
 </ul>
 </div>
-<h3 id="use-case-adding-a-restaurant-by-google-search-by-foodlover-to-fooddiary" class="discrete">Use case: Adding a restaurant by Google Search by FoodLover to FoodDiary</h3>
+<h3 id="use-case-adding-a-restaurant-by-google-search-by-food-lover-to-food-diary" class="discrete">Use case: Adding a restaurant by Google Search by Food Lover to Food Diary</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>FoodLover enters command to add restaurant by Google Search</p>
+<p>Food Lover enters command to add restaurant by Google Search</p>
 </li>
 <li>
-<p>FoodDiary adds restaurant</p>
+<p>Food Diary adds restaurant</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2503,24 +2745,24 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2a. FoodLover enters a name that already exists in FoodDiary</p>
+<p>2a. Food Lover enters a name that already exists in Food Diary</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2a1. FoodDiary tells FoodLover that the restaurant already exists</p>
+<p>2a1. Food Diary tells Food Lover that the restaurant already exists</p>
 </li>
 <li>
-<p>2a2. FoodDiary asks user to enter another name and location</p>
+<p>2a2. Food Diary asks user to enter another name and location</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>2b. FoodDiary is unable to retrieve anything from Google.</p>
+<p>2b. Food Diary is unable to retrieve anything from Google.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2b1. FoodDiary tells user that retrieval of information has failed.</p>
+<p>2b1. Food Diary tells user that retrieval of information has failed.</p>
 <div class="paragraph">
 <p>Use case ends</p>
 </div>
@@ -2530,17 +2772,17 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 </li>
 </ul>
 </div>
-<h3 id="use-case-deleting-a-restaurant-from-fooddiary" class="discrete">Use case: Deleting a restaurant from FoodDiary</h3>
+<h3 id="use-case-deleting-a-restaurant-from-food-diary" class="discrete">Use case: Deleting a restaurant from Food Diary</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>FoodLover enters command and index to delete restaurant</p>
+<p>Food Lover enters command and index to delete restaurant</p>
 </li>
 <li>
-<p>FoodDiary deletes restaurant</p>
+<p>Food Diary deletes restaurant</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2553,11 +2795,11 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a. FoodLover enters an invalid index</p>
+<p>1a. Food Lover enters an invalid index</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a1. FoodDiary tells user that he has entered an invalid index and deletion of restaurant has failed.</p>
+<p>1a1. Food Diary tells user that he has entered an invalid index and deletion of restaurant has failed.</p>
 <div class="paragraph">
 <p>Use case ends</p>
 </div>
@@ -2567,17 +2809,17 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 </li>
 </ul>
 </div>
-<h3 id="use-case-selecting-a-restaurant-in-fooddiary" class="discrete">Use case: Selecting a Restaurant in FoodDiary</h3>
+<h3 id="use-case-selecting-a-restaurant-in-food-diary" class="discrete">Use case: Selecting a Restaurant in Food Diary</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>FoodLover enters command and index to select restaurant</p>
+<p>Food Lover enters command and index to select restaurant</p>
 </li>
 <li>
-<p>FoodDiary displays restaurant’s detailed information and reviews</p>
+<p>Food Diary displays restaurant’s detailed information and reviews</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2590,28 +2832,28 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a. FoodLover enters an invalid index</p>
+<p>1a. Food Lover enters an invalid index</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a1. FoodDiary tells user that he has entered an invalid index and selection of restaurant has failed.</p>
+<p>1a1. Food Diary tells user that he has entered an invalid index and selection of restaurant has failed.</p>
 </li>
 </ul>
 </div>
 </li>
 </ul>
 </div>
-<h3 id="use-case-filter-restaurants-in-fooddiary-cuisine-occasion-price" class="discrete">Use case: Filter Restaurants in FoodDiary (cuisine, occasion, price)</h3>
+<h3 id="use-case-filter-restaurants-in-food-diary-cuisine-occasion-price" class="discrete">Use case: Filter Restaurants in Food Diary (cuisine, occasion, price)</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>FoodLover enters command, category to filter by (i.e. cuisine, occasion, price range) and keyword / price range (e.g.japanese, lunch, 5 10)</p>
+<p>Food Lover enters command, category to filter by (i.e. cuisine, occasion, price range) and keyword / price range (e.g.japanese, lunch, 5 10)</p>
 </li>
 <li>
-<p>FoodDiary displays restaurant’s that fit the filter.</p>
+<p>Food Diary displays restaurant’s that fit the filter.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2624,11 +2866,11 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a. FoodLover enters an invalid category</p>
+<p>1a. Food Lover enters an invalid category</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a1. FoodLover tells user that no such category exists.</p>
+<p>1a1. Food Lover tells user that no such category exists.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2641,14 +2883,14 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1b. FoodLover enters an invalid price range (i.e. 1 number / 3 numbers input)</p>
+<p>1b. Food Lover enters an invalid price range (i.e. 1 number / 3 numbers input)</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1b1. FoodLover tells user that an invalid price range is entered</p>
+<p>1b1. Food Lover tells user that an invalid price range is entered</p>
 </li>
 <li>
-<p>1b2. FoodLover displays the correct format to input command</p>
+<p>1b2. Food Lover displays the correct format to input command</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2661,14 +2903,14 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1c. FoodLover enters an invalid price range (i.e. 1 number / 3 numbers input)</p>
+<p>1c. Food Lover enters an invalid price range (i.e. 1 number / 3 numbers input)</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1c1. FoodLover tells user that an invalid price range is entered</p>
+<p>1c1. Food Lover tells user that an invalid price range is entered</p>
 </li>
 <li>
-<p>1c2. FoodLover displays the correct format to input command</p>
+<p>1c2. Food Lover displays the correct format to input command</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2678,17 +2920,17 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 </li>
 </ul>
 </div>
-<h3 id="use-case-sort-restaurants-in-fooddiary-rating-price" class="discrete">Use case: Sort Restaurants in FoodDiary (rating, price)</h3>
+<h3 id="use-case-sort-restaurants-in-food-diary-rating-price" class="discrete">Use case: Sort Restaurants in Food Diary (rating, price)</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>FoodLover enters command, category to sort by (i.e. rating, price)</p>
+<p>Food Lover enters command, category to sort by (i.e. rating, price)</p>
 </li>
 <li>
-<p>FoodDiary displays restaurants according to category</p>
+<p>Food Diary displays restaurants according to category</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2701,11 +2943,11 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a. FoodLover enters an invalid category</p>
+<p>1a. Food Lover enters an invalid category</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a1. FoodLover tells user that no such category exists.</p>
+<p>1a1. Food Lover tells user that no such category exists.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2715,26 +2957,26 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 </li>
 </ul>
 </div>
-<h3 id="use-case-adding-a-review-to-a-restaurant-in-fooddiary" class="discrete">Use case: Adding a review to a Restaurant in FoodDiary</h3>
+<h3 id="use-case-adding-a-review-to-a-restaurant-in-food-diary" class="discrete">Use case: Adding a review to a Restaurant in Food Diary</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>FoodLover lists all restaurants</p>
+<p>Food Lover lists all restaurants</p>
 </li>
 <li>
-<p>FoodDiary displays all restaurants</p>
+<p>Food Diary displays all restaurants</p>
 </li>
 <li>
-<p>FoodLover enters command to add review and the index of the restaurant it should be added to</p>
+<p>Food Lover enters command to add review and the index of the restaurant it should be added to</p>
 </li>
 <li>
-<p>FoodLover enters rating and comment in the command</p>
+<p>Food Lover enters rating and comment in the command</p>
 </li>
 <li>
-<p>FoodDiary adds review to restaurant selected</p>
+<p>Food Diary adds review to restaurant selected</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2747,11 +2989,11 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a. FoodLover finds restaurants by criteria</p>
+<p>1a. Food Lover finds restaurants by criteria</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a1. FoodDiary displays restaurants fulfilling criteria</p>
+<p>1a1. Food Diary displays restaurants fulfilling criteria</p>
 <div class="paragraph">
 <p>Use case resumes at step 3.</p>
 </div>
@@ -2764,14 +3006,14 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>4a. FoodLover enters an invalid rating, such as a number out of the range of 0 - 5</p>
+<p>4a. Food Lover enters an invalid rating, such as a number out of the range of 0 - 5</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>4a1. FoodDiary tells FoodLover that the rating is out of the valid range (0 - 5)</p>
+<p>4a1. Food Diary tells Food Lover that the rating is out of the valid range (0 - 5)</p>
 </li>
 <li>
-<p>4a2. FoodDiary asks user to enter another rating</p>
+<p>4a2. Food Diary asks user to enter another rating</p>
 <div class="paragraph">
 <p>Use case resumes at step 6 if rating is valid else repeat step 4a.</p>
 </div>
@@ -2781,23 +3023,23 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 </li>
 </ul>
 </div>
-<h3 id="use-case-deleting-a-review-to-a-restaurant-in-fooddiary" class="discrete">Use case: Deleting a review to a Restaurant in FoodDiary</h3>
+<h3 id="use-case-deleting-a-review-to-a-restaurant-in-food-diary" class="discrete">Use case: Deleting a review to a Restaurant in Food Diary</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>FoodLover lists all reviews</p>
+<p>Food Lover lists all reviews</p>
 </li>
 <li>
-<p>FoodDiary displays all reviews in chronological order</p>
+<p>Food Diary displays all reviews in chronological order</p>
 </li>
 <li>
-<p>FoodLover enters command to delete review and the index of the review to be deleted</p>
+<p>Food Lover enters command to delete review and the index of the review to be deleted</p>
 </li>
 <li>
-<p>FoodDiary deletes selected review</p>
+<p>Food Diary deletes selected review</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2810,17 +3052,17 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a. FoodLover lists all restaurants</p>
+<p>1a. Food Lover lists all restaurants</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a1. FoodDiary displays all restaurants</p>
+<p>1a1. Food Diary displays all restaurants</p>
 </li>
 <li>
-<p>1a2. FoodLover selects the restaurant from which the reviews are to be deleted</p>
+<p>1a2. Food Lover selects the restaurant from which the reviews are to be deleted</p>
 </li>
 <li>
-<p>1a3. FoodDiary displays all reviews for the restaurant selected</p>
+<p>1a3. Food Diary displays all reviews for the restaurant selected</p>
 <div class="paragraph">
 <p>Use case resumes at step 3.</p>
 </div>
@@ -2830,26 +3072,26 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 </li>
 </ul>
 </div>
-<h3 id="use-case-editing-a-review-to-a-restaurant-in-fooddiary" class="discrete">Use case: Editing a review to a Restaurant in FoodDiary</h3>
+<h3 id="use-case-editing-a-review-to-a-restaurant-in-food-diary" class="discrete">Use case: Editing a review to a Restaurant in Food Diary</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>FoodLover lists all reviews</p>
+<p>Food Lover lists all reviews</p>
 </li>
 <li>
-<p>FoodDiary displays all reviews in chronological order</p>
+<p>Food Diary displays all reviews in chronological order</p>
 </li>
 <li>
-<p>FoodLover enters command to edit review and the index of the review to be edited</p>
+<p>Food Lover enters command to edit review and the index of the review to be edited</p>
 </li>
 <li>
-<p>FoodLover enters rating and comment</p>
+<p>Food Lover enters rating and comment</p>
 </li>
 <li>
-<p>FoodDiary updates selected review</p>
+<p>Food Diary updates selected review</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2862,17 +3104,17 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a. FoodLover lists all restaurants</p>
+<p>1a. Food Lover lists all restaurants</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a1. FoodDiary displays all restaurants</p>
+<p>1a1. Food Diary displays all restaurants</p>
 </li>
 <li>
-<p>1a2. FoodLover selects the restaurant from which the reviews are to be deleted</p>
+<p>1a2. Food Lover selects the restaurant from which the reviews are to be deleted</p>
 </li>
 <li>
-<p>1a3. FoodDiary displays all reviews for the restaurant selected</p>
+<p>1a3. Food Diary displays all reviews for the restaurant selected</p>
 <div class="paragraph">
 <p>Use case resumes at step 3.</p>
 </div>
@@ -2885,17 +3127,17 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1b. FoodLover finds restaurants by criteria</p>
+<p>1b. Food Lover finds restaurants by criteria</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1b1. FoodDiary displays restaurants fulfilling criteria</p>
+<p>1b1. Food Diary displays restaurants fulfilling criteria</p>
 </li>
 <li>
-<p>1b2. FoodLover selects the restaurant from which the reviews are to be deleted</p>
+<p>1b2. Food Lover selects the restaurant from which the reviews are to be deleted</p>
 </li>
 <li>
-<p>1b3. FoodDiary displays all reviews for the restaurant selected</p>
+<p>1b3. Food Diary displays all reviews for the restaurant selected</p>
 <div class="paragraph">
 <p>Use case resumes at step 3.</p>
 </div>
@@ -2908,14 +3150,14 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>4a. FoodLover enters an invalid rating, such as a number out of the range of 0 - 5</p>
+<p>4a. Food Lover enters an invalid rating, such as a number out of the range of 0 - 5</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>4a1. FoodDiary tells FoodLover that the rating is out of the valid range (0 - 5)</p>
+<p>4a1. Food Diary tells Food Lover that the rating is out of the valid range (0 - 5)</p>
 </li>
 <li>
-<p>4a2. FoodDiary asks user to enter another rating</p>
+<p>4a2. Food Diary asks user to enter another rating</p>
 <div class="paragraph">
 <p>Use case resumes at step 6 if rating is valid else repeat step 4a.</p>
 </div>
@@ -2932,19 +3174,19 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>FoodLover adds a new review</p>
+<p>Food Lover adds a new review</p>
 </li>
 <li>
-<p>FoodLover enters command to share review on Facebook</p>
+<p>Food Lover enters command to share review on Facebook</p>
 </li>
 <li>
-<p>FoodDiary opens Facebook login page</p>
+<p>Food Diary opens Facebook login page</p>
 </li>
 <li>
-<p>FoodLover enters Facebook login details</p>
+<p>Food Lover enters Facebook login details</p>
 </li>
 <li>
-<p>FoodLover confirms Facebook sharing</p>
+<p>Food Lover confirms Facebook sharing</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2957,14 +3199,14 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a. FoodLover lists all reviews</p>
+<p>1a. Food Lover lists all reviews</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a1. FoodDiary displays all reviews in chronological order</p>
+<p>1a1. Food Diary displays all reviews in chronological order</p>
 </li>
 <li>
-<p>1a2. FoodLover enters command to share review and the index of the selected review</p>
+<p>1a2. Food Lover enters command to share review and the index of the selected review</p>
 <div class="paragraph">
 <p>Use case resumes at step 3.</p>
 </div>
@@ -2977,17 +3219,17 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1b. FoodLover lists all restaurants</p>
+<p>1b. Food Lover lists all restaurants</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1b1. FoodDiary displays all restaurants</p>
+<p>1b1. Food Diary displays all restaurants</p>
 </li>
 <li>
-<p>1b2. FoodLover selects the restaurant from which the reviews are to be deleted</p>
+<p>1b2. Food Lover selects the restaurant from which the reviews are to be deleted</p>
 </li>
 <li>
-<p>1b3. FoodDiary displays all reviews for the restaurant selected</p>
+<p>1b3. Food Diary displays all reviews for the restaurant selected</p>
 <div class="paragraph">
 <p>Use case resumes at step 3.</p>
 </div>
@@ -2996,26 +3238,6 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 </div>
 </li>
 </ul>
-</div>
-<h3 id="use-case-switching-from-restaurant-view-to-review-view-in-fooddiary" class="discrete">Use case: Switching from Restaurant view to Review view in FoodDiary</h3>
-<div class="paragraph">
-<p><strong>MSS</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>FoodLover enters command to switch context</p>
-</li>
-<li>
-<p>FoodDiary performs context switch</p>
-</li>
-<li>
-<p>FoodLover continues using the FoodDiary</p>
-<div class="paragraph">
-<p>Use case ends</p>
-</div>
-</li>
-</ol>
 </div>
 <h3 id="use-case-undo-redo-command" class="discrete">Use case: Undo / Redo command</h3>
 <div class="paragraph">
@@ -3024,10 +3246,10 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>FoodLover enters command to undo / redo</p>
+<p>Food Lover enters command to undo / redo</p>
 </li>
 <li>
-<p>FoodDiary undos / redos previous command, tells user that undo / redo successful.</p>
+<p>Food Diary undos / redos previous command, tells user that undo / redo successful.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -3044,7 +3266,7 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a1. FoodDiary tells FoodLover that there is no command to undo / redo.</p>
+<p>1a1. Food Diary tells Food Lover that there is no command to undo / redo.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -3061,10 +3283,10 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>FoodLover enters command and index of restaurant</p>
+<p>Food Lover enters command and index of restaurant</p>
 </li>
 <li>
-<p>FoodDiary displays website to User.</p>
+<p>Food Diary displays website to User.</p>
 <div class="paragraph">
 <p>Use case ends</p>
 </div>
@@ -3077,14 +3299,14 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a. FoodLover enters command and website of any restaurant</p>
+<p>1a. Food Lover enters command and website of any restaurant</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2a. Website is valid and FoodDiary displays website</p>
+<p>2a. Website is valid and Food Diary displays website</p>
 </li>
 <li>
-<p>2b. Website is invalid and FoodDiary tells FoodLover that the website he entered is invalid</p>
+<p>2b. Website is invalid and Food Diary tells Food Lover that the website he entered is invalid</p>
 </li>
 </ul>
 </div>
@@ -3098,7 +3320,7 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2c1. FoodDiary tells FoodLover that there is no website for this restaurant</p>
+<p>2c1. Food Diary tells Food Lover that there is no website for this restaurant</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -3115,10 +3337,10 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>FoodLover enters command and his current postal code</p>
+<p>Food Lover enters command and his current postal code</p>
 </li>
 <li>
-<p>FoodDiary displays a list of restaurants ranked based on his proximity to the provided postal code.</p>
+<p>Food Diary displays a list of restaurants ranked based on his proximity to the provided postal code.</p>
 <div class="paragraph">
 <p>Use case ends</p>
 </div>
@@ -3135,7 +3357,7 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2a1. FoodDiary displays all the unreviewed restaurants.</p>
+<p>2a1. Food Diary displays all the unreviewed restaurants.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -3176,11 +3398,11 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <div class="sectionbody">
 <div class="dlist">
 <dl>
-<dt class="hdlist1"><a id="fooddiary"></a> FoodDiary</dt>
+<dt class="hdlist1"><a id="fooddiary"></a> Food Diary</dt>
 <dd>
 <p>The application that users interact with.</p>
 </dd>
-<dt class="hdlist1"><a id="foodlover"></a> FoodLover</dt>
+<dt class="hdlist1"><a id="foodlover"></a> Food Lover</dt>
 <dd>
 <p>The intended users of this application</p>
 </dd>
@@ -3297,11 +3519,11 @@ Expected: Similar to previous.</p>
 </li>
 <li>
 <p>Test case: <code>select 1</code><br>
-Expected: First restaurant in the list is selected. Details of the selected restaurant is shown in the 3 panels next to the restaurant list panel.</p>
+Expected: First restaurant in the list is selected. Details of the selected restaurant is shown in the 2 panels next to the restaurant list panel.</p>
 </li>
 <li>
 <p>Test case: <code>select 0</code><br>
-Expected: No restaurant is selected. Error details shown in the status message. Status bar remains the same.</p>
+Expected: No restaurant is selected. Error details shown in the status message.</p>
 </li>
 <li>
 <p>Other incorrect select commands to try: <code>select</code>, <code>select x</code> (where x is larger than the list size)
@@ -3319,14 +3541,14 @@ Expected: Similar to previous.</p>
 </li>
 <li>
 <p>Test case: <code>select 1</code><br>
-Expected: First restaurant in the list is selected. Details of the selected restaurant is shown in the 3 panels next to the restaurant list panel.</p>
+Expected: First restaurant in the list is selected. Details of the selected restaurant is shown in the 2 panels next to the restaurant list panel.</p>
 </li>
 <li>
 <p>Test case: <code>select 0</code><br>
-Expected: No restaurant is selected. Error details shown in the status message. Status bar remains the same.</p>
+Expected: No restaurant is selected. Error details shown in the status message.</p>
 </li>
 <li>
-<p>Other incorrect select commands to try: <code>select</code>, <code>select x</code> (where x is larger than the list size)
+<p>Other incorrect select commands to try: <code>select</code>, <code>select x</code> (where x is larger than the list size)<br>
 Expected: Similar to previous.</p>
 </li>
 </ol>
@@ -3336,7 +3558,71 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="adding-a-review-to-a-restaurant"><a class="link" href="#adding-a-review-to-a-restaurant">F.4. Adding a Review to a restaurant</a></h3>
+<h3 id="sorting-restaurant-list"><a class="link" href="#sorting-restaurant-list">F.4. Sorting restaurant list</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Sorting entire restaurant list</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>sort</code><br>
+Expected: All restaurants in the list are sorted in descending order of ratings.</p>
+</li>
+<li>
+<p>Test case: <code>sort or/ASC</code><br>
+Expected: All restaurants in the list are sorted in ascending order of ratings.</p>
+</li>
+<li>
+<p>Test case: <code>sort or/dEs</code><br>
+Expected: All restaurants in the list are sorted in descending order of ratings.</p>
+</li>
+<li>
+<p>Test case: <code>sort or/1</code><br>
+Expected: No restaurant is sorted. Error details shown in the status message to indicate wrong <code>ORDER</code> format.</p>
+</li>
+<li>
+<p>Other incorrect select commands to try: <code>sort 1</code>, <code>sort or/ASCENDIng</code>, <code>sort or/deSCENDING</code><br>
+Expected: Similar to previous.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Sorting restaurant list and limiting to top/bottom ranking restaurants</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Scenario: There are 6 restaurants in the list.</p>
+</li>
+<li>
+<p>Test case: <code>sort l/2</code><br>
+Expected: All restaurants in the list are sorted in descending order of ratings, restaurants with the 2 highest ratings are displayed in descending order of ratings.</p>
+</li>
+<li>
+<p>Test case: <code>sort or/ASC l/2</code><br>
+Expected: All restaurants in the list are sorted in ascending order of ratings, restaurants with the 2 lowest ratings are displayed in ascending order of ratings.</p>
+</li>
+<li>
+<p>Test case: <code>sort or/dEs l/10</code><br>
+Expected: All restaurants in the list are sorted in descending order of ratings. Status message indicates that restaurants with top 10 (the limit input by user) rankings are sorted in descending order.</p>
+</li>
+<li>
+<p>Test case: <code>sort l/-10</code><br>
+Expected: No restaurant is sorted. Error details shown in the status message to indicate wrong <code>LIMIT</code> format.</p>
+</li>
+<li>
+<p>Other incorrect select commands to try: <code>sort l/-20</code>, <code>sort or/asc l/1.567</code>, <code>sort or/des l/0</code><br>
+Expected: Similar to previous.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="adding-a-review-to-a-restaurant"><a class="link" href="#adding-a-review-to-a-restaurant">F.5. Adding a Review to a restaurant</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3362,7 +3648,7 @@ Expected: No review is added. Error message shown indicating an invalid command 
 </div>
 </div>
 <div class="sect2">
-<h3 id="adding-a-default-review-to-a-restaurant"><a class="link" href="#adding-a-default-review-to-a-restaurant">F.5. Adding a default Review to a restaurant</a></h3>
+<h3 id="adding-a-default-review-to-a-restaurant"><a class="link" href="#adding-a-default-review-to-a-restaurant">F.6. Adding a default Review to a restaurant</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3384,7 +3670,7 @@ Expected: No new review is added. Error message indicating an invalid command fo
 </div>
 </div>
 <div class="sect2">
-<h3 id="editing-the-review-of-a-restaurant"><a class="link" href="#editing-the-review-of-a-restaurant">F.6. Editing the Review of a restaurant</a></h3>
+<h3 id="editing-the-review-of-a-restaurant"><a class="link" href="#editing-the-review-of-a-restaurant">F.7. Editing the Review of a restaurant</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3410,7 +3696,7 @@ Expected: No review is edited. Error message shown indicating that at least one 
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-the-review-of-a-restaurant"><a class="link" href="#deleting-the-review-of-a-restaurant">F.7. Deleting the Review of a restaurant</a></h3>
+<h3 id="deleting-the-review-of-a-restaurant"><a class="link" href="#deleting-the-review-of-a-restaurant">F.8. Deleting the Review of a restaurant</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3432,7 +3718,7 @@ Expected: No review is deleted. Error message shown indicating an invalid comman
 </div>
 </div>
 <div class="sect2">
-<h3 id="setting-the-categories-of-a-restaurant"><a class="link" href="#setting-the-categories-of-a-restaurant">F.8. Setting the categories of a restaurant</a></h3>
+<h3 id="setting-the-categories-of-a-restaurant"><a class="link" href="#setting-the-categories-of-a-restaurant">F.9. Setting the categories of a restaurant</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3469,7 +3755,7 @@ Expected: No categories are set. Error details shown in status message.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-data"><a class="link" href="#saving-data">F.9. Saving data</a></h3>
+<h3 id="saving-data"><a class="link" href="#saving-data">F.10. Saving data</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3489,4 +3775,4 @@ Expected: No categories are set. Error details shown in status message.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 10:03:48 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 10:16:33 UTC</div></div></div></body></html>
