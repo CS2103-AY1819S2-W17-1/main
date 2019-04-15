@@ -857,20 +857,17 @@ The enhancement made is to display greater quantity and quality of restaurant in
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/SelectActivityDiagram.png" alt="SelectActivityDiagram" width="800">
+<img src="images/SelectActivityDiagram.png" alt="SelectActivityDiagram" width="650">
 </div>
 </div>
 <div class="paragraph">
 <p><em>Figure 1. Activity Diagram for <code>select</code> command</em></p>
 </div>
 <div class="paragraph">
-<p>The majors components involved in the implementation of this feature are the <code>FoodDiaryParser</code>, <code>SelectCommandParser</code> and <code>SelectCommand</code> classes. Their role in this implementation will be expounded on below.</p>
-</div>
-<div class="paragraph">
 <p>The following describes how the <code>select</code> mechanism behaves at each step:</p>
 </div>
 <div class="paragraph">
-<p>Step 1. The user executes <code>select INDEX</code> command, whereby <code>INDEX</code> is a positive integer within the range of indexes in the filtered restaurant list.</p>
+<p>Step 1. User executes <code>select INDEX</code> command, with <code>INDEX</code> as a positive integer within the range of indexes in the filtered restaurant list.</p>
 </div>
 <div class="paragraph">
 <p>Step 2. The <code>FoodDiaryParser</code> parses the user&#8217;s input and constructs a <code>SelectCommandParser</code> object, which then parses the input index into an <code>Index</code> object and constructs a <code>SelectCommand</code> object.</p>
@@ -890,8 +887,8 @@ the restaurant&#8217;s <code>avgRating</code> and <code>totalVisit</code>.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-A restaurant with no reviews is indicated with <code>totalVisits</code> = 0 and <code>avgRating</code> = -1. The number -1 is chosen as all user input <code>Ratings</code> can only be a number between [0,5], thus -1 is a clear
-indication that there is no <code>avgRating</code> for the particular restaurant. This then allows a clear check that <code>avgRating</code> field displayed in the UI should be <code>N.A.</code>.
+A restaurant with no reviews is indicated with <code>totalVisits</code> = 0 and <code>avgRating</code> = -1. The number -1 is chosen as all user input <code>Ratings</code> can only be a number between [0, 5], thus -1 is a clear
+indication that there is no <code>avgRating</code> for the particular restaurant. This is a clear check to decide whether the <code>avgRating</code> field displayed in the UI should be <code>N.A.</code>.
 </td>
 </tr>
 </table>
@@ -910,11 +907,11 @@ As such, this command cannot be undone or redone through the <code>undo</code> a
 </table>
 </div>
 <div class="paragraph">
-<p>You can refer to <em>Figure 2</em> for a better idea of the internal implementation flow when a <code>select</code> command is executed.</p>
+<p>You can refer to <em>Figure 2</em> for the internal implementation flow when a <code>select</code> command is executed.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/SelectSequenceDiagram.png" alt="SelectSequenceDiagram" width="800">
+<img src="images/SelectSequenceDiagram.png" alt="SelectSequenceDiagram" width="675">
 </div>
 </div>
 <div class="paragraph">
@@ -929,10 +926,10 @@ As such, this command cannot be undone or redone through the <code>undo</code> a
 <div class="ulist">
 <ul>
 <li>
-<p>The Facade design pattern is used to allow access to <code>avgRating</code> and <code>totalVisit</code> of a <code>Restaurant</code> only through its <code>Summary</code> class.</p>
+<p>The Facade design pattern is used to allow access to <code>avgRating</code> and <code>totalVisits</code> of a <code>Restaurant</code> only through its <code>Summary</code> class.</p>
 </li>
 <li>
-<p>The Observer pattern is also applied in the UI component as the <code>RestaurantSummaryPanel</code> and <code>ReviewListPanel</code> gets updated automatically once the selected restaurant is changed.</p>
+<p>The Observer pattern is also applied in the UI component as the <code>RestaurantSummaryPanel</code> and <code>ReviewListPanel</code> gets updated automatically once the selected restaurant is changed through the use of a listener for <code>selectedRestaurant</code>.</p>
 </li>
 </ul>
 </div>
@@ -941,49 +938,33 @@ As such, this command cannot be undone or redone through the <code>undo</code> a
 <div class="ulist">
 <ul>
 <li>
-<p>Alternative 1 (Current Choice): Implement <code>Summary</code> as a class in the <code>Restaurant</code> package</p>
-</li>
-</ul>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Pros</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Applies Observer pattern and reduces duplicate code as calculation of <code>avgRating</code> only has to be done once in <code>Summary</code> class for it to be displayed on both <code>RestaurantCard</code> and <code>RestaurantSummaryPanel</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Cons</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Results in coupling as it introduces dependency of <code>Summary</code> on <code>Review</code> class.</p></td>
-</tr>
-</tbody>
-</table>
+<p><strong>Alternative 1 (current choice):</strong> Implement <code>Summary</code> as a class in the <code>Restaurant</code> package</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Alternative 2: Implement <code>Summary</code> as a UI component that listens to changes in the Review of the Restaurant</p>
+<p>Pros: Applies Observer pattern and reduces duplicate code as calculation of <code>avgRating</code> only has to be done once in <code>Summary</code> class to display it on both <code>RestaurantCard</code> and <code>RestaurantSummaryPanel</code>.</p>
+</li>
+<li>
+<p>Cons: Results in coupling as it introduces dependency of <code>Summary</code> on <code>Review</code> class.</p>
 </li>
 </ul>
 </div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Pros</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Reduces dependency within Model component.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Cons</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Increases duplicate code as <code>avgRating</code> of a Restaurant&#8217;s <code>Summary</code> is displayed in both the <code>RestaurantCard</code> and <code>RestaurantSummaryPanel</code> and will thus have to be calculated twice.</p></td>
-</tr>
-</tbody>
-</table>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Implement <code>Summary</code> as a class in the UI component that listens to changes in the <code>Review</code> of the <code>Restaurant</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Reduces dependency within Model component.</p>
+</li>
+<li>
+<p>Cons: Increases duplicate code as <code>avgRating</code> of a Restaurant&#8217;s <code>Summary</code> is displayed in both the <code>RestaurantCard</code> and <code>RestaurantSummaryPanel</code> and will thus have to be calculated twice.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
@@ -1003,7 +984,7 @@ By default, the restaurants would be sorted in descending order of ratings with 
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/SortActivityDiagram.png" alt="SortActivityDiagram" width="800">
+<img src="images/SortActivityDiagram.png" alt="SortActivityDiagram" width="700">
 </div>
 </div>
 <div class="paragraph">
@@ -1018,7 +999,7 @@ By default, the restaurants would be sorted in descending order of ratings with 
 <p><code>FoodDiaryParser</code>, which parses the user&#8217;s input and constructs a <code>SelectCommandParser</code>, which then parses the input into <code>Order</code> and <code>Limit</code> and constructs a <code>SortCommand</code>.</p>
 </li>
 <li>
-<p><code>SortRating</code>, which implements Comparator&lt;Restaurant&gt; and serves as a comparator to sort the restaurants in the Food Diary by its <code>avgRating</code>.
+<p><code>SortRating</code>, which implements <code>Comparator&lt;Restaurant&gt;</code>, serves as a comparator to sort the restaurants in the Food Diary by its <code>avgRating</code>.
 To construct this comparator, an <code>Order</code> has to be passed in to determine whether <code>SortRating#compare()</code> will be indicating ascending or descending order.</p>
 </li>
 <li>
@@ -1083,7 +1064,7 @@ into <code>Model#updateFilteredRestaurantList()</code> to display all restaurant
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/SortSequenceDiagram.png" alt="SortSequenceDiagram" width="800">
+<img src="images/SortSequenceDiagram.png" alt="SortSequenceDiagram" width="750">
 </div>
 </div>
 <div class="paragraph">
@@ -1097,99 +1078,33 @@ into <code>Model#updateFilteredRestaurantList()</code> to display all restaurant
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Let the <code>Limit</code> denote the number of ranks of restaurants to be displayed</p>
-</li>
-</ul>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Pros</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Accurately shows the top/bottom ranked restaurants.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Cons</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">More expensive operations required to limit ranks of restaurants as a unique ratings list has to be stored to get the limited ranks.</p></td>
-</tr>
-</tbody>
-</table>
+<p><strong>Alternative 1 (current choice):</strong> Let <code>Limit</code> denote the number of ranks of restaurants to be displayed</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 2:</strong> Let the <code>Limit</code> denote the number of restaurants to be displayed</p>
+<p>Pros: Accurately shows the top/bottom ranked restaurants.</p>
+</li>
+<li>
+<p>Cons: More expensive operations required to limit ranks of restaurants as a unique ratings list has to be stored to get the limited ranks.</p>
 </li>
 </ul>
 </div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Pros</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">More intuitive to users.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Cons</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Does not provide an accurate depiction of top/bottom restaurants as multiple restaurants with the same ratings may not be displayed.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect5">
-<h6 id="aspect-whether-to-sort-the-restaurants-in-the-food-diary-permanently-or-temporarily"><a class="link" href="#aspect-whether-to-sort-the-restaurants-in-the-food-diary-permanently-or-temporarily">Aspect: Whether to sort the restaurants in the Food Diary permanently or temporarily</a></h6>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Let <code>Limit</code> denote the number of restaurants to be displayed</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Sort the restaurants permanently by saving the state of the Food Diary after command execution in <code>Model#commitFoodDiary()</code></p>
+<p>Pros: More intuitive to users.</p>
 </li>
-</ul>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Pros</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">More intuitive to users as they can undo the <code>sort</code> command and return to the previous state of the Food Diary.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Cons</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Uses more memory as the sorted list will be stored as a version of the Food Diary.</p></td>
-</tr>
-</tbody>
-</table>
-<div class="ulist">
-<ul>
 <li>
-<p><strong>Alternative 2:</strong> Sort the restaurants temporarily by encapsulating <code>FilteredList</code> in a <code>SortedList</code></p>
+<p>Cons: Does not provide an accurate depiction of top/bottom restaurants as multiple restaurants with the same ratings may not be displayed.</p>
 </li>
 </ul>
 </div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Pros</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Easy to implement.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Cons</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Might be jarring to users as the sorted state of the Food Diary would not be saved upon leaving the application and there is no way for the user to
-         return to his/her originally ordered list of restaurants within the same window of use.</p></td>
-</tr>
-</tbody>
-</table>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
@@ -1199,31 +1114,31 @@ into <code>Model#updateFilteredRestaurantList()</code> to display all restaurant
 <div class="sect3">
 <h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">4.3.1. Current Implementation</a></h4>
 <div class="paragraph">
-<p>The undo/redo mechanism is facilitated by <code>VersionedAddressBook</code>.
-It extends <code>AddressBook</code> with an undo/redo history, stored internally as an <code>addressBookStateList</code> and <code>currentStatePointer</code>.
+<p>The undo/redo mechanism is facilitated by <code>VersionedFoodDiary</code>.
+It extends <code>FoodDiary</code> with an undo/redo history, stored internally as an <code>foodDiaryStateList</code> and <code>currentStatePointer</code>.
 Additionally, it implements the following operations:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>VersionedAddressBook#commit()</code>&#8201;&#8212;&#8201;Saves the current address book state in its history.</p>
+<p><code>VersionedFoodDiary#commit()</code>&#8201;&#8212;&#8201;Saves the current food diary state in its history.</p>
 </li>
 <li>
-<p><code>VersionedAddressBook#undo()</code>&#8201;&#8212;&#8201;Restores the previous address book state from its history.</p>
+<p><code>VersionedFoodDiary#undo()</code>&#8201;&#8212;&#8201;Restores the previous food diary state from its history.</p>
 </li>
 <li>
-<p><code>VersionedAddressBook#redo()</code>&#8201;&#8212;&#8201;Restores a previously undone address book state from its history.</p>
+<p><code>VersionedFoodDiary#redo()</code>&#8201;&#8212;&#8201;Restores a previously undone food diary state from its history.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>These operations are exposed in the <code>Model</code> interface as <code>Model#commitAddressBook()</code>, <code>Model#undoAddressBook()</code> and <code>Model#redoAddressBook()</code> respectively.</p>
+<p>These operations are exposed in the <code>Model</code> interface as <code>Model#commitFoodDiary()</code>, <code>Model#undoFoodDiary()</code> and <code>Model#redoFoodDiary()</code> respectively.</p>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.</p>
 </div>
 <div class="paragraph">
-<p>Step 1. The user launches the application for the first time. The <code>VersionedAddressBook</code> will be initialized with the initial address book state, and the <code>currentStatePointer</code> pointing to that single address book state.</p>
+<p>Step 1. The user launches the application for the first time. The <code>VersionedFoodDiary</code> will be initialized with the initial food diary state, and the <code>currentStatePointer</code> pointing to that single food diary state.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1231,7 +1146,7 @@ Additionally, it implements the following operations:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Step 2. The user executes <code>delete 5</code> command to delete the 5th restaurant in the address book. The <code>delete</code> command calls <code>Model#commitAddressBook()</code>, causing the modified state of the address book after the <code>delete 5</code> command executes to be saved in the <code>addressBookStateList</code>, and the <code>currentStatePointer</code> is shifted to the newly inserted address book state.</p>
+<p>Step 2. The user executes <code>delete 5</code> command to delete the 5th restaurant in the food diary. The <code>delete</code> command calls <code>Model#commitFoodDiary()</code>, causing the modified state of the food diary after the <code>delete 5</code> command executes to be saved in the <code>foodDiaryStateList</code>, and the <code>currentStatePointer</code> is shifted to the newly inserted food diary state.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1239,7 +1154,7 @@ Additionally, it implements the following operations:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Step 3. The user executes <code>add n/David &#8230;&#8203;</code> to add a new restaurant. The <code>add</code> command also calls <code>Model#commitAddressBook()</code>, causing another modified address book state to be saved into the <code>addressBookStateList</code>.</p>
+<p>Step 3. The user executes <code>add n/David &#8230;&#8203;</code> to add a new restaurant. The <code>add</code> command also calls <code>Model#commitFoodDiary()</code>, causing another modified food diary state to be saved into the <code>foodDiaryStateList</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1253,13 +1168,13 @@ Additionally, it implements the following operations:</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If a command fails its execution, it will not call <code>Model#commitAddressBook()</code>, so the address book state will not be saved into the <code>addressBookStateList</code>.
+If a command fails its execution, it will not call <code>Model#commitFoodDiary()</code>, so the food diary state will not be saved into the <code>foodDiaryStateList</code>.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Step 4. The user now decides that adding the restaurant was a mistake, and decides to undo that action by executing the <code>undo</code> command. The <code>undo</code> command will call <code>Model#undoAddressBook()</code>, which will shift the <code>currentStatePointer</code> once to the left, pointing it to the previous address book state, and restores the address book to that state.</p>
+<p>Step 4. The user now decides that adding the restaurant was a mistake, and decides to undo that action by executing the <code>undo</code> command. The <code>undo</code> command will call <code>Model#undoFoodDiary()</code>, which will shift the <code>currentStatePointer</code> once to the left, pointing it to the previous food diary state, and restores the food diary to that state.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1273,7 +1188,7 @@ If a command fails its execution, it will not call <code>Model#commitAddressBook
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If the <code>currentStatePointer</code> is at index 0, pointing to the initial address book state, then there are no previous address book states to restore. The <code>undo</code> command uses <code>Model#canUndoAddressBook()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo.
+If the <code>currentStatePointer</code> is at index 0, pointing to the initial food diary state, then there are no previous food diary states to restore. The <code>undo</code> command uses <code>Model#canUndoFoodDiary()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo.
 </td>
 </tr>
 </table>
@@ -1287,7 +1202,7 @@ If the <code>currentStatePointer</code> is at index 0, pointing to the initial a
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>redo</code> command does the opposite&#8201;&#8212;&#8201;it calls <code>Model#redoAddressBook()</code>, which shifts the <code>currentStatePointer</code> once to the right, pointing to the previously undone state, and restores the address book to that state.</p>
+<p>The <code>redo</code> command does the opposite&#8201;&#8212;&#8201;it calls <code>Model#redoFoodDiary()</code>, which shifts the <code>currentStatePointer</code> once to the right, pointing to the previously undone state, and restores the food diary to that state.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1296,13 +1211,13 @@ If the <code>currentStatePointer</code> is at index 0, pointing to the initial a
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If the <code>currentStatePointer</code> is at index <code>addressBookStateList.size() - 1</code>, pointing to the latest address book state, then there are no undone address book states to restore. The <code>redo</code> command uses <code>Model#canRedoAddressBook()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+If the <code>currentStatePointer</code> is at index <code>foodDiaryStateList.size() - 1</code>, pointing to the latest food diary state, then there are no undone food diary states to restore. The <code>redo</code> command uses <code>Model#canRedoFoodDiary()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Step 5. The user then decides to execute the command <code>list</code>. Commands that do not modify the address book, such as <code>list</code>, will usually not call <code>Model#commitAddressBook()</code>, <code>Model#undoAddressBook()</code> or <code>Model#redoAddressBook()</code>. Thus, the <code>addressBookStateList</code> remains unchanged.</p>
+<p>Step 5. The user then decides to execute the command <code>list</code>. Commands that do not modify the food diary, such as <code>list</code>, will usually not call <code>Model#commitFoodDiary()</code>, <code>Model#undoFoodDiary()</code> or <code>Model#redoFoodDiary()</code>. Thus, the <code>foodDiaryStateList</code> remains unchanged.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1310,7 +1225,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="paragraph">
-<p>Step 6. The user executes <code>clear</code>, which calls <code>Model#commitAddressBook()</code>. Since the <code>currentStatePointer</code> is not pointing at the end of the <code>addressBookStateList</code>, all address book states after the <code>currentStatePointer</code> will be purged. We designed it this way because it no longer makes sense to redo the <code>add n/David &#8230;&#8203;</code> command. This is the behavior that most modern desktop applications follow.</p>
+<p>Step 6. The user executes <code>clear</code>, which calls <code>Model#commitFoodDiary()</code>. Since the <code>currentStatePointer</code> is not pointing at the end of the <code>foodDiaryStateList</code>, all food diary states after the <code>currentStatePointer</code> will be purged. We designed it this way because it no longer makes sense to redo the <code>add n/David &#8230;&#8203;</code> command. This is the behavior that most modern desktop applications follow.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1333,7 +1248,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Saves the entire address book.</p>
+<p><strong>Alternative 1 (current choice):</strong> Saves the entire food diary.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1366,14 +1281,14 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Use a list to store the history of address book states.</p>
+<p><strong>Alternative 1 (current choice):</strong> Use a list to store the history of food diary states.</p>
 <div class="ulist">
 <ul>
 <li>
 <p>Pros: Easy for new Computer Science student undergraduates to understand, who are likely to be the new incoming developers of our project.</p>
 </li>
 <li>
-<p>Cons: Logic is duplicated twice. For example, when a new command is executed, we must remember to update both <code>HistoryManager</code> and <code>VersionedAddressBook</code>.</p>
+<p>Cons: Logic is duplicated twice. For example, when a new command is executed, we must remember to update both <code>HistoryManager</code> and <code>VersionedFoodDiary</code>.</p>
 </li>
 </ul>
 </div>
@@ -2398,7 +2313,7 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <div class="sect2">
 <h3 id="managing-dependencies"><a class="link" href="#managing-dependencies">7.6. Managing Dependencies</a></h3>
 <div class="paragraph">
-<p>A project often depends on third-party libraries. For example, Address Book depends on the <a href="https://github.com/FasterXML/jackson">Jackson library</a> for JSON parsing. Managing these <em>dependencies</em> can be automated using Gradle. For example, Gradle can download the dependencies automatically, which is better than these alternatives:</p>
+<p>A project often depends on third-party libraries. For example, Food Diary depends on the <a href="https://github.com/FasterXML/jackson">Jackson library</a> for JSON parsing. Managing these <em>dependencies</em> can be automated using Gradle. For example, Gradle can download the dependencies automatically, which is better than these alternatives:</p>
 </div>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
@@ -2482,12 +2397,6 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Food lover</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Switch between restaurant view and review view</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Switch easily between looking for cuisine/occasion and looking for ratings/comments</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Food lover that is clumsy</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Undo/redo any command</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Quickly recover from a typo or wrong command</p></td>
@@ -2497,12 +2406,6 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Food lover</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Update and delete reviews for a restaurant</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Ensure all reviews for a restaurant are up to date</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Food lovers with multiple devices</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Export all my data and import into another device</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Resume my food reviews on another device wherever I go</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
@@ -2519,20 +2422,8 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Food lover</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Add restaurant based on Google search</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Easily add a new restaurant</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Food lover</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Autocomplete categories I have keyed in before when setting categories</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">I can set categories faster</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Food lover that travels</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">View restaurants and reviews separately by country</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Easily see relevant restaurants and reviews when I can in a certain country</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
@@ -2590,56 +2481,6 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <ul class="none">
 <li>
 <p>2a1. Food Diary tells Food Lover that the restaurant already exists and asks user to enter another name and location</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<h3 id="use-case-adding-a-restaurant-by-google-search-by-food-lover-to-food-diary" class="discrete">Use case: Adding a restaurant by Google Search by Food Lover to Food Diary</h3>
-<div class="paragraph">
-<p><strong>MSS</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Food Lover enters command to add restaurant by Google Search</p>
-</li>
-<li>
-<p>Food Diary adds restaurant</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p><strong>Extensions</strong></p>
-</div>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>2a. Food Lover enters a name that already exists in Food Diary</p>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>2a1. Food Diary tells Food Lover that the restaurant already exists</p>
-</li>
-<li>
-<p>2a2. Food Diary asks user to enter another name and location</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>2b. Food Diary is unable to retrieve anything from Google.</p>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>2b1. Food Diary tells user that retrieval of information has failed.</p>
-<div class="paragraph">
-<p>Use case ends</p>
-</div>
 </li>
 </ul>
 </div>
@@ -2794,17 +2635,17 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 </li>
 </ul>
 </div>
-<h3 id="use-case-sort-restaurants-in-food-diary-rating-price" class="discrete">Use case: Sort Restaurants in Food Diary (rating, price)</h3>
+<h3 id="use-case-sort-restaurants-in-food-diary-rating" class="discrete">Use case: Sort Restaurants in Food Diary (rating)</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Food Lover enters command, category to sort by (i.e. rating, price)</p>
+<p>Food Lover enters command to sort restaurants by rating, order to sort it by and number of ranks to show</p>
 </li>
 <li>
-<p>Food Diary displays restaurants according to category</p>
+<p>Food Diary displays restaurants according to order and ranks specified</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2817,7 +2658,7 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a. Food Lover enters an invalid category</p>
+<p>1a. Food Lover enters an invalid order/rank</p>
 <div class="ulist none">
 <ul class="none">
 <li>
@@ -3735,4 +3576,4 @@ Expected: Error message showing no internet connection found is displayed in the
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 15:09:26 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 15:20:22 UTC</div></div></div></body></html>

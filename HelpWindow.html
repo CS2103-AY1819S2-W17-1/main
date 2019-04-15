@@ -39,12 +39,14 @@
 </li>
 <li><a href="#general-features">3.3. General Features</a>
 <ul class="sectlevel3">
-<li><a href="#viewing-help-code-help-code">3.3.1. Viewing help : <code>help</code></a></li>
-<li><a href="#personalising-your-food-diary-with-your-name-code-name-code">3.3.2. Personalising your food diary with your name: <code>name</code></a></li>
-<li><a href="#view-your-profile-and-usage-statistics-code-view-code">3.3.3. View your profile and usage statistics : <code>view</code></a></li>
-<li><a href="#share-to-facebook-code-share-code-coming-in-v2-0">3.3.4. Share to Facebook: <code>share</code> (Coming in v2.0)</a></li>
-<li><a href="#exiting-the-program-code-exit-code">3.3.5. Exiting the program : <code>exit</code></a></li>
-<li><a href="#saving-the-data">3.3.6. Saving the data</a></li>
+<li><a href="#personalising-your-food-diary-with-your-name-code-name-code">3.3.1. Personalising your food diary with your name: <code>name</code></a></li>
+<li><a href="#view-your-profile-and-usage-statistics-code-view-code">3.3.2. View your profile and usage statistics : <code>view</code></a></li>
+<li><a href="#share-to-facebook-code-share-code-coming-in-v2-0">3.3.3. Share to Facebook: <code>share</code> (Coming in v2.0)</a></li>
+<li><a href="#undo-a-command-code-undo-code">3.3.4. Undo a command : <code>undo</code></a></li>
+<li><a href="#redo-a-command-code-redo-code">3.3.5. Redo a command : <code>redo</code></a></li>
+<li><a href="#viewing-help-code-help-code">3.3.6. Viewing help : <code>help</code></a></li>
+<li><a href="#exiting-the-program-code-exit-code">3.3.7. Exiting the program : <code>exit</code></a></li>
+<li><a href="#saving-the-data">3.3.8. Saving the data</a></li>
 </ul>
 </li>
 </ul>
@@ -179,10 +181,10 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <p><strong><code>list</code></strong> : lists all restaurants</p>
 </li>
 <li>
-<p><strong><code>addReview</code></strong> <code>n/MCDONALDS rr/4 re/delicious</code> : adds a review to MCDONALDS with rating 4 with the comment "delicious"</p>
+<p><strong><code>addReview 1 rr/4 re/delicious</code></strong> : adds a review to the 1st restaurant in the list, Astons, with rating 4 with the comment "delicious"</p>
 </li>
 <li>
-<p><strong><code>delete</code></strong><code>3</code> : deletes the 3rd restaurant shown in the index</p>
+<p><strong><code>delete 3</code></strong> : deletes the 3rd restaurant shown in the list</p>
 </li>
 <li>
 <p><strong><code>exit</code></strong> : exits the app</p>
@@ -208,16 +210,16 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="ulist">
 <ul>
 <li>
-<p>Words in <code>UPPER_CASE</code> are the parameters to be supplied by the user e.g. in <code>add n/RESTAURANT_NAME</code>, <code>RESTAURANT_NAME</code> is a parameter which can be used as <code>add n/Burger King</code>.</p>
+<p>Words in <code>UPPER_CASE</code> are the parameters to be supplied by the user e.g. in <code>add n/NAME</code>, <code>NAME</code> is a parameter which can be used as <code>add n/Burger King</code>.</p>
 </li>
 <li>
-<p>Items in square brackets are optional. e.g. in `add n/RESTAURANT_NAME</p>
+<p>Items in square brackets are optional. e.g. in <code>add n/NAME a/ADDRESS po/POSTAL CODE [p/PHONE] [e/EMAIL] [t/TAG]…​ [w/WEBLINK] [o/OPENING_HOURS]</code>, <code>PHONE</code>, <code>EMAIL</code>, <code>TAG</code>, <code>WEBLINK</code> and <code>OPENING_HOURS</code> are optional.</p>
 </li>
 <li>
 <p>Items with <code>…</code>​ after them can be used multiple times including zero times e.g. <code>[t/TAG]&#8230;&#8203;</code> can be used as <code>&#160;</code> (i.e. 0 times), <code>t/friend</code>, <code>t/friend t/family</code> etc.</p>
 </li>
 <li>
-<p>Parameters can be in any order e.g. if the command specifies <code>n/RESTAURANT_NAME r/RATING</code>, <code>r/RATING n/RESTAURANT_NAME</code> is also acceptable.</p>
+<p>Parameters can be in any order e.g. if the command specifies <code>re/ENTRY rr/RATING</code>, <code>rr/RATING re/ENTRY</code> is also acceptable.</p>
 </li>
 </ul>
 </div>
@@ -236,16 +238,13 @@ Format: <code>add n/NAME a/ADDRESS po/POSTAL CODE [p/PHONE] [e/EMAIL] [t/TAG]&#8
 <div class="ulist">
 <ul>
 <li>
-<p>To add a restaurant, the minimal information you need to have is their name, address and postal code.</p>
+<p>To add a restaurant, the minimal information you need to have is its name, address and postal code.</p>
 </li>
 <li>
-<p>A restaurant can have any number of tags (including 0)</p>
+<p>A restaurant can have any number of tags (including 0).</p>
 </li>
 <li>
-<p>A restaurant can have a weblink or none</p>
-</li>
-<li>
-<p>A restaurant can have one opening hours or none</p>
+<p>A restaurant can have a phone number, email, weblink and opening hours or none.</p>
 </li>
 </ul>
 </div>
@@ -275,18 +274,18 @@ Format: <code>add n/NAME a/ADDRESS po/POSTAL CODE [p/PHONE] [e/EMAIL] [t/TAG]&#8
 </td>
 <td class="content">
 <div class="paragraph">
-<p>When you are adding in the Weblink, FoodDiary will check whether the Weblink is valid for you. You need to have internet connection else,
-the FoodDiary will proceed to add the restaurant without the Weblink.</p>
+<p>When you are adding in the Weblink, the Food Diary will check whether the Weblink is valid for you. You need to have internet connection, else
+the Food Diary will proceed to add the restaurant without the Weblink.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p><span class="image"><img src="images/NoInternetAdd.PNG" alt="NoInternetAdd" width="640"></span></p>
 </div>
 <div class="paragraph">
 <p><em>Image 1.1 When there is no internet connection, adding a restaurant with weblink will display this result</em></p>
-</div>
-</td>
-</tr>
-</table>
 </div>
 </div>
 <div class="sect3">
@@ -328,8 +327,8 @@ Changes the name of the second restaurant in the list to <code>MACS</code>.</p>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>When you are editing the Weblink of a restaurant, FoodDiary will check whether the Weblink is valid for you. You need to have internet connection else,
-the FoodDiary will not edit the Weblink for you.</p>
+<p>When you are editing the Weblink of a restaurant, the Food Diary will check whether the Weblink is valid for you. You need to have internet connection else,
+the Food Diary will not edit the Weblink for you.</p>
 </div>
 </td>
 </tr>
@@ -433,7 +432,7 @@ Shows all the restaurants that has no reviews ranked based on the proximity to t
 </td>
 <td class="content">
 <div class="paragraph">
-<p>If you simply want to view unreviewed restaurants, enter <code>listUnvisited po/000000</code></p>
+<p>If you simply want to view unreviewed restaurants, enter <code>listUnvisited po/000000</code>.</p>
 </div>
 </td>
 </tr>
@@ -444,7 +443,7 @@ Shows all the restaurants that has no reviews ranked based on the proximity to t
 <h4 id="sorting-restaurants-by-rating-code-sort-code"><a class="link" href="#sorting-restaurants-by-rating-code-sort-code">3.1.6. Sorting restaurants by rating: <code>sort</code></a></h4>
 <div class="paragraph">
 <p>Sorting your restaurants from favourite to least favourite, or vice versa, has never been easier.
-Order all of the restaurants in the Food Diary from highest to lowest ratings based on the average ratings you&#8217;ve given that restaurant in all your reviews for them.<br>
+Order all of the restaurants in the Food Diary from highest to lowest ratings based on the average ratings from all the reviews that you have given each restaurant.<br>
 Format: <code>sort [or/ORDER] [l/LIMIT]</code></p>
 </div>
 <div class="admonitionblock note">
@@ -457,7 +456,7 @@ Format: <code>sort [or/ORDER] [l/LIMIT]</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>ORDER</code> can only take the form of <code>or/ASC</code> or <code>or/DES</code>, case-insensitive.</p>
+<p><code>ORDER</code> refers to the order in which the restaurants will be sorted and can only take the form of <code>or/ASC</code> or <code>or/DES</code>, case-insensitive.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -470,10 +469,10 @@ Format: <code>sort [or/ORDER] [l/LIMIT]</code></p>
 </div>
 </li>
 <li>
-<p><code>LIMIT</code> <strong>must be a positive integer</strong> <code>1, 2, 3, &#8230;&#8203;</code></p>
+<p><code>LIMIT</code> refers to the number of ranks of restaurants to be displayed and <strong>must be a positive integer</strong> <code>1, 2, 3, &#8230;&#8203;</code></p>
 </li>
 <li>
-<p>If <code>LIMIT</code> you have entered is larger than the number of unique ratings in the list of restaurants, all of the restaurants in the sorted list will be shown.</p>
+<p>If the <code>LIMIT</code> you have entered is larger than the number of unique ratings in the list of restaurants, all of the restaurants in the sorted list will be shown.</p>
 </li>
 </ul>
 </div>
@@ -491,7 +490,7 @@ Format: <code>sort [or/ORDER] [l/LIMIT]</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>Simply want to see your favourite restaurants? Enter the <code>sort</code> command without any parameters to see all of the restaurants, from highest to lowest rating!</p>
+<p>Just want to see your favourite restaurants first? Enter the <code>sort</code> command without any parameters to see all of the restaurants, from highest to lowest rating!</p>
 </li>
 </ul>
 </div>
@@ -499,38 +498,22 @@ Format: <code>sort [or/ORDER] [l/LIMIT]</code></p>
 </tr>
 </table>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="images/sortasc.png" alt="sortasc" width="600">
-</div>
-</div>
-<div class="paragraph">
-<p>_Figure 1. Result obtained when the command <code>sort or/ASC l/2</code> is executed</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/sortdes.png" alt="sortdes" width="600">
-</div>
-</div>
-<div class="paragraph">
-<p><em>Figure 2. Result obtained when the command <code>sort or/DES l/2</code> is executed</em></p>
-</div>
 <div class="paragraph">
 <p>Examples:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>sort</code> or <code>sort or/DES</code>
-Both will sort the list of restaurants in descending order of ratings.</p>
+<p><code>sort</code> or <code>sort or/DES</code><br>
+Both will sort your list of restaurants in descending order of ratings.</p>
 </li>
 <li>
 <p><code>sort or/asC</code> or <code>sort or/ASC</code><br>
-Both will sort the list of restaurants in ascending order of ratings.</p>
+Both will sort your list of restaurants in ascending order of ratings.</p>
 </li>
 <li>
-<p><code>sort or/ASC l/2</code>
-Your list of restaurants will be sorted in ascending order of ratings and only the restaurants with the lowest 2 ratings will be displayed.</p>
+<p><code>sort or/ASC l/2</code><br>
+Your list of restaurants will be sorted in ascending order of ratings and you will only see the restaurants with the 2 lowest ratings displayed.</p>
 </li>
 </ul>
 </div>
@@ -543,12 +526,51 @@ Your list of restaurants will be sorted in ascending order of ratings and only t
 <td class="content">
 <div class="paragraph">
 <p>Restaurants with no reviews will have no ratings, and will thus have an <code>N.A.</code> rating. Restaurants with <code>N.A.</code> rating will come before
-those with positive ratings if in ascending order, and at the end of the list if sorted in descending order.</p>
+those with positive ratings if in ascending order, and after those with positive ratings if sorted in descending order.</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
+<div class="paragraph">
+<p>Example of usage:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Before the <code>sort</code> command is executed, the following shows the list of restaurants in the restaurant list.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/beforesort1.png" alt="beforesort1" width="250"></span> <span class="image"><img src="images/beforesort2.png" alt="beforesort2" width="250"></span></p>
+</div>
+<div class="paragraph">
+<p><em>Figure 1. List of restaurants before sorting, take note of their unordered ratings</em></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>After 2 different <code>sort</code> commands are executed</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="images/sortasc.png" alt="sortasc" width="250"></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="images/sortdes.png" alt="sortdes" width="250"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Figure 2. List of restaurants with the 2 lowest ratings in ascending order is obtained when the command <code>sort or/ASC l/2</code> is executed</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Figure 3. List of restaurants with the 3 highest ratings in descending order of ratings is obtained when the command <code>sort or/DES l/3</code> is executed</em></p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect3">
 <h4 id="searching-restaurants-by-name-code-find-code"><a class="link" href="#searching-restaurants-by-name-code-find-code">3.1.7. Searching restaurants by name: <code>find</code></a></h4>
@@ -609,13 +631,13 @@ Format: <code>select INDEX</code></p>
 <ul>
 <li>
 <p><code>select 3</code><br>
-Selects the restaurant in the displayed restaurants list with index 3 and displays its summary, reviews and website.</p>
+Selects the restaurant in the displayed restaurants list with index 3 and displays its summary and reviews.</p>
 </li>
 </ul>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/selectbefore.png" alt="selectbefore" width="600">
+<img src="images/selectbefore.png" alt="selectbefore" width="450">
 </div>
 </div>
 <div class="paragraph">
@@ -623,11 +645,11 @@ Selects the restaurant in the displayed restaurants list with index 3 and displa
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/selectafter.png" alt="selectafter" width="600">
+<img src="images/selectafter.png" alt="selectafter" width="450">
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 2. After selecting restaurant with index 3, Chilis' summary, reviews and website are displayed in the second, third and fourth panels (from left to right) respectively</em></p>
+<p><em>Figure 2. After selecting restaurant with index 3, Chilis' summary and reviews are displayed in the second and third (from left to right) respectively</em></p>
 </div>
 </div>
 <div class="sect3">
@@ -829,11 +851,11 @@ western japanese chinese</code> into the command box.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>filter fine dining casual</code>
+<p><code>filter fine dining casual</code><br>
 Displays restaurants with any category matching <code>fine</code>, <code>dining</code> or <code>casual</code>.</p>
 </li>
 <li>
-<p><code>filter $ casual western</code>
+<p><code>filter $ casual western</code><br>
 Displays restaurants with any category matching <code>$</code>, <code>casual</code> or <code>western</code>.</p>
 </li>
 </ul>
@@ -842,7 +864,7 @@ Displays restaurants with any category matching <code>$</code>, <code>casual</co
 <div class="sect3">
 <h4 id="display-website-of-selected-restaurant-code-visitweb-code"><a class="link" href="#display-website-of-selected-restaurant-code-visitweb-code">3.1.11. Display website of selected restaurant : <code>visitWeb</code></a></h4>
 <div class="paragraph">
-<p>The restaurants website can serve as your reference when you are adding it into your restaurant list or when writing a review for the restaurant.</p>
+<p>The restaurant&#8217;s website can serve as your reference when you are adding it into your restaurant list or when writing a review for the restaurant.</p>
 </div>
 <div class="paragraph">
 <p>You can display the website of a restaurant identified by the index number used in the list based on its weblink.<br>
@@ -877,7 +899,7 @@ Format: <code>visitWeb URL</code><br></p>
 <p>This allows you to visit website of any restaurant before they are entered into the list of restaurants in the <code>FoodDiary</code>.</p>
 </div>
 <div class="paragraph">
-<p>Website is displayed on a browser window which shows upon visitWeb command.</p>
+<p>Website is displayed on a browser window which shows upon <code>visitWeb</code> command.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -901,10 +923,10 @@ Format: <code>visitWeb URL</code><br></p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>be at least 2 characters long</p>
+<p>be at least 2 characters long,</p>
 </li>
 <li>
-<p>start and end with alphanumeric characters</p>
+<p>start and end with alphanumeric characters,</p>
 </li>
 <li>
 <p>consist of alphanumeric characters, a period or a hyphen for the characters in between, if any.</p>
@@ -969,10 +991,10 @@ Format: <code>addReview INDEX re/ENTRY rr/RATING</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>Adds the review to the restaurant specified by the <code>INDEX</code>. The index refers to the index number of the restaurant of the currently displayed list of restaurants.. The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+<p>Adds the review to the restaurant specified by the <code>INDEX</code>. The index refers to the index number of the restaurant in the currently displayed list of restaurants. The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
 </li>
 <li>
-<p><code>ENTRY</code> is a text field that include both alphabets and numbers.</p>
+<p><code>ENTRY</code> is a text field that includes both alphabets and numbers.</p>
 </li>
 <li>
 <p><code>RATING</code> is a number that has to be a value from 0-5 inclusive. It represents a score out of 5 that is assigned to the restaurant with the added review.</p>
@@ -1195,13 +1217,7 @@ Deletes the 2nd review of the selected restaurant in the Food Diary.</p>
 <div class="sect2">
 <h3 id="general-features"><a class="link" href="#general-features">3.3. General Features</a></h3>
 <div class="sect3">
-<h4 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">3.3.1. Viewing help : <code>help</code></a></h4>
-<div class="paragraph">
-<p>Format: <code>help</code></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="personalising-your-food-diary-with-your-name-code-name-code"><a class="link" href="#personalising-your-food-diary-with-your-name-code-name-code">3.3.2. Personalising your food diary with your name: <code>name</code></a></h4>
+<h4 id="personalising-your-food-diary-with-your-name-code-name-code"><a class="link" href="#personalising-your-food-diary-with-your-name-code-name-code">3.3.1. Personalising your food diary with your name: <code>name</code></a></h4>
 <div class="paragraph">
 <p>Personalise your foodDiary with your name<br>
 Format: <code>name n/YOUR_NAME</code></p>
@@ -1218,7 +1234,7 @@ Format: <code>name n/YOUR_NAME</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="view-your-profile-and-usage-statistics-code-view-code"><a class="link" href="#view-your-profile-and-usage-statistics-code-view-code">3.3.3. View your profile and usage statistics : <code>view</code></a></h4>
+<h4 id="view-your-profile-and-usage-statistics-code-view-code"><a class="link" href="#view-your-profile-and-usage-statistics-code-view-code">3.3.2. View your profile and usage statistics : <code>view</code></a></h4>
 <div class="paragraph">
 <p>View your individual Food Diary profile and usage statistics.<br>
 Format: <code>view</code></p>
@@ -1244,7 +1260,7 @@ Format: <code>view</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="share-to-facebook-code-share-code-coming-in-v2-0"><a class="link" href="#share-to-facebook-code-share-code-coming-in-v2-0">3.3.4. Share to Facebook: <code>share</code> (Coming in v2.0)</a></h4>
+<h4 id="share-to-facebook-code-share-code-coming-in-v2-0"><a class="link" href="#share-to-facebook-code-share-code-coming-in-v2-0">3.3.3. Share to Facebook: <code>share</code> (Coming in v2.0)</a></h4>
 <div class="paragraph">
 <p>Share your reviews to Facebook.<br>
 Format: <code>share INDEX</code></p>
@@ -1307,7 +1323,7 @@ Format: <code>share INDEX</code></p>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>You will not be able to share the review to Facebook if you do not allow The Food Diary write permission to your Facebook account.</p>
+<p>You will not be able to share the review to Facebook if you do not give The Food Diary write permission to your Facebook account.</p>
 </div>
 </td>
 </tr>
@@ -1315,14 +1331,59 @@ Format: <code>share INDEX</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.3.5. Exiting the program : <code>exit</code></a></h4>
+<h4 id="undo-a-command-code-undo-code"><a class="link" href="#undo-a-command-code-undo-code">3.3.4. Undo a command : <code>undo</code></a></h4>
+<div class="paragraph">
+<p>Undoes your last command.<br>
+Format: <code>undo</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This command is only able to undo commands that made a change in the state of the Food Diary.
+i.e. Commands such as <code>select</code>, <code>list</code>, <code>listUnvisited</code> and <code>find</code> will not be able to be undone using this <code>undo</code> command.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="redo-a-command-code-redo-code"><a class="link" href="#redo-a-command-code-redo-code">3.3.5. Redo a command : <code>redo</code></a></h4>
+<div class="paragraph">
+<p>Redoes your <code>undo</code> command.<br>
+Format: <code>redo</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This command is only able to redo a command that was undone by an <code>undo</code> command.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">3.3.6. Viewing help : <code>help</code></a></h4>
+<div class="paragraph">
+<p>Format: <code>help</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.3.7. Exiting the program : <code>exit</code></a></h4>
 <div class="paragraph">
 <p>Exits the program.<br>
 Format: <code>exit</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="saving-the-data"><a class="link" href="#saving-the-data">3.3.6. Saving the data</a></h4>
+<h4 id="saving-the-data"><a class="link" href="#saving-the-data">3.3.8. Saving the data</a></h4>
 <div class="paragraph">
 <p>The Food Diary data are saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.</p>
@@ -1370,6 +1431,10 @@ e.g. <code>delete 1</code></p>
 <li>
 <p><strong>listUnvisited</strong> : <code>listUnvisited po/POSTAL_CODE</code><br>
 e.g. <code>listUnvisited po/267951</code></p>
+</li>
+<li>
+<p><strong>sort</strong> : <code>sort [or/ORDER] [l/LIMIT]</code>
+e.g. <code>sort or/ASC l/2</code></p>
 </li>
 <li>
 <p><strong>find</strong> : <code>find KEYWORD [MORE_KEYWORDS]</code>
@@ -1435,6 +1500,12 @@ e.g. <code>view</code></p>
 <div class="ulist">
 <ul>
 <li>
+<p><strong>undo</strong> : <code>undo</code></p>
+</li>
+<li>
+<p><strong>redo</strong> : <code>redo</code></p>
+</li>
+<li>
 <p><strong>help</strong> : <code>help</code></p>
 </li>
 <li>
@@ -1443,4 +1514,4 @@ e.g. <code>view</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 15:09:26 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 15:20:22 UTC</div></div></div></body></html>
