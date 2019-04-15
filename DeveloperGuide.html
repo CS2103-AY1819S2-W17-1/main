@@ -1603,27 +1603,8 @@ users only need to remember one command, hence it is more intuitive for the user
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/AddReviewActivityDiagram.png" alt="AddReviewActivityDiagram" width="1000">
+<img src="images/AddReviewActivityDiagram.png" alt="AddReviewActivityDiagram" width="500">
 </div>
-</div>
-<div class="paragraph">
-<p>The <code>Restaurant</code> class contains a list of reviews. Adding a review to a restaurant would entail adding a review to this list to the specified restaurant.</p>
-</div>
-<div class="paragraph">
-<p>Implementing this feature involved the following major components:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><code>FoodDiaryParser</code> was modified to accept the command to add a review.</p>
-</li>
-<li>
-<p><code>AddReviewCommandParser</code> class to parse the command into the separate fields. The new Review is constructed here, and AddReviewCommand is constructed here with the new Review and Index.</p>
-</li>
-<li>
-<p><code>AddReviewCommand</code> class, which extends <code>Command</code> and takes in the index of the restaurant and the Review to be added. This component handles the execution logic and interactions with the model. The execution steps are detailed below.</p>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>The execution of this command involves:</p>
@@ -1632,23 +1613,17 @@ users only need to remember one command, hence it is more intuitive for the user
 <p>Step 1. Retrieving the last shown list from the <code>Model</code> and retrieving the restaurant indicated by the index from the last shown list.</p>
 </div>
 <div class="paragraph">
-<p>Step 2. Creating a new list of reviews that copies everything from the original restaurant&#8217;s list of reviews.</p>
+<p>Step 2. Creating a new list of reviews that copies everything from the original restaurant&#8217;s list of reviews and inserting the new review into the list and creating a new restaurant object with the new list.</p>
 </div>
 <div class="paragraph">
-<p>Step 3. Inserting the new review into the list.</p>
-</div>
-<div class="paragraph">
-<p>Step 4. Creating a new restaurant object with the new list.</p>
-</div>
-<div class="paragraph">
-<p>Step 5. Replacing the original restaurant with the new restaurant object in the model.</p>
+<p>Step 3. Replacing the original restaurant with the new restaurant object in the model.</p>
 </div>
 <div class="paragraph">
 <p>Refer to the sequence diagram below for an illustration of how this command is executed.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/AddReviewSequenceDiagram.png" alt="AddReviewSequenceDiagram" width="1000">
+<img src="images/AddReviewSequenceDiagram.png" alt="AddReviewSequenceDiagram" width="750">
 </div>
 </div>
 </div>
@@ -1680,29 +1655,6 @@ users only need to remember one command, hence it is more intuitive for the user
 </tr>
 </tbody>
 </table>
-<div class="ulist">
-<ul>
-<li>
-<p>Alternative 2: Have users select the restaurant they wish to review rather than indicate it as an index</p>
-</li>
-</ul>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Pros</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Reduce complexity of the <code>AddReview</code> command by 1 argument</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Cons</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Users will have to either input a command or use their mouse to click to select the restaurant, which are unnecessary steps.</p></td>
-</tr>
-</tbody>
-</table>
 </div>
 </div>
 <div class="sect3">
@@ -1722,40 +1674,13 @@ users only need to remember one command, hence it is more intuitive for the user
 <p>The Food Diary currently supports 5 default reviews, each corresponding to a rating from 1-5 inclusive. Do have a look at the User Guide for these 5 entries!</p>
 </div>
 <div class="paragraph">
-<p>The following activity diagram will give a clearer picture of the implementation of this command:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/AddDefaultReviewActivityDiagram.png" alt="AddDefaultReviewActivityDiagram" width="1000">
-</div>
-</div>
-<div class="paragraph">
-<p>Implementing this feature involved the following components:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><code>FoodDiaryParser</code> modified to accept the addR command (to add default review)</p>
-</li>
-<li>
-<p><code>AddDefaultReviewCommandParser</code> class to read the INDEX and NUMBER</p>
-</li>
-<li>
-<p><code>AddDefaultReviewCommand</code> class to execute the logic of the command.</p>
-</li>
-<li>
-<p>Most Importantly, <code>AddDefaultReviewUtil</code> class, which stores the default values for the default reviews to be added.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
 <p>The review <code>Entry</code>, which is composed of a String value, will be taken from the <code>AddDefaultReviewUtil</code> class. The review <code>Rating</code> used is the indicated <code>NUMBER</code> in the command. A new <code>Review</code> object is created from these two attributes and added.</p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="design-considerations-7"><a class="link" href="#design-considerations-7">Design Considerations</a></h5>
 <div class="paragraph">
-<p>These alternatives were considered as well:</p>
+<p>This alternative was considered as well:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1766,40 +1691,11 @@ users only need to remember one command, hence it is more intuitive for the user
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
+<col style="width: 100%;">
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Pros</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Reduces coupling between the two command classes.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Cons</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Violates the DRY (Don&#8217;t Repeat Yourself) Principle, as the code to add a review will be repeated.</p></td>
-</tr>
-</tbody>
-</table>
-<div class="ulist">
-<ul>
-<li>
-<p>Alternative 2: Storing default review objects instead of only the review entry strings</p>
-</li>
-</ul>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Pros</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Easier and more efficient retrieval of default reviews.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Cons</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The timestamps of the default reviews will be constant, and will not indicate accurately the time of the creation of the new default review.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">However, this violates the DRY (Don&#8217;t Repeat Yourself) Principle, as the code to add a review will be repeated.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1816,34 +1712,15 @@ users only need to remember one command, hence it is more intuitive for the user
 <div class="sect4">
 <h5 id="current-implementation-8"><a class="link" href="#current-implementation-8">Current Implementation</a></h5>
 <div class="paragraph">
-<p>Executing this command requires the user to select the restaurant whose review is to be edited. This can be done via the select command or by a mouse click on the application GUI.</p>
-</div>
-<div class="paragraph">
 <p>Do refer to the sequence diagram below for a clearer picture of the implementation of this command. Note that the interaction between the <code>EditReviewCommand</code> and the <code>Model</code> is left out as it is the same as the one in <code>AddReviewCommand</code> above.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/EditReviewSequenceDiagram.png" alt="EditReviewSequenceDiagram" width="1000">
+<img src="images/EditReviewSequenceDiagram.png" alt="EditReviewSequenceDiagram" width="750">
 </div>
 </div>
 <div class="paragraph">
-<p>The components involved in the execution of this command include:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Modifying <code>FoodDiaryParser</code> to accept tbe editReview command</p>
-</li>
-<li>
-<p><code>EditReviewCommandParser</code> class to parse the command with the optional fields</p>
-</li>
-<li>
-<p><code>EditReviewCommand</code> class to handle to logic of the execution of the command</p>
-</li>
-<li>
-<p><code>EditReviewDescriptor</code> class to store the changes for the different fields of the review</p>
-</li>
-</ol>
+<p>The components involved in the execution of this command include the <code>FoodDiaryParser</code>, the <code>EditReviewCommandParser</code> and the <code>EditReviewCommand</code> class itself. The main difference from the <code>AddReviewCommand</code> is the <code>EditReviewDescriptor</code> class, which is used to store the changes for the review.</p>
 </div>
 <div class="paragraph">
 <p>The <code>EditReviewDescriptor</code> class can contain optional fields. This is so that the command does not have to modify every field in a review and users can specify which field they would like to modify.</p>
@@ -3775,4 +3652,4 @@ Expected: No categories are set. Error details shown in status message.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 10:16:33 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 10:47:07 UTC</div></div></div></body></html>
