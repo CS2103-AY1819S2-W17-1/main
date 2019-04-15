@@ -25,7 +25,7 @@ public class ListUnvisitedCommand extends Command {
             + PREFIX_POSTAL + "POSTAL CODE ";
 
     public static final String MESSAGE_SUCCESS = "Listed all unvisited restaurants based on "
-            + "proximity provided Postal Code";
+            + "proximity to provided Postal Code";
 
     public static final String MESSAGE_INVALID_POSTAL_DATA = "Postal Data file is invalid";
 

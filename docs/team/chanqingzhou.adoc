@@ -72,5 +72,3 @@ include::../UserGuide.adoc[tag=nameUG]
 include::../DeveloperGuide.adoc[tag=listUnvisitedDG]
 
 include::../DeveloperGuide.adoc[tag=useCaseDG]
-
-
